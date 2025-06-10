@@ -5,6 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects - GS Ishir Portfolio</title>
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .projects-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .project-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-width: 350px;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .project-content {
+      padding: 15px;
+    }
+
+    .project-content h3 {
+      margin-top: 0;
+    }
+
+    .project-content p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .project-links a {
+      display: inline-block;
+      margin-right: 10px;
+      margin-top: 8px;
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+
+    .project-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -21,27 +71,21 @@
   <main>
     <section>
       <h2>Projects</h2>
-
-      <article>
-        <h3>Phantom Escape: Enchanted Maze</h3>
-        <p>A third-person puzzle-maze game built in Unity. Features AI enemy patrols, animation transitions, and atmospheric visuals.</p>
-        <ul>
-          <li><a href="https://gsishir1104.itch.io/phantom-escape-enchanted-maze">Play on Itch.io</a></li>
-          <li><a href="#">View Code on GitHub</a></li>
-          <li><a href="#">Watch Gameplay Video</a></li>
-        </ul>
-      </article>
-
-      <!-- Add more projects here -->
-      <article>
-        <h3>[Next Project Title]</h3>
-        <p>[Short project description goes here]</p>
-        <ul>
-          <li><a href="#">Play Demo</a></li>
-          <li><a href="#">View Code</a></li>
-          <li><a href="#">Watch Video</a></li>
-        </ul>
-      </article>
+      <div class="projects-container">
+        <!-- Phantom Escape Project Card -->
+        <div class="project-card">
+          <img src="images/phantom_escape.jpg" alt="Phantom Escape Screenshot" />
+          <div class="project-content">
+            <h3>Phantom Escape: Enchanted Maze</h3>
+            <p>A third-person puzzle-maze game built in Unity. Features AI enemy patrols, animation transitions, and atmospheric visuals.</p>
+            <div class="project-links">
+              <a href="https://gsishir1104.itch.io/phantom-escape-enchanted-maze">Play on Itch.io</a>
+              <a href="#">View Code</a>
+              <a href="#">Watch Video</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
