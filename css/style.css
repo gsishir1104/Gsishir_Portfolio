@@ -50,10 +50,9 @@ footer {
   color: white;
   text-align: center;
   padding: 15px;
-  position: fixed;
-  bottom: 0;
   width: 100%;
 }
+
 
 .projects-container {
   display: flex;
@@ -64,13 +63,14 @@ footer {
 }
 
 .project-card {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   padding: 20px;
   max-width: 800px;
   width: 100%;
+  margin-bottom: 2rem;
 }
 
 .project-card img {
