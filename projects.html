@@ -3,58 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects - GSishir Portfolio</title>
+  <title>Projects - GS Ishir Portfolio</title>
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .projects-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .project-card {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      max-width: 350px;
-      overflow: hidden;
-      text-align: left;
-    }
-
-    .project-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .project-content {
-      padding: 15px;
-    }
-
-    .project-content h3 {
-      margin-top: 0;
-    }
-
-    .project-content p {
-      font-size: 0.95rem;
-      color: #444;
-    }
-
-    .project-links a {
-      display: inline-block;
-      margin-right: 10px;
-      margin-top: 8px;
-      text-decoration: none;
-      color: #2c3e50;
-      font-weight: bold;
-    }
-
-    .project-links a:hover {
-      text-decoration: underline;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -69,28 +19,38 @@
   </header>
 
   <main>
-    <section>
-      <h2>Projects</h2>
-      <div class="projects-container">
-        <!-- Phantom Escape Project Card -->
-        <div class="project-card">
-          <img src="images/phantom_escape.png" alt="Phantom Escape" />
-          <div class="project-content">
-            <h3>Phantom Escape: Enchanted Maze</h3>
-            <p>A third-person puzzle-maze game built in Unity. Features AI enemy patrols, animation transitions, and atmospheric visuals.</p>
-            <div class="project-links">
-              <a href="https://gsishir1104.itch.io/phantom-escape-enchanted-maze">Play on Itch.io</a>
-              <a href="#">View Code</a>
-              <a href="#">Watch Video</a>
-            </div>
-          </div>
-        </div>
+    <h2>My Projects</h2>
+
+    <!-- Phantom Escape Project -->
+    <section class="project-card">
+      <img src="images/phantom_escape.png" alt="Phantom Escape Game" />
+      <div class="project-content">
+        <h3>Phantom Escape: Enchanted Maze</h3>
+        <p>A third-person puzzle-maze game built in Unity, featuring enemy AI patrol, animation blending, and atmospheric gameplay.</p>
+        <ul>
+          <li><a href="https://gsishir1104.itch.io/phantom-escape-enchanted-maze" target="_blank">Play on Itch.io</a></li>
+          <li><a href="#">View Code on GitHub</a></li>
+          <li><a href="#">Watch Gameplay Video</a></li>
+        </ul>
       </div>
     </section>
+
+    <!-- Flappy Bird Project -->
+    <section class="project-card">
+      <img src="images/flappybird.gif" alt="Flappy Bird JavaFX Demo" />
+      <div class="project-content">
+        <h3>Flappy Bird Clone (JavaFX)</h3>
+        <p>A simple Flappy Bird clone built using JavaFX. Includes gravity, collision, score tracking, and game-over logic.</p>
+        <ul>
+          <li><a href="https://github.com/gsishir1104/FlappyBird-JavaFX" target="_blank">View Code on GitHub</a></li>
+        </ul>
+      </div>
+    </section>
+
   </main>
 
   <footer>
-    <p>Contact: sishirgottumukkala@gmail.com | GitHub | LinkedIn</p>
+    <p>Contact: Sishirgottumukkala@gmail.com | GitHub | LinkedIn</p>
   </footer>
 </body>
 </html>
