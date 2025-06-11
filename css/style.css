@@ -73,14 +73,12 @@ footer {
 .projects-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* or flex-start */
+  justify-content: center; /* Centers and aligns nicely */
   gap: 2rem;
   padding: 2rem;
-  max-width: 1000px; /* enough space for 3 cards */
-  margin: 0 auto;    /* center the container */
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
-
 
 .project-card {
   background-color: rgba(44, 48, 56, 0.85);
@@ -88,12 +86,13 @@ footer {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   padding: 16px;
   color: white;
-  max-width: 300px;
-  width: 100%;
-  flex: 1 1 300px; /* allows wrapping */
+  width: 300px;
+  flex: 0 0 300px;
+  margin-bottom: 2rem;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .project-card:hover {
   transform: translateY(-5px);
