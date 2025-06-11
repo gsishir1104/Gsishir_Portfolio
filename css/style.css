@@ -161,6 +161,7 @@ footer {
   background-color:  #333; /* dark neutral background */
   padding: 8px;
   transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .social-icons a img:hover {
