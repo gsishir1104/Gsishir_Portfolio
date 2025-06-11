@@ -169,3 +169,8 @@ footer {
   background-color: #aad8ff33; /* Light blue on hover */
 }
 
+
+.social-icon img {
+  width: 30px;
+  height: 30px;
+}
