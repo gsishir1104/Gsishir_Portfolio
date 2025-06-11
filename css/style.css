@@ -6,8 +6,9 @@ body {
   background: linear-gradient(135deg, #2e2c29, #7d7b71, #c9c8bb);
   background-size: cover;
   background-attachment: fixed;
-  color: #333;
+  color: white;
 }
+
 
 
 header {
@@ -36,6 +37,19 @@ nav a {
 
 nav a:hover {
   text-decoration: underline;
+}
+
+a {
+  color: #aad8ff;
+}
+
+a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: white;
 }
 
 main {
