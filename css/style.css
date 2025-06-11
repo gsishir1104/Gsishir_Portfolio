@@ -73,9 +73,9 @@ footer {
 .projects-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: flex-start; /* Align cards from the left */
   gap: 2rem;
-  padding: 2rem 0 2rem 1rem;
+  padding: 2rem 1rem;
 }
 
 .project-card {
@@ -84,13 +84,11 @@ footer {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   padding: 16px;
   color: white;
-  max-width: 300px;     /* Reduce from 350 or larger */
-  width: 100%;
+  width: 280px; /* Ensures 3 cards fit in most viewports */
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex: 1 1 300px;       /* Make sure it’s responsive */
+  flex: 0 0 auto;
 }
-
 
 .project-card:hover {
   transform: translateY(-5px);
@@ -105,13 +103,18 @@ footer {
 
 .project-content h3 {
   margin-top: 0;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.project-links {
+  margin-top: 1rem;
 }
 
 .project-links a {
-  color: #aad8ff;
+  display: inline-block;
   margin-right: 1rem;
   font-weight: bold;
+  color: #aad8ff;
   text-decoration: none;
 }
 
