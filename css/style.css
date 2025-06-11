@@ -73,7 +73,7 @@ footer {
 .projects-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Centers and aligns nicely */
+  justify-content: flex-start; /* Aligns cards from the left */
   gap: 2rem;
   padding: 2rem;
   max-width: 1200px;
@@ -87,7 +87,7 @@ footer {
   padding: 16px;
   color: white;
   width: 300px;
-  flex: 0 0 300px;
+  flex: 0 0 300px; /* Ensures exact card width */
   margin-bottom: 2rem;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
