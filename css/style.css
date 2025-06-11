@@ -70,36 +70,34 @@ footer {
   width: 100%;
 }
 
-
 .projects-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 2rem;
-  padding: 2rem;
-  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem 0;
 }
 
 .project-card {
-  background-color: rgba(44, 48, 56, 0.85); /* translucent light box */
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  padding: 20px;
-  max-width: 800px;
-  width: 100%;
-  margin-bottom: 2rem;
-  backdrop-filter: blur(10px); /* frosted glass effect */
+  background-color: rgba(44, 48, 56, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  padding: 16px;
   color: white;
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
 .project-card img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 8px;
   margin-bottom: 1rem;
 }
 
@@ -114,7 +112,6 @@ footer {
   font-weight: bold;
   text-decoration: none;
 }
-
 
 .project-links a:hover {
   text-decoration: underline;
@@ -152,6 +149,67 @@ footer {
 
 .header-right a:hover {
   text-decoration: underline;
+}
+
+.certifications-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.cert-card {
+  background-color: rgba(44, 48, 56, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  color: white;
+  max-width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.cert-card img {
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.contact-card {
+  background-color: rgba(44, 48, 56, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  padding: 32px;
+  color: white;
+  max-width: 500px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 20px;
+}
+
+.social-icons a img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  padding: 5px;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a img:hover {
+  transform: scale(1.1);
 }
 
 .social-icons a img {
