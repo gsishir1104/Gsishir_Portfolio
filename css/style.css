@@ -154,3 +154,17 @@ footer {
   text-decoration: underline;
 }
 
+.social-icons a img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #ffffff33; /* Semi-transparent white */
+  padding: 8px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.social-icons a img:hover {
+  transform: scale(1.1);
+  background-color: #aad8ff33; /* Light blue on hover */
+}
+
