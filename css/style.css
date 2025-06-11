@@ -158,7 +158,7 @@ footer {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: #ffffff33; /* Semi-transparent white */
+  background-color:  #333; /* dark neutral background */
   padding: 8px;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
