@@ -232,3 +232,52 @@ footer {
   width: 30px;
   height: 30px;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .header-left,
+  .header-right {
+    margin-bottom: 10px;
+  }
+
+  nav.header-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .projects-container,
+  .certifications-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-card,
+  .cert-card {
+    max-width: 90%;
+  }
+
+  .contact-card {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .social-icons {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .social-icons a img {
+    width: 36px;
+    height: 36px;
+  }
+}
