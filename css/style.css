@@ -84,13 +84,15 @@ footer {
   background-color: rgba(44, 48, 56, 0.85);
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  padding: 16px;
+  padding: 20px;
   color: white;
-  width: 300px;              /* Fixed width ensures consistent size */
+  width: 340px; /* Increased from 300px */
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex: 0 0 auto;            /* Prevents stretching */
+  flex: 0 0 auto;
 }
+
+
 
 .project-card:hover {
   transform: translateY(-5px);
