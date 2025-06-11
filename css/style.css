@@ -75,9 +75,9 @@ footer {
   flex-wrap: wrap;
   justify-content: flex-start; /* Aligns cards from the left */
   gap: 2rem;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 2rem 0 2rem 1rem; /* Reduced left padding */
+  max-width: 100%; /* Use full width */
+  margin-left: 0;  /* Align to the left instead of centering */
 }
 
 .project-card {
