@@ -5,6 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sishir Gottumukkala | Portfolio</title>
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .certifications-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      padding: 2rem 0;
+    }
+
+    .cert-card {
+      background-color: rgba(44, 48, 56, 0.85);
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      padding: 16px;
+      color: white;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .cert-card img {
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <header class="custom-header">
@@ -33,13 +58,13 @@
       <div class="projects-container">
         <!-- Phantom Escape -->
         <div class="project-card">
-          <img src="images/EnchantedMaze.gif" alt="Phantom Escape Screenshot" />
+          <img src="images/EnchantedMaze.gif" alt="Phantom Escape" />
           <div class="project-content">
             <h3>Phantom Escape: Enchanted Maze</h3>
             <p>A third-person puzzle-maze game built in Unity. Features AI enemy patrols, animation transitions, and atmospheric visuals.</p>
             <div class="project-links">
               <a href="https://gsishir1104.itch.io/phantom-escape-enchanted-maze" target="_blank">Play on Itch.io</a>
-              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Watch Video</a>
+              <a href="https://www.youtube.com/watch?v=ccTKHUgQoWk&t=1s" target="_blank">Watch Video</a>
             </div>
           </div>
         </div>
@@ -52,7 +77,6 @@
             <p>A simple Flappy Bird clone built using JavaFX. Includes gravity, collision, score tracking, and game-over logic.</p>
             <div class="project-links">
               <a href="https://github.com/gsishir1104/FlappyBird-JavaFX" target="_blank">View Code</a>
-              <a href="#">Watch Gameplay Video</a>
             </div>
           </div>
         </div>
@@ -62,11 +86,19 @@
     <!-- Certifications Section -->
     <section id="certifications" class="content-section">
       <h2>Certifications</h2>
-      <ul>
-        <li><strong>Unity Certified Programmer</strong> – Unity Learn, 2024</li>
-        <li><strong>Game Development with Unreal Engine</strong> – Coursera, 2024</li>
-        <li><strong>AI for Games</strong> – Udemy, 2023</li>
-      </ul>
+      <div class="certifications-container">
+        <div class="cert-card">
+          <a href="images/vr_certificate.pdf" target="_blank">
+            <img src="images/vr__thumb.png" alt="VR Certificate Thumbnail" />
+          </a>
+          <p><strong>VR Course – SP Robotic Works</strong><br />Master Certificate | October 2019</p>
+          <ul style="text-align: left; padding: 0 20px;">
+            <li>Successfully completed a VR Course focused on virtual reality development.</li>
+            <li>Built interactive VR scenes; learned VR foundations and Unity basics.</li>
+          </ul>
+          <a href="images/vr_certificate.pdf" target="_blank" style="color: #aad8ff;">View Full Certificate (PDF)</a>
+        </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
