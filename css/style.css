@@ -73,11 +73,9 @@ footer {
 .projects-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; /* Aligns cards from the left */
+  justify-content: flex-start;
   gap: 2rem;
-  padding: 2rem 0 2rem 1rem; /* Reduced left padding */
-  max-width: 100%; /* Use full width */
-  margin-left: 0;  /* Align to the left instead of centering */
+  padding: 2rem 0 2rem 1rem;
 }
 
 .project-card {
@@ -86,11 +84,11 @@ footer {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   padding: 16px;
   color: white;
-  width: 300px;
-  flex: 0 0 300px; /* Ensures exact card width */
-  margin-bottom: 2rem;
+  max-width: 300px;     /* Reduce from 350 or larger */
+  width: 100%;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 300px;       /* Make sure it’s responsive */
 }
 
 
