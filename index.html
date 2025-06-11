@@ -22,6 +22,12 @@
       color: white;
       max-width: 300px;
       text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
     }
 
     .cert-card img {
@@ -50,13 +56,12 @@
     <section id="about" class="content-section">
       <h2>About Me</h2>
       <p>I am Sishir Gottumukkala, currently pursuing my bachelor's in Computer Science at Central Michigan University with a minor in Game Design. I'm proficient in Unity and C#, and also familiar with Python and Java. I am passionate about gameplay programming, game AI, and animation. I will graduate in May 2026.</p>
+      <p>
+        <a href="docs/Resume.pdf" target="_blank" style="color: #aad8ff; font-weight: bold;">
+          📄 View My Resume (PDF)
+        </a>
+      </p>
     </section>
-    <p>
-      <a href="docs/Resume.pdf" target="_blank" style="color: #aad8ff; font-weight: bold;">
-         📄 View My Resume (PDF)
-      </a>
-    </p>
-
 
     <!-- Projects Section -->
     <section id="projects" class="content-section">
@@ -95,8 +100,7 @@
       <div class="certifications-container">
         <div class="cert-card">
           <a href="docs/vr_certificate.pdf" target="_blank">
-            <img src="images/vr_certificate.png" alt="VR Certificate" />
-
+            <img src="images/vr_certificate.png" alt="VR Certificate Thumbnail" />
           </a>
           <p><strong>VR Course – SP Robotic Works</strong><br />Master Certificate | October 2019</p>
           <ul style="text-align: left; padding: 0 20px;">
