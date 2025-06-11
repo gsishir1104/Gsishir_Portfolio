@@ -95,3 +95,37 @@ footer {
   text-decoration: underline;
 }
 
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+  background: linear-gradient(90deg, #2f312c, #504a43);
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: 'Trebuchet MS', 'Lucida Sans', sans-serif;
+}
+
+.header-right {
+  display: flex;
+  gap: 30px;
+}
+
+.header-right a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  font-family: 'Futura', 'Helvetica Neue', sans-serif;
+}
+
+.header-right a:hover {
+  text-decoration: underline;
+}
+
