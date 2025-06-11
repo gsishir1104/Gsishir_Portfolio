@@ -3,38 +3,109 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GSishir - Game Developer Portfolio</title>
+  <title>Sishir Gottumukkala | Portfolio</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="custom-header">
-  <div class="header-left">
-    <div style="font-size: 2.2rem; font-weight: bold;">Sishir Gottumukkala</div>
-    <div style="font-size: 1rem; font-weight: normal; margin-top: 5px;">Unity Developer | Game AI | Animation | Gameplay Programming</div>
-  </div>
+    <div class="header-left">
+      <div style="font-size: 2.2rem; font-weight: bold;">Sishir Gottumukkala</div>
+      <div style="font-size: 1rem; font-weight: normal; margin-top: 5px;">Unity Developer | Game AI | Animation | Gameplay Programming</div>
+    </div>
     <nav class="header-right">
-    <a href="index.html">Home</a>
-    <a href="projects.html">Projects</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
   <main>
-    <section>
-      <h2>Featured Project</h2>
-      <h3>Phantom Escape: Enchanted Maze</h3>
-      <p>A third-person puzzle-maze game built in Unity, featuring enemy AI patrol, animation blending, and atmospheric gameplay.</p>
+    <!-- About Section -->
+    <section id="about" class="content-section">
+      <h2>About Me</h2>
+      <p>I am Sishir Gottumukkala, currently pursuing my bachelor's in Computer Science at Central Michigan University with a minor in Game Design. I'm proficient in Unity and C#, and also familiar with Python and Java. I am passionate about gameplay programming, game AI, and animation. I will graduate in May 2026.</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="content-section">
+      <h2>Projects</h2>
+      <div class="projects-container">
+        <!-- Phantom Escape -->
+        <div class="project-card">
+          <img src="images/phantom_escape.png" alt="Phantom Escape Screenshot" />
+          <div class="project-content">
+            <h3>Phantom Escape: Enchanted Maze</h3>
+            <p>A third-person puzzle-maze game built in Unity. Features AI enemy patrols, animation transitions, and atmospheric visuals.</p>
+            <div class="project-links">
+              <a href="https://gsishir1104.itch.io/phantom-escape-enchanted-maze" target="_blank">Play on Itch.io</a>
+              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Watch Video</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flappy Bird -->
+        <div class="project-card">
+          <img src="images/flappybird.gif" alt="Flappy Bird JavaFX Demo" />
+          <div class="project-content">
+            <h3>Flappy Bird Clone (JavaFX)</h3>
+            <p>A simple Flappy Bird clone built using JavaFX. Includes gravity, collision, score tracking, and game-over logic.</p>
+            <div class="project-links">
+              <a href="https://github.com/gsishir1104/FlappyBird-JavaFX" target="_blank">View Code</a>
+              <a href="#">Watch Gameplay Video</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="content-section">
+      <h2>Certifications</h2>
       <ul>
-        <li><a href="https://gsishir1104.itch.io/phantom-escape-enchanted-maze">Play on Itch.io</a></li>
-        <li><a href="#">View Code on GitHub</a></li>
-        <li><a href="#">Watch Gameplay Video</a></li>
+        <li><strong>Unity Certified Programmer</strong> – Unity Learn, 2024</li>
+        <li><strong>Game Development with Unreal Engine</strong> – Coursera, 2024</li>
+        <li><strong>AI for Games</strong> – Udemy, 2023</li>
       </ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-section">
+      <div class="contact-card">
+        <h2>Contact</h2>
+        <p>You can reach me through the form below or at <strong>Sishirgottumukkala@gmail.com</strong></p>
+
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="subject">Subject:</label>
+          <input type="text" id="subject" name="subject" />
+
+          <label for="message">Your Message:</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <input type="hidden" name="_subject" value="New Contact from Portfolio Site" />
+          <button type="submit">Send</button>
+        </form>
+
+        <div class="social-icons">
+          <a href="https://github.com/gsishir1104" target="_blank">
+            <img src="images/github-icon.png" alt="GitHub" />
+          </a>
+          <a href="https://www.linkedin.com/in/sishir-gottumukkala-9a7a43235/" target="_blank">
+            <img src="images/linkedin-icon.png" alt="LinkedIn" />
+          </a>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>Contact: sishirgottumukkala@gmail.com | GitHub | LinkedIn</p>
+    <p>Contact: Sishirgottumukkala@gmail.com | GitHub | LinkedIn</p>
   </footer>
 </body>
 </html>
