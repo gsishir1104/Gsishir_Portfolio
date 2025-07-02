@@ -154,8 +154,22 @@
             background-color: #2c3e50; /* Match header or desired color */
             color: white;
             text-align: center;
-            padding: 15px;
+            padding: 15px 20px; /* Add horizontal padding to prevent cutoff */
+            box-sizing: border-box; /* Ensures padding is included in the width */
             z-index: 1000; /* Ensure it's on top */
+            white-space: nowrap; /* Prevent text from wrapping prematurely */
+            overflow: hidden; /* Hide overflow if text is still too long */
+            text-overflow: ellipsis; /* Add ellipsis if hidden overflow happens */
+        }
+
+        /* Optional: If the text is still too long on very small screens,
+           you might need to reduce font-size or make it wrap.
+           For now, let's prioritize preventing cutoff with more padding. */
+        @media (max-width: 768px) {
+            footer {
+                padding: 10px 15px; /* Slightly less padding on small screens */
+                font-size: 0.9em; /* Smaller font on small screens */
+            }
         }
 
         /* Responsive adjustments */
