@@ -1,79 +1,108 @@
 <style>
-    /* Specific styles for the project detail page layout */
-    body {
-        /* Ensure global body background isn't interfering, or set it to transparent */
-        background: #1a1a1a; /* A dark solid background as fallback */
-        margin: 0; /* Remove default body margin */
-        padding: 0; /* Remove default body padding */
-        overflow-x: hidden; /* Prevent horizontal scrollbar from fixed elements */
-        height: 100vh; /* Ensure body takes full viewport height for fixed elements to reference */
+    /* Global/Base Styles for this specific page */
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%; /* Ensure html and body take full viewport height */
+        overflow: hidden; /* Hide main scrollbar, content will scroll within .project-detail-content-area */
+        background-color: #1a1a1a; /* Fallback background for body */
     }
 
-    html {
-        /* Removing overflow: hidden; from html - let body handle scrolling. */
-        /* This was previously causing issues by trapping the footer visually. */
-        /* Do not put overflow:hidden on html unless you absolutely need it. */
-    }
-
-    /* Make the header fixed at the top */
+    /* Fixed Header */
     .custom-header {
         position: fixed;
         width: 100%;
         top: 0;
         left: 0;
-        z-index: 1000; /* High z-index to ensure it's always on top */
-        background: linear-gradient(90deg, #2f312c, #504a43); /* Keep its background */
-        box-sizing: border-box; /* Ensure padding/border don't cause overflow */
+        z-index: 1000; /* Highest z-index for header */
+        background: linear-gradient(90deg, #2f312c, #504a43);
+        box-sizing: border-box;
+        padding: 25px 40px; /* Ensure original header padding is here */
+    }
+    .custom-header .header-left,
+    .custom-header .header-right {
+        position: relative; /* Ensure header content is above its own background */
+        z-index: 1;
     }
 
+
+    /* Fixed Footer */
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #2c3e50;
+        color: white;
+        text-align: center;
+        padding: 15px 15px;
+        box-sizing: border-box;
+        z-index: 999; /* Slightly lower than header, higher than content */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    footer p {
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: calc(100% - 30px); /* Account for footer's 15px padding on each side */
+    }
+
+
+    /* Project Background (covers entire viewport, behind everything else) */
     .project-detail-wrapper {
         position: fixed; /* Still fixed for background */
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: center; /* Vertically center content */
-        justify-content: center; /* Horizontally center content */
+        display: flex; /* Helps in centering the content area */
+        align-items: center; /* Vertically center content area */
+        justify-content: center; /* Horizontally center content area */
         overflow: hidden; /* Hide overflowing background */
-        box-sizing: border-box;
-        padding: 0;
-        z-index: -2; /* Background layer */
+        z-index: -2; /* Lowest z-index for the background */
     }
 
     .project-background {
-        position: absolute;
+        position: absolute; /* Relative to .project-detail-wrapper */
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('images/EnchantedMaze.gif'); /* Use your GIF as background */
+        background-image: url('images/EnchantedMaze.gif');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        filter: brightness(0.4); /* Darken the background for better text readability */
-        z-index: -1; /* Place behind content */
-        opacity: 0.8; /* Slightly reduce opacity */
+        filter: brightness(0.4); /* Darken */
+        opacity: 0.8; /* Reduce opacity */
+        z-index: -1; /* This is actually just within the wrapper, below the wrapper's main content */
     }
 
+    /* Main content area (scrollable part) */
     .project-detail-content-area {
-        background-color: rgba(0, 0, 0, 0.75); /* Dark semi-transparent background */
+        background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent overlay */
         border-radius: 12px;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
         padding: 40px;
         color: white;
-        max-width: 800px; /* Adjust as needed */
-        width: 90%;
-        text-align: left; /* Align text to left like in the example */
-        position: relative; /* Add relative positioning for z-index to work */
-        z-index: 1; /* Ensure content is above background */
-        box-sizing: border-box; /* Include padding in width calculation */
+        max-width: 800px;
+        width: 90%; /* Take 90% of wrapper width */
+        text-align: left;
+        position: relative; /* Essential for z-index to work against fixed elements */
+        z-index: 1; /* Ensure content is above the background */
+        box-sizing: border-box;
 
-        /* IMPORTANT: These define the scrollable area for your content */
-        margin-top: 100px; /* Space for fixed header, adjust as needed */
-        margin-bottom: 80px; /* Space for footer, adjust as needed */
-        max-height: calc(100vh - 180px); /* Total vertical space minus header/footer margins */
-        overflow-y: auto; /* Allow content to scroll within its area */
+        /* Max height and overflow for internal scrolling */
+        /* These calculations need to account for header and footer heights + desired spacing */
+        margin-top: 100px; /* Space from top for fixed header */
+        margin-bottom: 80px; /* Space from bottom for fixed footer */
+        max-height: calc(100vh - 180px); /* Total viewport height minus top+bottom margins */
+        overflow-y: auto; /* Allow internal scrolling of content */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        backdrop-filter: blur(5px); /* Optional: Frosted glass effect */
+        -webkit-backdrop-filter: blur(5px); /* For Safari */
     }
 
     /* Adjustments for content inside the area */
@@ -83,25 +112,21 @@
         font-size: 2.5em;
         margin-bottom: 10px;
     }
-
     .project-detail-content-area h3 {
-        color: #aad8ff; /* Light blue for headings */
+        color: #aad8ff;
         margin-top: 25px;
         margin-bottom: 10px;
     }
-
     .project-detail-content-area p,
     .project-detail-content-area ul {
         font-size: 1.1em;
         line-height: 1.7;
         margin-bottom: 15px;
     }
-
     .project-detail-content-area ul {
         list-style-type: disc;
         margin-left: 25px;
     }
-
     .video-container {
         position: relative;
         padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -113,7 +138,6 @@
         border-radius: 8px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     }
-
     .video-container iframe {
         position: absolute;
         top: 0;
@@ -122,7 +146,6 @@
         height: 100%;
         border: 0;
     }
-
     .back-link {
         display: inline-block;
         margin-top: 30px;
@@ -134,44 +157,16 @@
         border-radius: 8px;
         transition: all 0.3s ease;
     }
-
     .back-link:hover {
         background-color: #aad8ff;
         color: #1a1a1a;
         transform: translateY(-2px);
     }
 
-    /* Footer specific styles for this page */
-    footer {
-        position: fixed; /* Make the footer fixed */
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #2c3e50; /* Match header or desired color */
-        color: white;
-        text-align: center;
-        padding: 15px 15px; /* Reduced horizontal padding slightly */
-        box-sizing: border-box; /* Ensures padding is included in the width */
-        z-index: 1000; /* Ensure it's on top */
-        /* Consider adding flexbox to align content within the footer if needed */
-        display: flex; /* Use flexbox for better internal alignment */
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-    }
-
-    footer p {
-        margin: 0; /* Remove default paragraph margin within footer */
-        white-space: nowrap; /* Keep text on one line */
-        overflow: hidden; /* Hide overflow */
-        text-overflow: ellipsis; /* Show ellipsis for cut text */
-        max-width: calc(100% - 30px); /* Account for 15px padding on each side */
-    }
-
-
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .custom-header {
-            padding: 15px 20px; /* Adjust header padding for smaller screens */
+            padding: 15px 20px;
         }
         .project-detail-content-area {
             padding: 25px;
@@ -188,11 +183,11 @@
             font-size: 1em;
         }
         footer {
-            padding: 10px 10px; /* Slightly less padding on small screens */
-            font-size: 0.85em; /* Smaller font on small screens */
+            padding: 10px 10px;
+            font-size: 0.85em;
         }
         footer p {
-            max-width: calc(100% - 20px); /* Adjust max-width for smaller padding */
+            max-width: calc(100% - 20px);
         }
     }
 </style>
