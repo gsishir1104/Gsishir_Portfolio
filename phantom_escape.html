@@ -10,18 +10,26 @@
         body {
             /* Ensure global body background isn't interfering, or set it to transparent */
             background: #1a1a1a; /* A dark solid background as fallback */
+            overflow-y: auto; /* Allow scrolling for content */
+        }
+
+        html {
+            overflow: hidden; /* Prevent default scrollbar from affecting fixed background */
         }
 
         .project-detail-wrapper {
-            position: relative;
+            position: fixed; /* Changed to fixed */
+            top: 0;
+            left: 0;
             width: 100%;
-            min-height: 100vh; /* Minimum height to cover the viewport */
+            height: 100%;
             display: flex;
             align-items: center; /* Vertically center content */
             justify-content: center; /* Horizontally center content */
             overflow: hidden; /* Hide overflowing background */
-            padding: 20px; /* Add some padding */
             box-sizing: border-box;
+            padding: 0; /* Remove padding that might cause issues */
+            z-index: -2; /* Ensure it's behind the content area */
         }
 
         .project-background {
@@ -48,13 +56,17 @@
             max-width: 800px; /* Adjust as needed */
             width: 90%;
             text-align: left; /* Align text to left like in the example */
+            position: relative; /* Add relative positioning for z-index to work */
             z-index: 1; /* Ensure content is above background */
-            backdrop-filter: blur(5px); /* Optional: Adds a blur effect behind the content */
-            -webkit-backdrop-filter: blur(5px); /* For Safari */
-            margin-top: 80px; /* To prevent header overlap */
-            margin-bottom: 40px;
+            margin-top: 0; /* Reset top margin */
+            margin-bottom: 0; /* Reset bottom margin */
+            box-sizing: border-box; /* Include padding in width calculation */
+            /* The content area itself will scroll if it overflows this viewport */
+            max-height: calc(100vh - 180px); /* Adjust based on header/footer size and desired spacing */
+            overflow-y: auto; /* Allow content to scroll within its area */
         }
 
+        /* Adjustments for content inside the area */
         .project-detail-content-area h1 {
             color: white;
             text-align: left;
@@ -124,7 +136,7 @@
             .project-detail-content-area {
                 padding: 25px;
                 width: 95%;
-                margin-top: 60px;
+                max-height: calc(100vh - 120px); /* Adjusted for smaller screens */
             }
             .project-detail-content-area h1 {
                 font-size: 2em;
