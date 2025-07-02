@@ -10,15 +10,28 @@
         body {
             /* Ensure global body background isn't interfering, or set it to transparent */
             background: #1a1a1a; /* A dark solid background as fallback */
-            overflow-y: auto; /* Allow scrolling for content */
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            overflow-x: hidden; /* Prevent horizontal scrollbar from fixed elements */
         }
 
         html {
-            overflow: hidden; /* Prevent default scrollbar from affecting fixed background */
+            /* Remove overflow: hidden; from html - let body handle scrolling */
+            /* This was causing the footer to be trapped visually */
+        }
+
+        /* Make the header fixed at the top */
+        .custom-header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* High z-index to ensure it's always on top */
+            background: linear-gradient(90deg, #2f312c, #504a43); /* Keep its background */
         }
 
         .project-detail-wrapper {
-            position: fixed; /* Changed to fixed */
+            position: fixed; /* Still fixed for background */
             top: 0;
             left: 0;
             width: 100%;
@@ -28,8 +41,8 @@
             justify-content: center; /* Horizontally center content */
             overflow: hidden; /* Hide overflowing background */
             box-sizing: border-box;
-            padding: 0; /* Remove padding that might cause issues */
-            z-index: -2; /* Ensure it's behind the content area */
+            padding: 0;
+            z-index: -2; /* Background layer */
         }
 
         .project-background {
@@ -58,11 +71,12 @@
             text-align: left; /* Align text to left like in the example */
             position: relative; /* Add relative positioning for z-index to work */
             z-index: 1; /* Ensure content is above background */
-            margin-top: 0; /* Reset top margin */
-            margin-bottom: 0; /* Reset bottom margin */
             box-sizing: border-box; /* Include padding in width calculation */
-            /* The content area itself will scroll if it overflows this viewport */
-            max-height: calc(100vh - 180px); /* Adjust based on header/footer size and desired spacing */
+
+            /* IMPORTANT: These define the scrollable area for your content */
+            margin-top: 100px; /* Space for fixed header, adjust as needed */
+            margin-bottom: 80px; /* Space for footer, adjust as needed */
+            max-height: calc(100vh - 180px); /* Total vertical space minus header/footer margins */
             overflow-y: auto; /* Allow content to scroll within its area */
         }
 
@@ -131,12 +145,27 @@
             transform: translateY(-2px);
         }
 
+        /* Footer specific styles for this page */
+        footer {
+            position: fixed; /* Make the footer fixed */
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2c3e50; /* Match header or desired color */
+            color: white;
+            text-align: center;
+            padding: 15px;
+            z-index: 1000; /* Ensure it's on top */
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .project-detail-content-area {
                 padding: 25px;
                 width: 95%;
-                max-height: calc(100vh - 120px); /* Adjusted for smaller screens */
+                margin-top: 80px; /* Adjust for smaller header */
+                margin-bottom: 60px; /* Adjust for smaller footer */
+                max-height: calc(100vh - 140px); /* Total vertical space minus header/footer margins */
             }
             .project-detail-content-area h1 {
                 font-size: 2em;
