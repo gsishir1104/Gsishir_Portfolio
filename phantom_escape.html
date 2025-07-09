@@ -1,193 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Phantom Escape: Enchanted Maze | Project Details</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow-x: hidden;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0e0e0e;
-      color: white;
-      position: relative;
-      z-index: 0;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phantom Escape: Enchanted Maze | Project Details</title>
+    <style>
+        /* This entire <style> block is ONLY for phantom_escape.html */
+        /* It overrides or complements styles from style.css for this specific page layout */
 
-    .custom-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 2;
-      background-color: #16223c;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-    }
+        /* 1. Base HTML & Body Styles: Allow content to grow and scroll */
+        html, body {
+            margin: 0;
+            padding: 0;
+            /* Do NOT set height: 100% here, so the page can scroll */
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+            font-family: 'Segoe UI', sans-serif; /* Keep specific font if desired */
+            background-color: #0e0e0e; /* Fallback base color */
+            color: white;
+            /* No position or z-index here unless absolutely necessary */
+        }
 
-    .custom-header .header-left {
-      line-height: 1.2;
-    }
+        /* 2. Fixed Header: Stays at the top */
+        .custom-header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Highest z-index to be on top */
+            background: linear-gradient(90deg, #2f312c, #504a43); /* Or solid color if desired */
+            box-sizing: border-box;
+            padding: 20px 40px; /* Original header padding */
+            display: flex; /* For internal header layout */
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Header text styles (from your original code) */
+        .custom-header .header-left { line-height: 1.2; }
+        .custom-header .header-left div:first-child { font-size: 1.8em; font-weight: bold; }
+        .custom-header .header-left div:last-child { font-size: 1em; margin-top: 5px; }
+        .custom-header .header-right a { color: white; margin-left: 25px; text-decoration: none; font-weight: bold; }
 
-    .custom-header .header-left div:first-child {
-      font-size: 1.8em;
-      font-weight: bold;
-    }
+        /* 3. Scrolling Background: Covers the whole document, scrolls with content */
+        .project-background {
+            position: absolute; /* Changed to absolute to scroll with content */
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100vh; /* Ensures it's at least viewport height */
+            height: auto; /* Allow height to expand with content if needed */
+            background-image: url('images/EnchantedMaze.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat; /* Ensure no repetition */
+            filter: brightness(0.4); /* Darken */
+            opacity: 0.8; /* Reduce opacity */
+            z-index: -1; /* Behind all content */
+        }
 
-    .custom-header .header-left div:last-child {
-      font-size: 1em;
-      margin-top: 5px;
-    }
+        /* 4. Main Content Area: Contains the scrollable content */
+        main {
+            position: relative; /* Crucial for z-index to work against absolute background */
+            z-index: 1; /* Above background, below fixed header/footer */
+            padding-top: 140px; /* Space for fixed header */
+            padding-bottom: 60px; /* Space for fixed footer */
+            /* Do NOT set a fixed height here, let content dictate height */
+            /* Do NOT set overflow-y:auto here, the body will scroll */
+            display: flex; /* To center content horizontally */
+            justify-content: center; /* Center content horizontally */
+            align-items: flex-start; /* Align content to the top within main */
+            min-height: 100vh; /* Ensure main takes at least full viewport height */
+            box-sizing: border-box; /* Include padding in height calculation */
+        }
 
-    .custom-header .header-right a {
-      color: white;
-      margin-left: 25px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        .project-detail-wrapper {
+            display: flex; /* Flex container for the content area */
+            justify-content: flex-start; /* Align content to start (left) */
+            padding: 0 60px; /* Horizontal padding for the wrapper */
+            width: 100%; /* Take full width of main */
+            max-width: 1200px; /* Optional: limit overall width of content wrapper */
+            box-sizing: border-box; /* Include padding in width */
+            flex-grow: 1; /* Allows wrapper to take available space */
+        }
 
-    .project-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('images/EnchantedMaze.gif');
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.4);
-      z-index: 0;
-    }
+        .project-detail-content-area {
+            background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent overlay */
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 900px; /* Max width of the content box itself */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            width: 100%; /* Take full width of its parent (.project-detail-wrapper) */
+            box-sizing: border-box; /* Include padding in width */
+            /* NO overflow-y: auto here, main will scroll */
+        }
 
-    main {
-      padding-top: 140px;
-      padding-bottom: 60px;
-      position: relative;
-      z-index: 1;
-    }
+        /* Content Text Styles (from your original code) */
+        .project-detail-content-area h1 { font-size: 2.8em; margin-bottom: 20px; }
+        .project-detail-content-area h3 { margin-top: 30px; margin-bottom: 10px; font-size: 1.5em; color: #aad8ff; }
+        .project-detail-content-area p, .project-detail-content-area ul { font-size: 1.15em; line-height: 1.75; }
+        .project-detail-content-area ul { list-style-type: disc; padding-left: 25px; }
+        .project-detail-content-area ul li { margin-bottom: 12px; }
 
-    .project-detail-wrapper {
-      display: flex;
-      justify-content: flex-start;
-      padding: 0 60px;
-    }
+        /* 5. Video Container Styles */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
 
-    .project-detail-content-area {
-      background-color: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      padding: 40px;
-      border-radius: 12px;
-      max-width: 900px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-      z-index: 1;
-      position: relative;
-    }
+        /* 6. Action Buttons Styles */
+        .action-buttons {
+            text-align: center;
+            margin-top: 40px; /* Space above buttons */
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between buttons */
+            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+        }
+        .action-buttons .button-link {
+            display: inline-block;
+            font-size: 1.2em;
+            color: #aad8ff;
+            text-decoration: none;
+            padding: 12px 25px;
+            border: 2px solid #aad8ff;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            white-space: nowrap; /* Prevent text wrapping inside button */
+        }
+        .action-buttons .button-link:hover {
+            background-color: #aad8ff;
+            color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
 
-    .project-detail-content-area h1 {
-      font-size: 2.8em;
-      margin-bottom: 20px;
-    }
+        /* 7. Fixed Footer: Stays at the bottom */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #16223c;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.95em;
+            z-index: 1000; /* Same z-index as header to be on top */
+        }
 
-    .project-detail-content-area h3 {
-      margin-top: 30px;
-      margin-bottom: 10px;
-      font-size: 1.5em;
-      color: #aad8ff;
-    }
+        /* 8. Responsive Adjustments */
+        @media (max-width: 768px) {
+            .custom-header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+            }
+            .custom-header .header-right { margin-top: 10px; }
 
-    .project-detail-content-area p,
-    .project-detail-content-area ul {
-      font-size: 1.15em;
-      line-height: 1.75;
-    }
+            main {
+                padding-top: 100px; /* Adjust for smaller header on mobile */
+                padding-bottom: 50px; /* Adjust for smaller footer on mobile */
+            }
 
-    .project-detail-content-area ul {
-      list-style-type: disc;
-      padding-left: 25px;
-    }
+            .project-detail-wrapper { padding: 0 20px; }
+            .project-detail-content-area { padding: 25px; }
+            .project-detail-content-area h1 { font-size: 2em; }
 
-    .project-detail-content-area ul li {
-      margin-bottom: 12px;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #16223c;
-      text-align: center;
-      padding: 15px;
-      font-size: 0.95em;
-      z-index: 2;
-    }
-
-    @media (max-width: 768px) {
-      .custom-header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px;
-      }
-
-      .custom-header .header-right {
-        margin-top: 10px;
-      }
-
-      .project-detail-wrapper {
-        padding: 0 20px;
-      }
-
-      .project-detail-content-area {
-        padding: 25px;
-      }
-
-      .project-detail-content-area h1 {
-        font-size: 2em;
-      }
-    }
-  </style>
+            .action-buttons {
+                flex-direction: column; /* Stack buttons vertically on small screens */
+                gap: 15px;
+            }
+            .action-buttons .button-link {
+                width: 80%; /* Make buttons wider on small screens */
+                margin: 0 auto; /* Center buttons */
+            }
+        }
+    </style>
 </head>
 <body>
-  <header class="custom-header">
-    <div class="header-left">
-      <div>Sishir Gottumukkala</div>
-      <div>Unity Developer | Game AI | Animation | Gameplay Programming</div>
-    </div>
-    <nav class="header-right">
-      <a href="index.html#about">About</a>
-      <a href="index.html#projects">Projects</a>
-      <a href="index.html#certifications">Certifications</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
-  </header>
+    <header class="custom-header">
+        <div class="header-left">
+            <div>Sishir Gottumukkala</div>
+            <div>Unity Developer | Game AI | Animation | Gameplay Programming</div>
+        </div>
+        <nav class="header-right">
+            <a href="index.html#about">About</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#certifications">Certifications</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
 
-  <div class="project-background"></div>
+    <div class="project-background"></div>
 
-  <main>
-    <section class="project-detail-wrapper">
-      <div class="project-detail-content-area">
-        <h1>Phantom Escape: Enchanted Maze</h1>
-        <p><strong>Project Overview:</strong> Phantom Escape: Enchanted Maze is a captivating third-person puzzle-maze game developed in Unity. The core gameplay revolves around navigating a mysterious maze, solving puzzles, and evading intelligent AI enemies.</p>
+    <main>
+        <section class="project-detail-wrapper">
+            <div class="project-detail-content-area">
+                <h1>Phantom Escape: Enchanted Maze</h1>
+                <p><strong>Project Overview:</strong> Phantom Escape: Enchanted Maze is a captivating third-person puzzle-maze game developed in Unity. The core gameplay revolves around navigating a mysterious maze, solving puzzles, and evading intelligent AI enemies.</p>
 
-        <h3>Key Features:</h3>
-        <ul>
-          <li><strong>Advanced AI Enemy Patrols:</strong> Implemented sophisticated AI behaviors for enemies, including patrol paths, line-of-sight detection, and pursuit logic, creating a challenging and dynamic environment.</li>
-          <li><strong>Seamless Animation Transitions:</strong> Designed and integrated smooth animation transitions for the player character and enemies, enhancing visual fluidity and responsiveness.</li>
-          <li><strong>Immersive Atmospheric Visuals:</strong> Crafted a visually stunning environment with carefully chosen lighting, textures, and particle effects to create an enchanting yet eerie atmosphere.</li>
-        </ul>
-      </div>
-    </section>
-  </main>
+                <h3>Key Features:</h3>
+                <ul>
+                    <li><strong>Advanced AI Enemy Patrols:</strong> Implemented sophisticated AI behaviors for enemies, including patrol paths, line-of-sight detection, and pursuit logic, creating a challenging and dynamic environment.</li>
+                    <li><strong>Seamless Animation Transitions:</strong> Designed and integrated smooth animation transitions for the player character and enemies, enhancing visual fluidity and responsiveness.</li>
+                    <li><strong>Immersive Atmospheric Visuals:</strong> Crafted a visually stunning environment with carefully chosen lighting, textures, and particle effects to create an enchanting yet eerie atmosphere.</li>
+                    <li><strong>Intuitive Puzzle Mechanics:</strong> Developed engaging puzzles that require logical thinking and environmental interaction to progress through the maze.</li>
+                    <li><strong>Responsive Third-Person Controls:</strong> Implemented fluid and responsive third-person character controls for an enjoyable player experience.</li>
+                </ul>
 
-  <footer>
-    &copy; 2025 Sishir Gottumukkala. All rights reserved.
-  </footer>
+                <h3>Technologies Used:</h3>
+                <ul>
+                    <li><strong>Game Engine:</strong> Unity</li>
+                    <li><strong>Programming Language:</strong> C#</li>
+                    <li><strong>Tools:</strong> Blender (for models, if any), Visual Studio</li>
+                </ul>
+
+                <h3>Learning Outcomes:</h3>
+                <p>Through this project, I gained significant experience in:</p>
+                <ul>
+                    <li>Developing complex AI behaviors in Unity.</li>
+                    <li>Implementing and managing animation states and transitions.</li>
+                    <li>Optimizing game performance and visual fidelity.</li>
+                    <li>Designing and iterating on puzzle mechanics.</li>
+                    <li>Full game development pipeline from concept to playable build.</li>
+                </ul>
+
+                <h3>Project Video:</h3>
+                <div class="video-container">
+                    <iframe src="youtube.com"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="https://gsishir1104.itch.io/phantom-escape-enchanted-maze" target="_blank" class="button-link">
+                        Play on Itch.io
+                    </a>
+                    <a href="index.html#projects" class="button-link">
+                        ← Back to Projects
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2025 Sishir Gottumukkala. All rights reserved.
+    </footer>
 </body>
 </html>
