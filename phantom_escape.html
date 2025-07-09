@@ -10,8 +10,10 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
+      overflow-x: hidden;
       background-color: #1a1a1a;
+      color: white;
+      font-family: Arial, sans-serif;
     }
 
     .custom-header {
@@ -50,34 +52,25 @@
       text-align: center;
       padding: 15px;
       z-index: 999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
-    footer p {
-      margin: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: calc(100% - 30px);
+    main {
+      padding-top: 120px;
+      padding-bottom: 80px;
+      min-height: 100vh;
+      box-sizing: border-box;
     }
 
     .project-detail-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      z-index: -2;
+      flex-direction: column;
     }
 
     .project-background {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -101,13 +94,7 @@
       width: 90%;
       text-align: left;
       position: relative;
-      z-index: 1;
       box-sizing: border-box;
-      margin-top: 100px;
-      margin-bottom: 80px;
-      max-height: calc(100vh - 180px);
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
     }
@@ -188,9 +175,6 @@
       .project-detail-content-area {
         padding: 25px;
         width: 95%;
-        margin-top: 80px;
-        margin-bottom: 60px;
-        max-height: calc(100vh - 140px);
       }
 
       .project-detail-content-area h1 {
@@ -205,10 +189,6 @@
       footer {
         padding: 10px;
         font-size: 0.85em;
-      }
-
-      footer p {
-        max-width: calc(100% - 20px);
       }
     }
   </style>
@@ -228,46 +208,38 @@
     </nav>
   </header>
 
+  <div class="project-background"></div>
+
   <main>
     <section class="project-detail-wrapper">
-      <div class="project-background"></div>
       <div class="project-detail-content-area">
         <h1>Phantom Escape: Enchanted Maze</h1>
-        <p><strong>Project Overview:</strong> Phantom Escape: Enchanted Maze is a captivating third-person puzzle-maze game developed in Unity. The core gameplay revolves around navigating a mysterious maze, solving puzzles, and evading intelligent AI enemies.</p>
+        <p><strong>Project Overview:</strong> Phantom Escape is a thrilling third-person puzzle-maze game developed in Unity. Navigate a mysterious maze, solve puzzles, and evade AI enemies.</p>
 
         <h3>Key Features:</h3>
         <ul>
-          <li><strong>Advanced AI Enemy Patrols:</strong> Sophisticated AI behaviors with patrol paths, line-of-sight, and pursuit logic.</li>
-          <li><strong>Seamless Animation Transitions:</strong> Smooth transitions for characters and enemies.</li>
-          <li><strong>Immersive Atmospheric Visuals:</strong> Lighting, textures, and particles for an eerie vibe.</li>
-          <li><strong>Intuitive Puzzle Mechanics:</strong> Logical and interactive puzzles.</li>
-          <li><strong>Responsive Third-Person Controls:</strong> Fluid and responsive control system.</li>
+          <li><strong>AI Patrols:</strong> Enemies patrol with line-of-sight and pursuit logic.</li>
+          <li><strong>Seamless Animations</strong></li>
+          <li><strong>Immersive Visuals</strong></li>
+          <li><strong>Intuitive Puzzles</strong></li>
+          <li><strong>Responsive Controls</strong></li>
         </ul>
 
-        <h3>Technologies Used:</h3>
+        <h3>Technologies:</h3>
         <ul>
-          <li><strong>Game Engine:</strong> Unity</li>
-          <li><strong>Programming Language:</strong> C#</li>
-          <li><strong>Tools:</strong> Blender (for models), Visual Studio</li>
+          <li>Unity + C#</li>
+          <li>Blender</li>
+          <li>Visual Studio</li>
         </ul>
 
-        <h3>Learning Outcomes:</h3>
-        <ul>
-          <li>Developed complex AI behaviors</li>
-          <li>Managed animation states</li>
-          <li>Optimized game performance</li>
-          <li>Designed puzzle mechanics</li>
-          <li>Completed full development pipeline</li>
-        </ul>
-
-        <h3>Project Video:</h3>
+        <h3>Gameplay Video:</h3>
         <div class="video-container">
           <iframe src="https://www.youtube.com/embed/ccTKHUgQoWk?start=1"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
         </div>
 
-        <div style="text-align: center; margin-top: 30px;">
+        <div style="text-align: center;">
           <a href="https://gsishir1104.itch.io/phantom-escape-enchanted-maze" target="_blank" class="back-link" style="margin-right: 15px;">
             Play on Itch.io
           </a>
