@@ -1,315 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phantom Escape: Enchanted Maze | Project Details</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <style>
-        /* This entire <style> block is ONLY for phantom_escape.html */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phantom Escape: Enchanted Maze | Project Details</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e0e0e;
+      color: white;
+      position: relative;
+      z-index: 0;
+    }
 
-        /* Global/Base Styles for this specific page */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%; /* Ensure html and body take full viewport height */
-            overflow: hidden; /* Hide main scrollbar, content will scroll within .project-detail-content-area */
-            /* Removed redundant font-family, background-color, color, position, z-index as they are in style.css or set by background */
-        }
+    .custom-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      background-color: #16223c;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
 
-        /* Re-including some base body styles if they aren't in style.css or are overridden */
-        body {
-            font-family: 'Segoe UI', sans-serif; /* Keep this if you want a different font here */
-            background-color: #0e0e0e; /* This will be hidden by fixed background, but good fallback */
-            color: white;
-        }
+    .custom-header .header-left {
+      line-height: 1.2;
+    }
 
+    .custom-header .header-left div:first-child {
+      font-size: 1.8em;
+      font-weight: bold;
+    }
 
-        /* Fixed Header */
-        /* These styles override/complement those from style.css for fixed positioning */
-        .custom-header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000; /* Highest z-index for header */
-            background: linear-gradient(90deg, #2f312c, #504a43); /* Overrides solid color if necessary */
-            box-sizing: border-box;
-            padding: 25px 40px; /* Original header padding */
-            /* Add back flex properties if they were removed from style.css, otherwise remove these */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        /* Specific header-left/right styles */
-        .custom-header .header-left {
-            line-height: 1.2;
-        }
-        .custom-header .header-left div:first-child {
-            font-size: 1.8em;
-            font-weight: bold;
-        }
-        .custom-header .header-left div:last-child {
-            font-size: 1em;
-            margin-top: 5px;
-        }
-        .custom-header .header-right a {
-            color: white;
-            margin-left: 25px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    .custom-header .header-left div:last-child {
+      font-size: 1em;
+      margin-top: 5px;
+    }
 
+    .custom-header .header-right a {
+      color: white;
+      margin-left: 25px;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-        /* Project Background (covers entire viewport, behind everything else) */
-        .project-background {
-            position: fixed; /* Still fixed for background */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('images/EnchantedMaze.gif');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat; /* Ensure no repetition */
-            filter: brightness(0.4); /* Darken */
-            opacity: 0.8; /* Reduce opacity */
-            z-index: 0; /* Changed to 0, which is below z-index 1 for content, but above body's implied z-index */
-        }
+    .project-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('images/EnchantedMaze.gif');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.4);
+      z-index: 0;
+    }
 
-        /* Main content area (scrollable part) */
-        main {
-            position: relative; /* Essential for z-index to work */
-            z-index: 1; /* Above background, below header/footer */
-            padding-top: 140px; /* Space for fixed header */
-            padding-bottom: 60px; /* Space for fixed footer */
-            height: 100vh; /* Ensure main takes full viewport height */
-            box-sizing: border-box; /* Include padding in height calculation */
-            display: flex; /* For centering/positioning content wrapper */
-            justify-content: center; /* Center content wrapper horizontally */
-            align-items: flex-start; /* Align content wrapper to top of main */
-            overflow-y: auto; /* Allow main itself to scroll */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-        }
+    main {
+      padding-top: 140px;
+      padding-bottom: 60px;
+      position: relative;
+      z-index: 1;
+    }
 
-        .project-detail-wrapper {
-            display: flex; /* Flex container for content area */
-            justify-content: flex-start; /* Align content to start (left) */
-            padding: 0 60px; /* Horizontal padding for the wrapper */
-            width: 100%; /* Take full width of main */
-            max-width: 1200px; /* Optional: limit overall width of content wrapper */
-            box-sizing: border-box; /* Include padding in width */
-        }
+    .project-detail-wrapper {
+      display: flex;
+      justify-content: flex-start;
+      padding: 0 60px;
+    }
 
-        .project-detail-content-area {
-            background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent overlay */
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            padding: 40px;
-            border-radius: 12px;
-            max-width: 900px; /* Max width of the content box itself */
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-            width: 100%; /* Take full width of its parent (.project-detail-wrapper) */
-            box-sizing: border-box; /* Include padding in width */
-            /* Removed internal overflow-y:auto here. Main now scrolls. */
-        }
+    .project-detail-content-area {
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 900px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      z-index: 1;
+      position: relative;
+    }
 
-        /* Adjustments for content inside the area */
-        .project-detail-content-area h1 {
-            font-size: 2.8em;
-            margin-bottom: 20px;
-        }
-        .project-detail-content-area h3 {
-            margin-top: 30px;
-            margin-bottom: 10px;
-            font-size: 1.5em;
-            color: #aad8ff;
-        }
-        .project-detail-content-area p,
-        .project-detail-content-area ul {
-            font-size: 1.15em;
-            line-height: 1.75;
-        }
-        .project-detail-content-area ul {
-            list-style-type: disc;
-            padding-left: 25px;
-        }
-        .project-detail-content-area ul li {
-            margin-bottom: 12px;
-        }
+    .project-detail-content-area h1 {
+      font-size: 2.8em;
+      margin-bottom: 20px;
+    }
 
-        /* Video Container Styles */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000;
-            margin-top: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
+    .project-detail-content-area h3 {
+      margin-top: 30px;
+      margin-bottom: 10px;
+      font-size: 1.5em;
+      color: #aad8ff;
+    }
 
-        /* Back Link / Button Styles */
-        .action-buttons {
-            text-align: center;
-            margin-top: 40px; /* Increased margin for better spacing */
-            display: flex;
-            justify-content: center;
-            gap: 20px; /* Space between buttons */
-            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
-        }
-        .action-buttons .button-link {
-            display: inline-block;
-            font-size: 1.2em;
-            color: #aad8ff;
-            text-decoration: none;
-            padding: 12px 25px; /* Slightly larger padding */
-            border: 2px solid #aad8ff;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            white-space: nowrap; /* Prevent text wrapping inside button */
-        }
-        .action-buttons .button-link:hover {
-            background-color: #aad8ff;
-            color: #1a1a1a;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
+    .project-detail-content-area p,
+    .project-detail-content-area ul {
+      font-size: 1.15em;
+      line-height: 1.75;
+    }
 
+    .project-detail-content-area ul {
+      list-style-type: disc;
+      padding-left: 25px;
+    }
 
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #16223c;
-            text-align: center;
-            padding: 15px;
-            font-size: 0.95em;
-            z-index: 2; /* Ensures footer is above main content */
-        }
+    .project-detail-content-area ul li {
+      margin-bottom: 12px;
+    }
 
-        @media (max-width: 768px) {
-            .custom-header {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 20px;
-            }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #16223c;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.95em;
+      z-index: 2;
+    }
 
-            .custom-header .header-right {
-                margin-top: 10px;
-            }
+    @media (max-width: 768px) {
+      .custom-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+      }
 
-            main {
-                padding-top: 100px; /* Adjust for smaller header on mobile */
-                padding-bottom: 50px; /* Adjust for smaller footer on mobile */
-                height: calc(100vh - 150px); /* Recalculate height for mobile */
-            }
+      .custom-header .header-right {
+        margin-top: 10px;
+      }
 
-            .project-detail-wrapper {
-                padding: 0 20px;
-            }
+      .project-detail-wrapper {
+        padding: 0 20px;
+      }
 
-            .project-detail-content-area {
-                padding: 25px;
-            }
+      .project-detail-content-area {
+        padding: 25px;
+      }
 
-            .project-detail-content-area h1 {
-                font-size: 2em;
-            }
-
-            .action-buttons {
-                flex-direction: column; /* Stack buttons vertically on small screens */
-                gap: 15px; /* Adjust gap for stacked buttons */
-            }
-
-            .action-buttons .button-link {
-                width: 80%; /* Make buttons wider on small screens */
-                margin: 0 auto; /* Center buttons */
-            }
-        }
-    </style>
+      .project-detail-content-area h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header class="custom-header">
-        <div class="header-left">
-            <div>Sishir Gottumukkala</div>
-            <div>Unity Developer | Game AI | Animation | Gameplay Programming</div>
-        </div>
-        <nav class="header-right">
-            <a href="index.html#about">About</a>
-            <a href="index.html#projects">Projects</a>
-            <a href="index.html#certifications">Certifications</a>
-            <a href="index.html#contact">Contact</a>
-        </nav>
-    </header>
+  <header class="custom-header">
+    <div class="header-left">
+      <div>Sishir Gottumukkala</div>
+      <div>Unity Developer | Game AI | Animation | Gameplay Programming</div>
+    </div>
+    <nav class="header-right">
+      <a href="index.html#about">About</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#certifications">Certifications</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
 
-    <div class="project-background"></div>
+  <div class="project-background"></div>
 
-    <main>
-        <section class="project-detail-wrapper">
-            <div class="project-detail-content-area">
-                <h1>Phantom Escape: Enchanted Maze</h1>
-                <p><strong>Project Overview:</strong> Phantom Escape: Enchanted Maze is a captivating third-person puzzle-maze game developed in Unity. The core gameplay revolves around navigating a mysterious maze, solving puzzles, and evading intelligent AI enemies.</p>
+  <main>
+    <section class="project-detail-wrapper">
+      <div class="project-detail-content-area">
+        <h1>Phantom Escape: Enchanted Maze</h1>
+        <p><strong>Project Overview:</strong> Phantom Escape: Enchanted Maze is a captivating third-person puzzle-maze game developed in Unity. The core gameplay revolves around navigating a mysterious maze, solving puzzles, and evading intelligent AI enemies.</p>
 
-                <h3>Key Features:</h3>
-                <ul>
-                    <li><strong>Advanced AI Enemy Patrols:</strong> Implemented sophisticated AI behaviors for enemies, including patrol paths, line-of-sight detection, and pursuit logic, creating a challenging and dynamic environment.</li>
-                    <li><strong>Seamless Animation Transitions:</strong> Designed and integrated smooth animation transitions for the player character and enemies, enhancing visual fluidity and responsiveness.</li>
-                    <li><strong>Immersive Atmospheric Visuals:</strong> Crafted a visually stunning environment with carefully chosen lighting, textures, and particle effects to create an enchanting yet eerie atmosphere.</li>
-                    <li><strong>Intuitive Puzzle Mechanics:</strong> Developed engaging puzzles that require logical thinking and environmental interaction to progress through the maze.</li>
-                    <li><strong>Responsive Third-Person Controls:</strong> Implemented fluid and responsive third-person character controls for an enjoyable player experience.</li>
-                </ul>
+        <h3>Key Features:</h3>
+        <ul>
+          <li><strong>Advanced AI Enemy Patrols:</strong> Implemented sophisticated AI behaviors for enemies, including patrol paths, line-of-sight detection, and pursuit logic, creating a challenging and dynamic environment.</li>
+          <li><strong>Seamless Animation Transitions:</strong> Designed and integrated smooth animation transitions for the player character and enemies, enhancing visual fluidity and responsiveness.</li>
+          <li><strong>Immersive Atmospheric Visuals:</strong> Crafted a visually stunning environment with carefully chosen lighting, textures, and particle effects to create an enchanting yet eerie atmosphere.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
 
-                <h3>Technologies Used:</h3>
-                <ul>
-                    <li><strong>Game Engine:</strong> Unity</li>
-                    <li><strong>Programming Language:</strong> C#</li>
-                    <li><strong>Tools:</strong> Blender (for models, if any), Visual Studio</li>
-                </ul>
-
-                <h3>Learning Outcomes:</h3>
-                <p>Through this project, I gained significant experience in:</p>
-                <ul>
-                    <li>Developing complex AI behaviors in Unity.</li>
-                    <li>Implementing and managing animation states and transitions.</li>
-                    <li>Optimizing game performance and visual fidelity.</li>
-                    <li>Designing and iterating on puzzle mechanics.</li>
-                    <li>Full game development pipeline from concept to playable build.</li>
-                </ul>
-
-                <h3>Project Video:</h3>
-                <div class="video-container">
-                    <iframe src="youtube.com"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                </div>
-
-                <div class="action-buttons">
-                    <a href="https://gsishir1104.itch.io/phantom-escape-enchanted-maze" target="_blank" class="button-link">
-                        Play on Itch.io
-                    </a>
-                    <a href="index.html#projects" class="button-link">
-                        ← Back to Projects
-                    </a>
-                </div>
-
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        © 2025 Sishir Gottumukkala. All rights reserved.
-    </footer>
+  <footer>
+    &copy; 2025 Sishir Gottumukkala. All rights reserved.
+  </footer>
 </body>
 </html>
