@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phantom Escape: Enchanted Maze | Project Details</title>
+    <link rel="stylesheet" href="css/style.css" />
     <style>
-        /* This entire <style> block is ONLY for phantom_escape.html */
+        /* THIS ENTIRE <style> BLOCK IS ONLY FOR phantom_escape.html */
         /* It overrides or complements styles from style.css for this specific page layout */
 
         /* 1. Base HTML & Body Styles: Allow content to grow and scroll */
@@ -14,7 +15,7 @@
             padding: 0;
             /* Do NOT set height: 100% here, so the page can scroll */
             overflow-x: hidden; /* Prevent horizontal scrollbar */
-            font-family: 'Segoe UI', sans-serif; /* Keep specific font if desired */
+            font-family: 'Segoe UI', sans-serif; /* Specific font for this page */
             background-color: #0e0e0e; /* Fallback base color */
             color: white;
             /* No position or z-index here unless absolutely necessary */
@@ -27,7 +28,8 @@
             top: 0;
             left: 0;
             z-index: 1000; /* Highest z-index to be on top */
-            background: linear-gradient(90deg, #2f312c, #504a43); /* Or solid color if desired */
+            /* Use !important to force this background over any conflicting rule from style.css */
+            background: linear-gradient(90deg, #2f312c, #504a43) !important;
             box-sizing: border-box;
             padding: 20px 40px; /* Original header padding */
             display: flex; /* For internal header layout */
@@ -48,7 +50,7 @@
             width: 100%;
             min-height: 100vh; /* Ensures it's at least viewport height */
             height: auto; /* Allow height to expand with content if needed */
-            background-image: url('images/EnchantedMaze.gif');
+            background-image: url('images/EnchantedMaze.gif'); /* This sets the background GIF */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat; /* Ensure no repetition */
@@ -242,7 +244,7 @@
 
                 <h3>Project Video:</h3>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/ccTKHUgQoWk&t=1s"
+                    <iframe src="youtube.com"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                 </div>
