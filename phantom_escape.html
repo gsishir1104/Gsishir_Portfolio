@@ -13,8 +13,6 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #0e0e0e;
       color: white;
-      position: relative;
-      z-index: 0;
     }
 
     .custom-header {
@@ -22,7 +20,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 2;
+      z-index: 999;
       background-color: #16223c;
       padding: 20px 40px;
       display: flex;
@@ -58,24 +56,22 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('images/EnchantedMaze.gif');
+      background-image: url('images/EnchantedMaze.gif'); 
       background-size: cover;
       background-position: center;
       filter: brightness(0.4);
-      z-index: 0;
+      z-index: -1;
     }
 
     main {
       padding-top: 140px;
       padding-bottom: 60px;
-      position: relative;
-      z-index: 1;
     }
 
     .project-detail-wrapper {
       display: flex;
-      justify-content: flex-start;
-      padding: 0 60px;
+      justify-content: center;
+      padding: 0 20px;
     }
 
     .project-detail-content-area {
@@ -84,10 +80,9 @@
       -webkit-backdrop-filter: blur(6px);
       padding: 40px;
       border-radius: 12px;
-      max-width: 900px;
+      max-width: 1200px;
+      width: 100%;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-      z-index: 1;
-      position: relative;
     }
 
     .project-detail-content-area h1 {
@@ -117,6 +112,27 @@
       margin-bottom: 12px;
     }
 
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      width: 100%;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
     footer {
       position: fixed;
       bottom: 0;
@@ -126,7 +142,6 @@
       text-align: center;
       padding: 15px;
       font-size: 0.95em;
-      z-index: 2;
     }
 
     @media (max-width: 768px) {
@@ -141,7 +156,7 @@
       }
 
       .project-detail-wrapper {
-        padding: 0 20px;
+        padding: 0 10px;
       }
 
       .project-detail-content-area {
@@ -151,36 +166,6 @@
       .project-detail-content-area h1 {
         font-size: 2em;
       }
-
-      .action-buttons {
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .action-buttons .button-link {
-      width: 80%;
-      margin: 0 auto;
-    }
-
-    .video-container {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-  height: 0;
-  overflow: hidden;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
     }
   </style>
 </head>
@@ -206,41 +191,22 @@
         <h1>Phantom Escape: Enchanted Maze</h1>
         <p><strong>Project Overview:</strong> Phantom Escape: Enchanted Maze is a captivating third-person puzzle-maze game developed in Unity. The core gameplay revolves around navigating a mysterious maze, solving puzzles, and evading intelligent AI enemies.</p>
 
+        <div class="video-container">
+          <iframe 
+            src="https://www.youtube.com/embed/ccTKHUgQoWk"
+            title="Phantom Escape Gameplay"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+
         <h3>Key Features:</h3>
         <ul>
           <li><strong>Advanced AI Enemy Patrols:</strong> Implemented sophisticated AI behaviors for enemies, including patrol paths, line-of-sight detection, and pursuit logic, creating a challenging and dynamic environment.</li>
           <li><strong>Seamless Animation Transitions:</strong> Designed and integrated smooth animation transitions for the player character and enemies, enhancing visual fluidity and responsiveness.</li>
           <li><strong>Immersive Atmospheric Visuals:</strong> Crafted a visually stunning environment with carefully chosen lighting, textures, and particle effects to create an enchanting yet eerie atmosphere.</li>
         </ul>
-
-        <h3>Technologies Used:</h3>
-        <ul>
-            <li><strong>Game Engine:</strong> Unity</li>
-            <li><strong>Programming Language:</strong> C#</li>
-            <li><strong>Tools:</strong> Blender (for models, if any), Visual Studio</li>
-        </ul>
-
-        <h3>Learning Outcomes:</h3>
-        <p>Through this project, I gained significant experience in:</p>
-        <ul>
-            <li>Developing complex AI behaviors in Unity.</li>
-            <li>Implementing and managing animation states and transitions.</li>
-            <li>Optimizing game performance and visual fidelity.</li>
-            <li>Designing and iterating on puzzle mechanics.</li>
-            <li>Full game development pipeline from concept to playable build.</li>
-        </ul>
-
-        <h3>Project Video:</h3>
-        <div class="video-container">
-          <iframe 
-            src="https://www.youtube.com/embed/ccTKHUgQoWk" 
-            title="Phantom Escape Demo"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-</div>
-
+      </div>
     </section>
   </main>
 
