@@ -3,139 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sishir Gottumukkala | Portfolio</title>
-  <link rel="stylesheet" href="css/style.css" />
-  
-</head>
-<body>
-  <header class="custom-header">
-    <div class="header-left">
-      <div style="font-size: 2.2rem; font-weight: bold;">Sishir Gottumukkala</div>
-      <div style="font-size: 1rem; font-weight: normal; margin-top: 5px;">Unity Developer | Game AI | Animation | Gameplay Programming</div>
-    </div>
-    <nav class="header-right">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <title>Phantom Escape: Enchanted Maze | Project Details</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e0e0e;
+      color: white;
+    }
 
-  <main>
-    <!-- About Section -->
-    <section id="about" class="content-section">
-  <h2>About Me</h2>
-  <p>
-    Hello! I'm <strong>Sishir Gottumukkala</strong>, a passionate Unity developer and computer science student currently pursuing my bachelor's degree at Central Michigan University. Alongside my major in Computer Science, I’m also minoring in Game Design to align my technical skills with my creative interests in gameplay and immersive design.
-  </p>
-  <p>
-    My strengths lie in <strong>gameplay programming</strong>, <strong>game artificial intelligence</strong>, and <strong>animation</strong>, and I feel most comfortable working with <strong>Unity</strong> and <strong>C#</strong>. I’ve also developed projects using <strong>Java</strong> and <strong>Python</strong>, and I enjoy exploring new frameworks and tools that bring my interactive ideas to life.
-  </p>
-  <p>
-    My work focuses on crafting engaging user experiences, refining game mechanics, and building systems like enemy patrol AI and animation transitions. I believe in learning by doing and love transforming complex challenges into polished, playable experiences.
-  </p>
-  <p>
-    Outside of coding, I’m currently <strong>writing a novel</strong>, which helps sharpen my storytelling skills. I strongly believe that <strong>storyboarding and narrative design</strong> are essential to great game development, adding emotional depth and meaning to gameplay.
-  </p>
-  <p>
-    I’m on track to graduate in <strong>May 2026</strong>, and I'm currently seeking internship opportunities to grow my real-world development experience. I also enjoy watching gameplay breakdowns, experimenting with new game ideas, and diving into virtual reality.
-  </p>
-  <p>
-    <a href="docs/Resume.pdf" target="_blank" style="color: #aad8ff; font-weight: bold;">
-      📄 View My Resume (PDF)
-    </a>
-  </p>
-</section>
+    .custom-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      background-color: #16223c;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
 
+    .custom-header .header-left {
+      line-height: 1.2;
+    }
 
-    <!-- Projects Section -->
-    <section id="projects" class="content-section">
-      <h2>Projects</h2>
-      <div class="projects-container">
-        <!-- Phantom Escape -->
-        <a href="phantom_escape.html" class="project-card-link">
-            <div class="project-card">
-                <img src="images/EnchantedMaze.gif" alt="Phantom Escape" />
-                <div class="project-content">
-                    <h3>Phantom Escape: Enchanted Maze</h3>
-                    <p>A third-person puzzle-maze game built in Unity. Features AI enemy patrols, animation transitions, and atmospheric visuals.</p>
-                    </div>
-            </div>
-        </a>
+    .custom-header .header-left div:first-child {
+      font-size: 1.8em;
+      font-weight: bold;
+    }
 
-        <!-- Flappy Bird -->
-        <div class="project-card">
-          <img src="images/flappybird.gif" alt="Flappy Bird JavaFX Demo" />
-          <div class="project-content">
-            <h3>Flappy Bird Clone (JavaFX)</h3>
-            <p>A simple Flappy Bird clone built using JavaFX. Includes gravity, collision, score tracking, and game-over logic.</p>
-            <div class="project-links">
-              <a href="https://github.com/gsishir1104/FlappyBird-JavaFX" target="_blank">View Code</a>
-            </div>
-          </div>
-        </div>
+    .custom-header .header-left div:last-child {
+      font-size: 1em;
+      margin-top: 5px;
+    }
 
-        <!-- Voice Controlled Home Appliances -->
-        <div class="project-card">
-          <img src="images/voice-control.png" alt="Voice Controlled Home Appliances Project" />
-          <div class="project-content">
-            <h3>Voice Controlled Home Appliances</h3>
-            <p>A smart home project built using <strong>Embedded C</strong> to control appliances with voice commands. This project demonstrates practical embedded systems knowledge and real-world hardware interfacing.</p>
-            <div class="project-links">
-              <a href="https://www.youtube.com/watch?v=_o8R_6nsfUs" target="_blank">Watch Video</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  
-    <!-- Certifications Section -->
-    <section id="certifications" class="content-section">
-      <h2>Certifications</h2>
-      <div class="certifications-container">
-        <div class="cert-card">
-          <a href="docs/vr_certificate.pdf" target="_blank">
-            <img src="images/vr_certificate.png" alt="VR Certificate Thumbnail" />
-          </a>
-          <p><strong>VR Course – SP Robotic Works</strong><br />Master Certificate | October 2019</p>
-          <ul style="text-align: left; padding: 0 20px;">
-            <li>Successfully completed a VR Course focused on virtual reality development.</li>
-            <li>Built interactive VR scenes; learned VR foundations and Unity basics.</li>
-          </ul>
-          <a href="docs/vr_certificate.pdf" target="_blank" style="color: #aad8ff;">View Full Certificate (PDF)</a>
-        </div>
-      </div>
-    </section>
+    .custom-header .header-right a {
+      color: white;
+      margin-left: 25px;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-    <!-- Contact Section -->
-    <section id="contact" class="content-section">
-      <h2>Contact</h2>
-      <div class="contact-card">
-        <h3 style="color: white; margin-top: 10px;">Sishir Gottumukkala</h3>
+    .project-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('images/EnchantedMaze.gif');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.4);
+      z-index: -1;
+    }
 
-        <p>Unity Developer | Game AI | Animation | Gameplay Programming</p>
-        <p>Sishirgottumukkala@gmail.com</p>
+    main {
+      padding-top: 140px;
+      padding-bottom: 60px;
+    }
 
-        <div class="social-icons">
-          <a href="index.html" title="Home">
-            <img src="images/home-icon.png" alt="Home" />
-          </a>
-          <a href="https://www.linkedin.com/in/sishir-gottumukkala-9a7a43235/" target="_blank" title="LinkedIn">
-            <img src="images/linkedin-icon.png" alt="LinkedIn" />
-          </a>
-          <a href="https://github.com/gsishir1104" target="_blank" title="GitHub">
-            <img src="images/github-icon.png" alt="GitHub" />
-          </a>
-          <a href="https://www.youtube.com/@sishirgottumukkala3985" target="_blank" title="YouTube">
-            <img src="images/youtube-icon.png" alt="YouTube" />
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+    .project-detail-wrapper {
+      display: flex;
+      justify-content: flex-start;
+      padding: 0 60px;
+    }
 
-  <footer>
-    <p>Contact: Sishirgottumukkala@gmail.com | GitHub | LinkedIn</p>
-  </footer>
-</body>
-</html>
+    .project-detail-content-area {
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 900px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .project-detail-content-area h1 {
+      font-size: 2.8em;
+      margin-bottom: 20px;
+    }
+
+    .project-detail-content-area h3 {
+      margin-top: 30px;
+      margin-bottom: 10px;
+      font-size: 1.5em;
+      color: #aad8ff;
+    }
+
+    .project-detail-content-area p,
+    .project-detail-content-area ul {
+      font-size: 1.15em;
+      line-height: 1.75;
+    }
+
+    .project-detail-content-area ul {
+      list-style-type: disc;
+      padding-left: 25px;
+    }
+
+    .project-detail-content-area ul li {
+      margin-bottom: 12px;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #16223c;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.95em;
+    }
+
+    @media (max-width
