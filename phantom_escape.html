@@ -4,27 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Phantom Escape: Enchanted Maze | Project Details</title>
-  <link rel="stylesheet" href="css/style.css" />
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       overflow-x: hidden;
-      background-color: #1a1a1a;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e0e0e;
       color: white;
-      font-family: Arial, sans-serif;
     }
 
     .custom-header {
       position: fixed;
-      width: 100%;
       top: 0;
       left: 0;
-      z-index: 1000;
-      background: linear-gradient(90deg, #2f312c, #504a43);
-      box-sizing: border-box;
-      padding: 25px 40px;
+      width: 100%;
+      z-index: 999;
+      background-color: #16223c;
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -32,41 +30,24 @@
     }
 
     .custom-header .header-left {
-      z-index: 1;
+      line-height: 1.2;
+    }
+
+    .custom-header .header-left div:first-child {
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    .custom-header .header-left div:last-child {
+      font-size: 1em;
+      margin-top: 5px;
     }
 
     .custom-header .header-right a {
       color: white;
-      margin-left: 20px;
+      margin-left: 25px;
       text-decoration: none;
       font-weight: bold;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      z-index: 999;
-    }
-
-    main {
-      padding-top: 120px;
-      padding-bottom: 80px;
-      min-height: 100vh;
-      box-sizing: border-box;
-    }
-
-    .project-detail-wrapper {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
     }
 
     .project-background {
@@ -78,127 +59,99 @@
       background-image: url('images/EnchantedMaze.gif');
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
       filter: brightness(0.4);
-      opacity: 0.8;
       z-index: -1;
+    }
+
+    main {
+      padding-top: 140px;
+      padding-bottom: 60px;
+    }
+
+    .project-detail-wrapper {
+      display: flex;
+      justify-content: flex-start;
+      padding: 0 60px;
     }
 
     .project-detail-content-area {
       background-color: rgba(0, 0, 0, 0.75);
-      border-radius: 12px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       padding: 40px;
-      color: white;
-      max-width: 800px;
-      width: 90%;
-      text-align: left;
-      position: relative;
-      box-sizing: border-box;
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
+      border-radius: 12px;
+      max-width: 900px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
     }
 
     .project-detail-content-area h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
+      font-size: 2.8em;
+      margin-bottom: 20px;
     }
 
     .project-detail-content-area h3 {
-      color: #aad8ff;
-      margin-top: 25px;
+      margin-top: 30px;
       margin-bottom: 10px;
+      font-size: 1.5em;
+      color: #aad8ff;
     }
 
     .project-detail-content-area p,
     .project-detail-content-area ul {
-      font-size: 1.1em;
-      line-height: 1.7;
-      margin-bottom: 15px;
+      font-size: 1.15em;
+      line-height: 1.75;
     }
 
     .project-detail-content-area ul {
       list-style-type: disc;
-      margin-left: 25px;
+      padding-left: 25px;
     }
 
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      max-width: 100%;
-      background: #000;
-      margin-top: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    .project-detail-content-area ul li {
+      margin-bottom: 12px;
     }
 
-    .video-container iframe {
-      position: absolute;
-      top: 0;
+    footer {
+      position: fixed;
+      bottom: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 30px;
-      font-size: 1.2em;
-      color: #aad8ff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border: 2px solid #aad8ff;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .back-link:hover {
-      background-color: #aad8ff;
-      color: #1a1a1a;
-      transform: translateY(-2px);
+      background-color: #16223c;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.95em;
     }
 
     @media (max-width: 768px) {
       .custom-header {
-        padding: 15px 20px;
         flex-direction: column;
         align-items: flex-start;
+        padding: 20px;
       }
 
       .custom-header .header-right {
         margin-top: 10px;
       }
 
+      .project-detail-wrapper {
+        padding: 0 20px;
+      }
+
       .project-detail-content-area {
         padding: 25px;
-        width: 95%;
       }
 
       .project-detail-content-area h1 {
         font-size: 2em;
       }
-
-      .project-detail-content-area p,
-      .project-detail-content-area ul {
-        font-size: 1em;
-      }
-
-      footer {
-        padding: 10px;
-        font-size: 0.85em;
-      }
     }
   </style>
 </head>
-
 <body>
   <header class="custom-header">
     <div class="header-left">
-      <div style="font-size: 2.2rem; font-weight: bold;">Sishir Gottumukkala</div>
-      <div style="font-size: 1rem; font-weight: normal; margin-top: 5px;">Unity Developer | Game AI | Animation | Gameplay Programming</div>
+      <div>Sishir Gottumukkala</div>
+      <div>Unity Developer | Game AI | Animation | Gameplay Programming</div>
     </div>
     <nav class="header-right">
       <a href="index.html#about">About</a>
@@ -214,45 +167,20 @@
     <section class="project-detail-wrapper">
       <div class="project-detail-content-area">
         <h1>Phantom Escape: Enchanted Maze</h1>
-        <p><strong>Project Overview:</strong> Phantom Escape is a thrilling third-person puzzle-maze game developed in Unity. Navigate a mysterious maze, solve puzzles, and evade AI enemies.</p>
+        <p><strong>Project Overview:</strong> Phantom Escape: Enchanted Maze is a captivating third-person puzzle-maze game developed in Unity. The core gameplay revolves around navigating a mysterious maze, solving puzzles, and evading intelligent AI enemies.</p>
 
         <h3>Key Features:</h3>
         <ul>
-          <li><strong>AI Patrols:</strong> Enemies patrol with line-of-sight and pursuit logic.</li>
-          <li><strong>Seamless Animations</strong></li>
-          <li><strong>Immersive Visuals</strong></li>
-          <li><strong>Intuitive Puzzles</strong></li>
-          <li><strong>Responsive Controls</strong></li>
+          <li><strong>Advanced AI Enemy Patrols:</strong> Implemented sophisticated AI behaviors for enemies, including patrol paths, line-of-sight detection, and pursuit logic, creating a challenging and dynamic environment.</li>
+          <li><strong>Seamless Animation Transitions:</strong> Designed and integrated smooth animation transitions for the player character and enemies, enhancing visual fluidity and responsiveness.</li>
+          <li><strong>Immersive Atmospheric Visuals:</strong> Crafted a visually stunning environment with carefully chosen lighting, textures, and particle effects to create an enchanting yet eerie atmosphere.</li>
         </ul>
-
-        <h3>Technologies:</h3>
-        <ul>
-          <li>Unity + C#</li>
-          <li>Blender</li>
-          <li>Visual Studio</li>
-        </ul>
-
-        <h3>Gameplay Video:</h3>
-        <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/ccTKHUgQoWk?start=1"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        </div>
-
-        <div style="text-align: center;">
-          <a href="https://gsishir1104.itch.io/phantom-escape-enchanted-maze" target="_blank" class="back-link" style="margin-right: 15px;">
-            Play on Itch.io
-          </a>
-          <a href="index.html#projects" class="back-link">
-            ← Back to Projects
-          </a>
-        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Sishir Gottumukkala. All rights reserved.</p>
+    &copy; 2025 Sishir Gottumukkala. All rights reserved.
   </footer>
 </body>
 </html>
