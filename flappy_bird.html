@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flappy Bird JavaFX Clone | Sishir Gottumukkala</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4CAF50;
+      --secondary: #8BC34A;
+      --dark: #1a1f16;
+      --darker: #0f120d;
+      --light: #f0f7f0;
+      --accent: #C5E1A5;
+      --card-bg: rgba(40, 50, 35, 0.8);
+      --header-bg: rgba(25, 35, 20, 0.95);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--darker), var(--dark));
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-attachment: fixed;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(76, 175, 80, 0.15) 0%, transparent 40%), 
+                  radial-gradient(circle at 80% 70%, rgba(139, 195, 74, 0.15) 0%, transparent 40%);
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .custom-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: var(--header-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+      border-bottom: 1px solid rgba(100, 150, 100, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .header-left {
+      line-height: 1.3;
+    }
+
+    .header-left div:first-child {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(139, 195, 74, 0.4);
+      letter-spacing: -0.5px;
+    }
+
+    .header-left div:last-child {
+      font-size: 1rem;
+      margin-top: 8px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 25px;
+    }
+
+    .header-right a {
+      color: #d1e8c9;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      font-size: 1rem;
+    }
+
+    .header-right a:hover {
+      color: white;
+      background: rgba(100, 150, 100, 0.3);
+    }
+
+    .header-right a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 15px;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .header-right a:hover::after {
+      width: calc(100% - 30px);
+    }
+
+    .project-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('images/flappybird.gif');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.4) contrast(1.2) blur(2px);
+      z-index: -1;
+    }
+
+    main {
+      padding-top: 140px;
+      padding-bottom: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 90%;
+    }
+
+    .project-detail-content-area {
+      margin-bottom: 80px;
+      padding: 40px;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(100, 150, 100, 0.2);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .project-detail-content-area:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-detail-content-area::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      opacity: 0.7;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+      text-shadow: 0 0 15px rgba(139, 195, 74, 0.3);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+      border-radius: 2px;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(139, 195, 74, 0.3);
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+      border-radius: 2px;
+    }
+
+    p, ul {
+      font-size: 1.15em;
+      line-height: 1.75;
+      color: var(--light);
+      margin-bottom: 20px;
+    }
+
+    strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      margin-bottom: 20px;
+      padding-left: 30px;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    ul li:hover {
+      transform: translateX(5px);
+    }
+
+    ul li:before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-size: 1.2em;
+      top: 2px;
+      text-shadow: 0 0 8px rgba(76, 175, 80, 0.7);
+    }
+
+    /* Video container */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      margin: 40px auto 30px;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+      width: 80%;
+      max-width: 800px;
+      border: 1px solid rgba(100, 150, 100, 0.3);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .video-container:hover {
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Code snippet */
+    .code-snippet {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 30px 0;
+      font-family: 'Courier New', monospace;
+      overflow-x: auto;
+      border-left: 4px solid var(--primary);
+    }
+
+    .code-snippet pre {
+      color: var(--accent);
+      line-height: 1.5;
+    }
+
+    /* Action buttons */
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 35px;
+      font-size: 1.1em;
+      font-weight: 600;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+      min-width: 220px;
+    }
+
+    .action-btn i {
+      margin-right: 10px;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .action-btn:active {
+      transform: translateY(2px);
+    }
+
+    .github-btn {
+      background: linear-gradient(45deg, #333, #000);
+      color: white;
+    }
+
+    .home-btn {
+      background: linear-gradient(45deg, #4CAF50, #2E7D32);
+      color: white;
+    }
+
+    /* Floating particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(139, 195, 74, 0.15);
+      box-shadow: 0 0 20px rgba(139, 195, 74, 0.3);
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-1000px) translateX(1000px) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      background: var(--header-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      text-align: center;
+      padding: 20px;
+      font-size: 1rem;
+      color: var(--accent);
+      border-top: 1px solid rgba(100, 150, 100, 0.2);
+    }
+
+    /* Responsive design */
+    @media (max-width: 1100px) {
+      .custom-header {
+        padding: 15px 30px;
+      }
+      .header-left div:first-child {
+        font-size: 1.6rem;
+      }
+      .header-left div:last-child {
+        font-size: 0.95rem;
+      }
+      .header-right a {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .custom-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+      }
+      .header-left {
+        margin-bottom: 15px;
+      }
+      .header-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .project-detail-content-area {
+        padding: 30px;
+      }
+      h1 {
+        font-size: 2.4rem;
+      }
+      .video-container {
+        width: 90%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding-top: 160px;
+      }
+      .project-detail-content-area {
+        padding: 25px;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      h3 {
+        font-size: 1.6rem;
+      }
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .action-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding-top: 180px;
+      }
+      .header-right a {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+      }
+      .project-detail-content-area {
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+      h3 {
+        font-size: 1.4rem;
+      }
+      .video-container {
+        width: 95%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating particles for background effect -->
+  <div class="particles" id="particles"></div>
+
+  <header class="custom-header">
+    <div class="header-left">
+      <div>Sishir Gottumukkala</div>
+      <div>Unity Developer | Game AI | Animation | Gameplay Programming</div>
+    </div>
+    <nav class="header-right">
+      <a href="index.html#about">About</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#certifications">Certifications</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="project-background"></div>
+
+  <main>
+    <section class="project-detail-content-area">
+      <h1>Flappy Bird JavaFX Clone</h1>
+      <p><strong>Project Overview:</strong> This is a faithful recreation of the popular mobile game Flappy Bird, built entirely with Java and JavaFX. The project demonstrates object-oriented programming principles, game physics implementation, and user interface design using Java's graphics libraries.</p>
+      
+      <h3>Key Features:</h3>
+      <ul>
+        <li><strong>Physics-Based Gameplay:</strong> Implemented realistic gravity, jump mechanics, and collision detection to mirror the original game's feel.</li>
+        <li><strong>Procedural Level Generation:</strong> Created an algorithm that generates pipes at varying heights with consistent gaps for the player to navigate through.</li>
+        <li><strong>Score Tracking System:</strong> Developed a scoring system that increments each time the player successfully passes through a pair of pipes.</li>
+        <li><strong>Game State Management:</strong> Designed a state system to handle different game phases (start, playing, game over) with smooth transitions.</li>
+        <li><strong>Responsive Controls:</strong> Implemented keyboard and mouse controls with precise timing for the jump mechanic.</li>
+      </ul>
+
+      <div class="video-container">
+        <iframe 
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          title="Flappy Bird JavaFX Demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      
+      <h3>Technical Implementation:</h3>
+      <p>The game was built using Java and JavaFX for rendering. The core game loop runs on the JavaFX AnimationTimer class, providing smooth 60fps gameplay. The physics system uses simple kinematic equations to simulate gravity and velocity.</p>
+      
+      <div class="code-snippet">
+        <pre><code>// Core game loop
+public void startGame() {
+    AnimationTimer timer = new AnimationTimer() {
+        @Override
+        public void handle(long now) {
+            if (gameState == GameState.PLAYING) {
+                updateBirdPosition();
+                updatePipes();
+                checkCollisions();
+                updateScore();
+                renderGame();
+            }
+        }
+    };
+    timer.start();
+}
+
+// Bird physics implementation
+private void updateBirdPosition() {
+    birdVelocity += GRAVITY;
+    bird.setY(bird.getY() + birdVelocity);
+    
+    // Rotate bird based on velocity
+    if (birdVelocity < 0) {
+        bird.setRotate(-25); // Point upward when ascending
+    } else {
+        bird.setRotate(Math.min(90, bird.getRotate() + 2)); // Rotate downward when falling
+    }
+}</code></pre>
+      </div>
+      
+      <h3>Development Challenges:</h3>
+      <p>One of the main challenges was implementing the collision detection between the bird and the pipes. Since JavaFX doesn't have built-in physics collision, I had to create custom collision detection using bounding boxes and coordinate calculations.</p>
+      
+      <p>Another challenge was optimizing the pipe generation and removal to maintain performance. The solution involved creating a pool of pipe objects that are reused as they move off-screen, reducing garbage collection overhead.</p>
+      
+      <div class="action-buttons">
+        <a href="https://github.com/gsishir1104/FlappyBird-JavaFX" class="action-btn github-btn" target="_blank">
+          <i class="fab fa-github"></i> View Source Code
+        </a>
+        <a href="index.html" class="action-btn home-btn">
+          <i class="fas fa-home"></i> Back to Home
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sishir Gottumukkala. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Create floating particles for background effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random properties
+        const size = Math.random() * 20 + 5;
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        const animationDuration = Math.random() * 20 + 15;
+        const animationDelay = Math.random() * 10;
+        const hue = Math.floor(Math.random() * 40) + 100;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        particle.style.animationDuration = `${animationDuration}s`;
+        particle.style.animationDelay = `${animationDelay}s`;
+        particle.style.background = `rgba(${hue}, 200, 100, 0.15)`;
+        particle.style.boxShadow = `0 0 ${size/2}px rgba(${hue}, 200, 100, 0.3)`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    });
+  </script>
+</body>
+</html>
