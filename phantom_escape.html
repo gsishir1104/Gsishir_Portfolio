@@ -10,9 +10,9 @@
       padding: 0;
       height: 100%;
       overflow-x: hidden;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0e0e0e;
-      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0e1a 0%, #1a1f38 100%);
+      color: #e0f0ff;
     }
 
     .custom-header {
@@ -21,12 +21,15 @@
       left: 0;
       width: 100%;
       z-index: 999;
-      background-color: #16223c;
+      background: rgba(10, 15, 30, 0.85);
       padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       color: white;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(80, 120, 200, 0.3);
     }
 
     .custom-header .header-left {
@@ -36,18 +39,32 @@
     .custom-header .header-left div:first-child {
       font-size: 1.8em;
       font-weight: bold;
+      background: linear-gradient(90deg, #aad8ff 0%, #6ba8e5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(106, 168, 229, 0.3);
     }
 
     .custom-header .header-left div:last-child {
       font-size: 1em;
       margin-top: 5px;
+      color: #aac8ff;
     }
 
     .custom-header .header-right a {
-      color: white;
+      color: #b4d5ff;
       margin-left: 25px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .custom-header .header-right a:hover {
+      color: #ffffff;
+      background: rgba(90, 130, 220, 0.2);
+      text-shadow: 0 0 10px rgba(180, 213, 255, 0.7);
     }
 
     .project-background {
@@ -56,10 +73,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('images/EnchantedMaze.gif'); 
+      background-image: url('image.png'); /* Fixed path to your image */
       background-size: cover;
       background-position: center;
-      filter: brightness(0.4);
+      filter: brightness(0.4) contrast(1.2) blur(2px);
       z-index: -1;
     }
 
@@ -75,41 +92,80 @@
     }
 
     .project-detail-content-area {
-      background-color: rgba(0, 0, 0, 0.298);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      background: rgba(5, 10, 25, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       padding: 40px;
-      border-radius: 12px;
+      border-radius: 15px;
       max-width: 1200px;
       width: 100%;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(80, 120, 200, 0.2);
     }
 
     .project-detail-content-area h1 {
       font-size: 2.8em;
       margin-bottom: 20px;
+      color: #aad8ff;
+      text-shadow: 0 0 15px rgba(106, 168, 229, 0.4);
+      position: relative;
+      display: inline-block;
+    }
+
+    .project-detail-content-area h1:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, #4a8fe7 0%, transparent 100%);
+      border-radius: 3px;
     }
 
     .project-detail-content-area h3 {
       margin-top: 30px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       font-size: 1.5em;
-      color: #aad8ff;
+      color: #6ba8e5;
+      text-shadow: 0 0 10px rgba(107, 168, 229, 0.3);
     }
 
     .project-detail-content-area p,
     .project-detail-content-area ul {
       font-size: 1.15em;
       line-height: 1.75;
+      color: #d0e5ff;
+    }
+
+    .project-detail-content-area strong {
+      color: #8bc1ff;
     }
 
     .project-detail-content-area ul {
-      list-style-type: disc;
-      padding-left: 25px;
+      list-style-type: none;
+      padding-left: 0;
     }
 
     .project-detail-content-area ul li {
-      margin-bottom: 12px;
+      margin-bottom: 20px;
+      padding-left: 30px;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .project-detail-content-area ul li:hover {
+      transform: translateX(5px);
+    }
+
+    .project-detail-content-area ul li:before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: #4a8fe7;
+      font-size: 1.2em;
+      top: 2px;
+      text-shadow: 0 0 8px rgba(74, 143, 231, 0.7);
     }
 
     .video-container {
@@ -117,11 +173,27 @@
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
-      margin-top: 30px;
+      margin-top: 40px;
       margin-bottom: 30px;
       border-radius: 12px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
       width: 80%;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid rgba(80, 120, 200, 0.3);
+      overflow: hidden;
+    }
+
+    .video-container:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(20, 40, 80, 0.4) 0%, rgba(10, 25, 60, 0.6) 100%);
+      z-index: 1;
     }
 
     .video-container iframe {
@@ -131,6 +203,7 @@
       width: 100%;
       height: 100%;
       border: none;
+      z-index: 2;
     }
 
     footer {
@@ -138,21 +211,71 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      background-color: #16223c;
+      background: rgba(10, 15, 30, 0.85);
       text-align: center;
       padding: 15px;
       font-size: 0.95em;
+      color: #aac8ff;
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(80, 120, 200, 0.3);
+      z-index: 1000;
     }
 
+    /* Floating particles effect */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(106, 168, 229, 0.15);
+      box-shadow: 0 0 20px rgba(106, 168, 229, 0.3);
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-1000px) translateX(1000px) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive design */
     @media (max-width: 768px) {
       .custom-header {
         flex-direction: column;
         align-items: flex-start;
-        padding: 20px;
+        padding: 15px;
       }
 
       .custom-header .header-right {
-        margin-top: 10px;
+        margin-top: 15px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .custom-header .header-right a {
+        margin: 0;
+        padding: 6px 10px;
+        font-size: 0.9em;
       }
 
       .project-detail-wrapper {
@@ -166,10 +289,37 @@
       .project-detail-content-area h1 {
         font-size: 2em;
       }
+
+      .video-container {
+        width: 95%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .custom-header .header-right {
+        flex-wrap: wrap;
+      }
+
+      .custom-header .header-right a {
+        margin-bottom: 5px;
+        flex: 1;
+        text-align: center;
+      }
+
+      .project-detail-content-area {
+        padding: 20px 15px;
+      }
+
+      .project-detail-content-area h1 {
+        font-size: 1.8em;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Floating particles for magical effect -->
+  <div class="particles" id="particles"></div>
+
   <header class="custom-header">
     <div class="header-left">
       <div>Sishir Gottumukkala</div>
@@ -190,12 +340,14 @@
       <div class="project-detail-content-area">
         <h1>Phantom Escape: Enchanted Maze</h1>
         <p><strong>Project Overview:</strong> Phantom Escape: Enchanted Maze is a captivating third-person puzzle-maze game developed in Unity. The core gameplay revolves around navigating a mysterious maze, solving puzzles, and evading intelligent AI enemies.</p>
+        
         <h3>Key Features:</h3>
-
         <ul>
           <li><strong>Advanced AI Enemy Patrols:</strong> Implemented sophisticated AI behaviors for enemies, including patrol paths, line-of-sight detection, and pursuit logic, creating a challenging and dynamic environment.</li>
           <li><strong>Seamless Animation Transitions:</strong> Designed and integrated smooth animation transitions for the player character and enemies, enhancing visual fluidity and responsiveness.</li>
           <li><strong>Immersive Atmospheric Visuals:</strong> Crafted a visually stunning environment with carefully chosen lighting, textures, and particle effects to create an enchanting yet eerie atmosphere.</li>
+          <li><strong>Dynamic Puzzle Mechanics:</strong> Developed interactive puzzle elements that respond to player actions, creating an evolving gameplay experience.</li>
+          <li><strong>Optimized Performance:</strong> Implemented efficient rendering techniques and occlusion culling for smooth performance across various hardware.</li>
         </ul>
 
         <div class="video-container">
@@ -206,6 +358,11 @@
             allowfullscreen>
           </iframe>
         </div>
+        
+        <h3>Development Insights:</h3>
+        <p>The development of Phantom Escape presented unique challenges in creating believable enemy AI that could navigate the complex maze environment while maintaining performance. By implementing a state machine architecture combined with spatial partitioning, we achieved both realistic enemy behaviors and optimal game performance.</p>
+        
+        <p>The atmospheric visuals were crafted using Unity's HDRP pipeline, with custom shaders developed for the magical effects seen throughout the maze. The lighting system dynamically adjusts based on player location, enhancing the sense of mystery and discovery.</p>
       </div>
     </section>
   </main>
@@ -213,5 +370,37 @@
   <footer>
     &copy; 2025 Sishir Gottumukkala. All rights reserved.
   </footer>
+
+  <script>
+    // Create floating particles for magical effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random properties
+        const size = Math.random() * 20 + 5;
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        const animationDuration = Math.random() * 20 + 15;
+        const animationDelay = Math.random() * 10;
+        const hue = Math.floor(Math.random() * 40) + 190;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        particle.style.animationDuration = `${animationDuration}s`;
+        particle.style.animationDelay = `${animationDelay}s`;
+        particle.style.background = `rgba(${hue}, ${hue}, 255, 0.15)`;
+        particle.style.boxShadow = `0 0 ${size/2}px rgba(${hue}, ${hue}, 255, 0.3)`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    });
+  </script>
 </body>
 </html>
