@@ -87,12 +87,12 @@
       background-size: cover;
       background-position: center;
       filter: brightness(0.4) contrast(1.2) blur(2px);
-      z-index: 0;
+      z-index: -1;
     }
 
     main {
       padding-top: 140px;
-      padding-bottom: 60px;
+      padding-bottom: 100px; /* Increased for button space */
     }
 
     .project-detail-wrapper {
@@ -223,6 +223,76 @@
       z-index: 2;
     }
 
+    /* Action buttons */
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 35px;
+      font-size: 1.1em;
+      font-weight: 600;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      min-width: 220px;
+    }
+
+    .action-btn:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, 
+        rgba(255,255,255,0.1) 0%, 
+        rgba(255,255,255,0.3) 100%);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .action-btn:hover:before {
+      opacity: 1;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .action-btn:active {
+      transform: translateY(2px);
+    }
+
+    .demo-btn {
+      background: linear-gradient(45deg, #4a00e0, #8e2de2);
+      color: white;
+    }
+
+    .home-btn {
+      background: linear-gradient(45deg, #16222a, #3a6073);
+      color: white;
+    }
+
+    .action-btn i {
+      margin-right: 10px;
+      font-size: 1.2em;
+    }
+
     footer {
       position: fixed;
       bottom: 0;
@@ -321,6 +391,7 @@
     @media (max-width: 768px) {
       main {
         padding-top: 160px;
+        padding-bottom: 120px;
       }
       .custom-header .header-right {
         flex-wrap: wrap;
@@ -335,11 +406,21 @@
         width: 90%;
         padding-bottom: 50.625%; /* 16:9 aspect ratio */
       }
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .action-btn {
+        width: 100%;
+        max-width: 300px;
+      }
     }
 
     @media (max-width: 480px) {
       main {
         padding-top: 200px;
+        padding-bottom: 150px;
       }
       .custom-header .header-right a {
         padding: 6px 10px;
@@ -362,8 +443,15 @@
         width: 95%;
         max-width: 100%;
       }
+      .action-btn {
+        min-width: auto;
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 1em;
+      }
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <!-- Floating particles for magical effect -->
@@ -412,6 +500,16 @@
         <p>The development of Phantom Escape presented unique challenges in creating believable enemy AI that could navigate the complex maze environment while maintaining performance. By implementing a state machine architecture combined with spatial partitioning, we achieved both realistic enemy behaviors and optimal game performance.</p>
         
         <p>The atmospheric visuals were crafted using Unity's HDRP pipeline, with custom shaders developed for the magical effects seen throughout the maze. The lighting system dynamically adjusts based on player location, enhancing the sense of mystery and discovery.</p>
+        
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <a href="https://gsishir1104.itch.io/phantom-escape-enchanted-maze" class="action-btn demo-btn" target="_blank">
+            <i class="fas fa-gamepad"></i> Play Game Demo
+          </a>
+          <a href="index.html" class="action-btn home-btn">
+            <i class="fas fa-home"></i> Back to Home
+          </a>
+        </div>
       </div>
     </section>
   </main>
