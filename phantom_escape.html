@@ -83,7 +83,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      /* CORRECTED PATH: images/EnchantedMaze.gif */
       background-image: url('images/EnchantedMaze.gif');
       background-size: cover;
       background-position: center;
@@ -179,21 +178,28 @@
       text-shadow: 0 0 8px rgba(74, 143, 231, 0.7);
     }
 
+    /* Smaller video container */
     .video-container {
       position: relative;
-      padding-bottom: 56.25%;
+      padding-bottom: 45%; /* Reduced from 56.25% */
       height: 0;
       overflow: hidden;
       margin-top: 40px;
       margin-bottom: 30px;
       border-radius: 12px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
-      width: 80%;
-      max-width: 900px;
+      width: 75%; /* Reduced from 80% */
+      max-width: 750px; /* Reduced from 900px */
       margin-left: auto;
       margin-right: auto;
       border: 1px solid rgba(80, 120, 200, 0.3);
       overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .video-container:hover {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+      transform: scale(1.01);
     }
 
     .video-container:before {
@@ -201,8 +207,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 50%;
-      height: 50%;
+      width: 100%;
+      height: 100%;
       background: linear-gradient(45deg, rgba(20, 40, 80, 0.4) 0%, rgba(10, 25, 60, 0.6) 100%);
       z-index: 1;
     }
@@ -211,8 +217,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 80%;
-      height: 80%;
+      width: 100%;
+      height: 100%;
       border: none;
       z-index: 2;
     }
@@ -239,7 +245,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;
+      z-index: -1;
       overflow: hidden;
     }
 
@@ -306,6 +312,10 @@
       .project-detail-content-area h1 {
         font-size: 2.4em;
       }
+      .video-container {
+        width: 85%;
+        max-width: 650px;
+      }
     }
 
     @media (max-width: 768px) {
@@ -322,7 +332,8 @@
         font-size: 2.2em;
       }
       .video-container {
-        width: 95%;
+        width: 90%;
+        padding-bottom: 50.625%; /* 16:9 aspect ratio */
       }
     }
 
@@ -346,6 +357,10 @@
       .project-detail-content-area p,
       .project-detail-content-area ul {
         font-size: 1.05em;
+      }
+      .video-container {
+        width: 95%;
+        max-width: 100%;
       }
     }
   </style>
@@ -393,6 +408,12 @@
           </iframe>
         </div>
         
+        <div class="video-size-controls">
+          <button class="size-btn active" data-size="small">Small</button>
+          <button class="size-btn" data-size="medium">Medium</button>
+          <button class="size-btn" data-size="large">Large</button>
+        </div>
+        
         <h3>Development Insights:</h3>
         <p>The development of Phantom Escape presented unique challenges in creating believable enemy AI that could navigate the complex maze environment while maintaining performance. By implementing a state machine architecture combined with spatial partitioning, we achieved both realistic enemy behaviors and optimal game performance.</p>
         
@@ -434,6 +455,41 @@
         
         particlesContainer.appendChild(particle);
       }
+      
+      // Video size controls
+      const sizeButtons = document.querySelectorAll('.size-btn');
+      const videoContainer = document.querySelector('.video-container');
+      
+      sizeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          sizeButtons.forEach(btn => btn.classList.remove('active'));
+          
+          // Add active class to clicked button
+          this.classList.add('active');
+          
+          // Apply size based on data attribute
+          const size = this.getAttribute('data-size');
+          
+          switch(size) {
+            case 'small':
+              videoContainer.style.width = '65%';
+              videoContainer.style.maxWidth = '600px';
+              videoContainer.style.paddingBottom = '36.56%'; // 16:9 aspect ratio
+              break;
+            case 'medium':
+              videoContainer.style.width = '75%';
+              videoContainer.style.maxWidth = '750px';
+              videoContainer.style.paddingBottom = '42.19%'; // 16:9 aspect ratio
+              break;
+            case 'large':
+              videoContainer.style.width = '85%';
+              videoContainer.style.maxWidth = '850px';
+              videoContainer.style.paddingBottom = '47.81%'; // 16:9 aspect ratio
+              break;
+          }
+        });
+      });
     });
   </script>
 </body>
