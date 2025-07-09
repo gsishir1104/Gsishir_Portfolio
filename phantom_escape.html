@@ -408,12 +408,6 @@
           </iframe>
         </div>
         
-        <div class="video-size-controls">
-          <button class="size-btn active" data-size="small">Small</button>
-          <button class="size-btn" data-size="medium">Medium</button>
-          <button class="size-btn" data-size="large">Large</button>
-        </div>
-        
         <h3>Development Insights:</h3>
         <p>The development of Phantom Escape presented unique challenges in creating believable enemy AI that could navigate the complex maze environment while maintaining performance. By implementing a state machine architecture combined with spatial partitioning, we achieved both realistic enemy behaviors and optimal game performance.</p>
         
@@ -455,41 +449,6 @@
         
         particlesContainer.appendChild(particle);
       }
-      
-      // Video size controls
-      const sizeButtons = document.querySelectorAll('.size-btn');
-      const videoContainer = document.querySelector('.video-container');
-      
-      sizeButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          // Remove active class from all buttons
-          sizeButtons.forEach(btn => btn.classList.remove('active'));
-          
-          // Add active class to clicked button
-          this.classList.add('active');
-          
-          // Apply size based on data attribute
-          const size = this.getAttribute('data-size');
-          
-          switch(size) {
-            case 'small':
-              videoContainer.style.width = '65%';
-              videoContainer.style.maxWidth = '600px';
-              videoContainer.style.paddingBottom = '36.56%'; // 16:9 aspect ratio
-              break;
-            case 'medium':
-              videoContainer.style.width = '75%';
-              videoContainer.style.maxWidth = '750px';
-              videoContainer.style.paddingBottom = '42.19%'; // 16:9 aspect ratio
-              break;
-            case 'large':
-              videoContainer.style.width = '85%';
-              videoContainer.style.maxWidth = '850px';
-              videoContainer.style.paddingBottom = '47.81%'; // 16:9 aspect ratio
-              break;
-          }
-        });
-      });
     });
   </script>
 </body>
