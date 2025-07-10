@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Voice Controlled Home Appliances | Sishir Gottumukkala</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Controlled Home Appliances Circuit</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -32,6 +32,7 @@
       background-attachment: fixed;
       position: relative;
       min-height: 100vh;
+      padding: 20px;
     }
 
     body::before {
@@ -47,12 +48,12 @@
       pointer-events: none;
     }
 
-    .custom-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
       background: var(--header-bg);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -63,7 +64,8 @@
       color: white;
       box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
       border-bottom: 1px solid rgba(100, 180, 246, 0.3);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border-radius: 15px;
+      margin-bottom: 30px;
     }
 
     .header-left {
@@ -108,62 +110,26 @@
       background: rgba(100, 180, 246, 0.3);
     }
 
-    .header-right a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 15px;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .header-right a:hover::after {
-      width: calc(100% - 30px);
-    }
-
-    .project-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('images/voice-control.png');
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.4) contrast(1.2) blur(2px);
-      z-index: -1;
-    }
-
-    main {
-      padding-top: 140px;
-      padding-bottom: 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 90%;
-    }
-
-    .project-detail-content-area {
-      margin-bottom: 80px;
-      padding: 40px;
+    .project-content {
       background: var(--card-bg);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-radius: 20px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
       border: 1px solid rgba(100, 180, 246, 0.2);
+      padding: 40px;
+      margin-bottom: 30px;
       position: relative;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .project-detail-content-area:hover {
+    .project-content:hover {
       transform: translateY(-10px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
 
-    .project-detail-content-area::before {
+    .project-content::before {
       content: '';
       position: absolute;
       top: 0;
@@ -294,7 +260,7 @@
     .circuit {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 20px;
+      grid-gap: 40px;
       position: relative;
     }
 
@@ -413,24 +379,6 @@
     .power-label {
       font-weight: 600;
       color: #FFC107;
-    }
-
-    /* Connection lines */
-    .connection {
-      position: absolute;
-      background: rgba(129, 212, 250, 0.7);
-      z-index: 1;
-    }
-
-    .connection-label {
-      position: absolute;
-      background: rgba(25, 40, 65, 0.9);
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      color: var(--accent);
-      transform: translate(-50%, -50%);
-      z-index: 2;
     }
 
     /* Code snippet */
@@ -591,11 +539,50 @@
       font-size: 1rem;
       color: var(--accent);
       border-top: 1px solid rgba(100, 180, 246, 0.2);
+      border-radius: 0 0 15px 15px;
+    }
+
+    .connection-info {
+      background: rgba(33, 150, 243, 0.15);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 30px 0;
+      border: 1px solid rgba(100, 180, 246, 0.3);
+    }
+
+    .connection-info h4 {
+      color: var(--accent);
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    .connection-item {
+      display: flex;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed rgba(100, 180, 246, 0.3);
+    }
+
+    .connection-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .connection-label {
+      flex: 0 0 160px;
+      color: #81D4FA;
+      font-weight: 500;
+    }
+
+    .connection-value {
+      flex: 1;
+      font-family: 'Courier New', monospace;
     }
 
     /* Responsive design */
     @media (max-width: 1100px) {
-      .custom-header {
+      header {
         padding: 15px 30px;
       }
       .header-left div:first-child {
@@ -610,7 +597,7 @@
     }
 
     @media (max-width: 900px) {
-      .custom-header {
+      header {
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -624,7 +611,7 @@
         justify-content: center;
         flex-wrap: wrap;
       }
-      .project-detail-content-area {
+      .project-content {
         padding: 30px;
       }
       h1 {
@@ -640,10 +627,7 @@
     }
 
     @media (max-width: 768px) {
-      main {
-        padding-top: 160px;
-      }
-      .project-detail-content-area {
+      .project-content {
         padding: 25px;
       }
       h1 {
@@ -667,14 +651,11 @@
     }
 
     @media (max-width: 480px) {
-      main {
-        padding-top: 180px;
-      }
       .header-right a {
         padding: 6px 12px;
         font-size: 0.9rem;
       }
-      .project-detail-content-area {
+      .project-content {
         padding: 20px;
       }
       h1 {
@@ -690,148 +671,160 @@
   <!-- Floating particles for background effect -->
   <div class="particles" id="particles"></div>
 
-  <header class="custom-header">
-    <div class="header-left">
-      <div>Sishir Gottumukkala</div>
-      <div>Unity Developer | Game AI | Animation | Gameplay Programming</div>
-    </div>
-    <nav class="header-right">
-      <a href="index.html#about">About</a>
-      <a href="index.html#projects">Projects</a>
-      <a href="index.html#certifications">Certifications</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
-  </header>
+  <div class="container">
+    <header>
+      <div class="header-left">
+        <div>Sishir Gottumukkala</div>
+        <div>Unity Developer | Game AI | Animation | Gameplay Programming</div>
+      </div>
+      <nav class="header-right">
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#certifications">Certifications</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </header>
 
-  <div class="project-background"></div>
+    <main>
+      <section class="project-content">
+        <h1>Voice Controlled Home Appliances</h1>
+        <p><strong>Project Overview:</strong> This innovative smart home system allows users to control household appliances using voice commands. Built with Embedded C, this project demonstrates practical IoT implementation, hardware interfacing, and voice recognition technologies.</p>
+        
+        <h3>Key Features:</h3>
+        <ul>
+          <li><strong>Voice Command Recognition:</strong> Implemented a custom voice recognition system that processes spoken commands in real-time.</li>
+          <li><strong>Appliance Control Interface:</strong> Designed circuitry to safely control high-voltage appliances through relay modules.</li>
+          <li><strong>Wireless Communication:</strong> Integrated Bluetooth connectivity for remote command execution from smartphones.</li>
+          <li><strong>Energy Monitoring:</strong> Added power consumption tracking for each connected appliance.</li>
+          <li><strong>Safety Protocols:</strong> Implemented fail-safes and overload protection to ensure user safety.</li>
+        </ul>
 
-  <main>
-    <section class="project-detail-content-area">
-      <h1>Voice Controlled Home Appliances</h1>
-      <p><strong>Project Overview:</strong> This innovative smart home system allows users to control household appliances using voice commands. Built with Embedded C, this project demonstrates practical IoT implementation, hardware interfacing, and voice recognition technologies.</p>
-      
-      <h3>Key Features:</h3>
-      <ul>
-        <li><strong>Voice Command Recognition:</strong> Implemented a custom voice recognition system that processes spoken commands in real-time.</li>
-        <li><strong>Appliance Control Interface:</strong> Designed circuitry to safely control high-voltage appliances through relay modules.</li>
-        <li><strong>Wireless Communication:</strong> Integrated Bluetooth connectivity for remote command execution from smartphones.</li>
-        <li><strong>Energy Monitoring:</strong> Added power consumption tracking for each connected appliance.</li>
-        <li><strong>Safety Protocols:</strong> Implemented fail-safes and overload protection to ensure user safety.</li>
-      </ul>
-
-      <div class="circuit-diagram">
-        <div class="diagram-container">
-          <div class="diagram-title">Circuit Connection Diagram</div>
-          <div class="circuit">
-            <!-- NodeMCU -->
-            <div class="component">
-              <div class="component-title">NodeMCU</div>
-              <div class="component-pins">
-                <div class="pin">
-                  <span class="pin-label">VIN (5V)</span>
-                  <span class="pin-value">→</span>
+        <div class="circuit-diagram">
+          <div class="diagram-container">
+            <div class="diagram-title">Circuit Connection Diagram</div>
+            <div class="circuit">
+              <!-- NodeMCU -->
+              <div class="component">
+                <div class="component-title">NodeMCU</div>
+                <div class="component-pins">
+                  <div class="pin">
+                    <span class="pin-label">VIN (5V)</span>
+                    <span class="pin-value">→ Relay VCC</span>
+                  </div>
+                  <div class="pin">
+                    <span class="pin-label">GND</span>
+                    <span class="pin-value">→ Relay GND</span>
+                  </div>
+                  <div class="pin">
+                    <span class="pin-label">GPIO5 (D1)</span>
+                    <span class="pin-value">→ Input 2</span>
+                  </div>
+                  <div class="pin">
+                    <span class="pin-label">GPIO2 (D4)</span>
+                    <span class="pin-value">→ Input 1</span>
+                  </div>
                 </div>
-                <div class="pin">
-                  <span class="pin-label">GND</span>
-                  <span class="pin-value">→</span>
+              </div>
+              
+              <!-- Relay Module -->
+              <div class="component">
+                <div class="component-title">Relay Module</div>
+                <div class="component-pins">
+                  <div class="pin">
+                    <span class="pin-label">VCC</span>
+                    <span class="pin-value">← NodeMCU</span>
+                  </div>
+                  <div class="pin">
+                    <span class="pin-label">GND</span>
+                    <span class="pin-value">← NodeMCU</span>
+                  </div>
+                  <div class="pin">
+                    <span class="pin-label">Input 2</span>
+                    <span class="pin-value">← GPIO5</span>
+                  </div>
+                  <div class="pin">
+                    <span class="pin-label">Input 1</span>
+                    <span class="pin-value">← GPIO2</span>
+                  </div>
                 </div>
-                <div class="pin">
-                  <span class="pin-label">GPIO5 (D1)</span>
-                  <span class="pin-value">→</span>
+              </div>
+              
+              <!-- Appliances -->
+              <div class="appliance">
+                <div class="appliance-icon">
+                  <i class="fas fa-lightbulb"></i>
                 </div>
-                <div class="pin">
-                  <span class="pin-label">GPIO2 (D4)</span>
-                  <span class="pin-value">→</span>
+                <div class="appliance-label">Bulb</div>
+                <div class="appliance-wiring">
+                  <div class="wiring-item">Input 2: COM → Live</div>
+                  <div class="wiring-item">Input 2: NO → Bulb</div>
+                </div>
+              </div>
+              
+              <div class="appliance">
+                <div class="appliance-icon">
+                  <i class="fas fa-fan"></i>
+                </div>
+                <div class="appliance-label">Fan</div>
+                <div class="appliance-wiring">
+                  <div class="wiring-item">Input 1: COM → Live</div>
+                  <div class="wiring-item">Input 1: NO → Fan</div>
                 </div>
               </div>
             </div>
             
-            <!-- Relay Module -->
-            <div class="component">
-              <div class="component-title">Relay Module</div>
-              <div class="component-pins">
-                <div class="pin">
-                  <span class="pin-label">VCC</span>
-                  <span class="pin-value">←</span>
-                </div>
-                <div class="pin">
-                  <span class="pin-label">GND</span>
-                  <span class="pin-value">←</span>
-                </div>
-                <div class="pin">
-                  <span class="pin-label">Input 2</span>
-                  <span class="pin-value">←</span>
-                </div>
-                <div class="pin">
-                  <span class="pin-label">Input 1</span>
-                  <span class="pin-value">←</span>
-                </div>
+            <!-- Power Source -->
+            <div class="power-source">
+              <div class="power-icon">
+                <i class="fas fa-plug"></i>
               </div>
-            </div>
-            
-            <!-- Appliances -->
-            <div class="appliance">
-              <div class="appliance-icon">
-                <i class="fas fa-lightbulb"></i>
-              </div>
-              <div class="appliance-label">Bulb</div>
-              <div class="appliance-wiring">
-                <div class="wiring-item">Input 2: COM → Live</div>
-                <div class="wiring-item">Input 2: NO → Bulb</div>
-              </div>
-            </div>
-            
-            <div class="appliance">
-              <div class="appliance-icon">
-                <i class="fas fa-fan"></i>
-              </div>
-              <div class="appliance-label">Fan</div>
-              <div class="appliance-wiring">
-                <div class="wiring-item">Input 1: COM → Live</div>
-                <div class="wiring-item">Input 1: NO → Fan</div>
-              </div>
+              <div class="power-label">AC Power Source</div>
             </div>
           </div>
-          
-          <!-- Power Source -->
-          <div class="power-source">
-            <div class="power-icon">
-              <i class="fas fa-plug"></i>
-            </div>
-            <div class="power-label">AC Power Source</div>
+        </div>
+        
+        <div class="connection-info">
+          <h4>Connection Summary</h4>
+          <div class="connection-item">
+            <div class="connection-label">Power Connection:</div>
+            <div class="connection-value">NodeMCU VIN (5V) → Relay Module VCC</div>
           </div>
-          
-        <!-- Connection lines -->
-        <div class="connection" style="top: 135px; left: 33%; width: 33%; height: 2px;"></div>
-        <div class="connection" style="top: 180px; left: 33%; width: 33%; height: 2px;"></div>
-        <div class="connection" style="top: 225px; left: 33%; width: 33%; height: 2px;"></div>
-        <div class="connection" style="top: 270px; left: 33%; width: 33%; height: 2px;"></div>
-
-        <!-- Power connections -->
-        <div class="connection" style="top: 380px; left: 50%; width: 2px; height: 60px;"></div>
-        <div class="connection" style="top: 380px; left: 75%; width: 2px; height: 60px;"></div>
-          
+          <div class="connection-item">
+            <div class="connection-label">Ground Connection:</div>
+            <div class="connection-value">NodeMCU GND → Relay Module GND</div>
+          </div>
+          <div class="connection-item">
+            <div class="connection-label">Bulb Control:</div>
+            <div class="connection-value">NodeMCU GPIO5 (D1) → Relay Module Input 2</div>
+          </div>
+          <div class="connection-item">
+            <div class="connection-label">Fan Control:</div>
+            <div class="connection-value">NodeMCU GPIO2 (D4) → Relay Module Input 1</div>
+          </div>
+          <div class="connection-item">
+            <div class="connection-label">Appliance Wiring:</div>
+            <div class="connection-value">COM pin → Live wire, NO pin → Appliance</div>
+          </div>
         </div>
-    </div>
-      
-      <h3>Hardware Implementation:</h3>
-      <p>The system uses a NodeMCU microcontroller connected to a relay module to control appliances. The wiring configuration is as follows:</p>
-      
-      <ul>
-        <li><strong>Power Connection:</strong> NodeMCU VIN (5V) pin → Relay Module VCC</li>
-        <li><strong>Ground Connection:</strong> NodeMCU GND pin → Relay Module GND</li>
-        <li><strong>Bulb Control:</strong> NodeMCU GPIO5 (D1) pin → Relay Module Input 2</li>
-        <li><strong>Fan Control:</strong> NodeMCU GPIO2 (D4) pin → Relay Module Input 1</li>
-        <li><strong>Appliance Wiring:</strong> COM pin connected to live wire, NO pin connected to appliance</li>
-        <li><strong>Power Source:</strong> All appliances connected to AC power source through relay module</li>
-      </ul>
-      
-      <div class="code-container">
-        <div class="code-header">
-          <div class="code-title">Command Processing Logic</div>
-          <div class="code-language">Embedded C</div>
-        </div>
-        <div class="code-snippet">
+        
+        <h3>Hardware Implementation:</h3>
+        <p>The system uses a NodeMCU microcontroller connected to a relay module to control appliances. The wiring configuration is as follows:</p>
+        
+        <ul>
+          <li><strong>Power Connection:</strong> NodeMCU VIN (5V) pin → Relay Module VCC</li>
+          <li><strong>Ground Connection:</strong> NodeMCU GND pin → Relay Module GND</li>
+          <li><strong>Bulb Control:</strong> NodeMCU GPIO5 (D1) pin → Relay Module Input 2</li>
+          <li><strong>Fan Control:</strong> NodeMCU GPIO2 (D4) pin → Relay Module Input 1</li>
+          <li><strong>Appliance Wiring:</strong> COM pin connected to live wire, NO pin connected to appliance</li>
+          <li><strong>Power Source:</strong> All appliances connected to AC power source through relay module</li>
+        </ul>
+        
+        <div class="code-container">
+          <div class="code-header">
+            <div class="code-title">Command Processing Logic</div>
+            <div class="code-language">Embedded C</div>
+          </div>
+          <div class="code-snippet">
 <span class="code-comment">// Process voice command and control appliances</span>
 <span class="code-keyword">void</span> <span class="code-function">processVoiceCommand</span>(<span class="code-keyword">char</span>* command) {
     <span class="code-comment">// Convert command to lowercase for case-insensitive matching</span>
@@ -874,28 +867,29 @@
         sendResponse(<span class="code-string">"Safety check failed"</span>);
     }
 }</span>
+          </div>
         </div>
-      </div>
-      
-      <h3>Development Challenges:</h3>
-      <p>The main challenge was creating a reliable voice recognition system that could work in noisy home environments. This was solved by implementing adaptive noise cancellation algorithms that dynamically filter background noise based on ambient sound analysis.</p>
-      
-      <p>Another significant challenge was ensuring electrical safety when controlling high-voltage appliances. The solution involved implementing opto-isolators, fail-safe relay circuits, and real-time current monitoring to prevent overloads.</p>
-      
-      <div class="action-buttons">
-        <a href="https://www.youtube.com/watch?v=_o8R_6nsfUs" class="action-btn youtube-btn" target="_blank">
-          <i class="fab fa-youtube"></i> Watch Demo Video
-        </a>
-        <a href="index.html" class="action-btn home-btn">
-          <i class="fas fa-home"></i> Back to Home
-        </a>
-      </div>
-    </section>
-  </main>
+        
+        <h3>Development Challenges:</h3>
+        <p>The main challenge was creating a reliable voice recognition system that could work in noisy home environments. This was solved by implementing adaptive noise cancellation algorithms that dynamically filter background noise based on ambient sound analysis.</p>
+        
+        <p>Another significant challenge was ensuring electrical safety when controlling high-voltage appliances. The solution involved implementing opto-isolators, fail-safe relay circuits, and real-time current monitoring to prevent overloads.</p>
+        
+        <div class="action-buttons">
+          <a href="https://www.youtube.com/watch?v=_o8R_6nsfUs" class="action-btn youtube-btn" target="_blank">
+            <i class="fab fa-youtube"></i> Watch Demo Video
+          </a>
+          <a href="index.html" class="action-btn home-btn">
+            <i class="fas fa-home"></i> Back to Home
+          </a>
+        </div>
+      </section>
+    </main>
 
-  <footer>
-    <p>&copy; 2025 Sishir Gottumukkala. All rights reserved.</p>
-  </footer>
+    <footer>
+      <p>&copy; 2025 Sishir Gottumukkala. All rights reserved.</p>
+    </footer>
+  </div>
 
   <script>
     // Create floating particles for background effect
