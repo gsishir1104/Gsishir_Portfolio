@@ -265,7 +265,7 @@
       text-shadow: 0 0 8px rgba(33, 150, 243, 0.7);
     }
 
-    /* Circuit diagram */
+    /* Circuit diagram container */
     .circuit-diagram {
       display: flex;
       justify-content: center;
@@ -277,8 +277,10 @@
       border-radius: 16px;
       padding: 30px;
       width: 100%;
-      max-width: 800px;
+      max-width: 900px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
     }
 
     .diagram-title {
@@ -288,10 +290,11 @@
       color: var(--accent);
     }
 
+    /* Circuit styling */
     .circuit {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 40px;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 20px;
       position: relative;
     }
 
@@ -326,40 +329,19 @@
       background: rgba(25, 40, 65, 0.6);
       border-radius: 6px;
       font-family: 'Courier New', monospace;
+      position: relative;
     }
 
     .pin-label {
       color: var(--accent);
       font-weight: 500;
+      flex: 1;
     }
 
     .pin-value {
       color: #81D4FA;
-    }
-
-    .connections {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    .connection {
-      position: absolute;
-      background: rgba(129, 212, 250, 0.7);
-      transform-origin: 0 0;
-    }
-
-    .connection-label {
-      position: absolute;
-      background: rgba(25, 40, 65, 0.9);
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      color: var(--accent);
-      transform: translate(-50%, -50%);
+      flex: 1;
+      text-align: right;
     }
 
     .appliance {
@@ -368,6 +350,11 @@
       align-items: center;
       justify-content: center;
       gap: 15px;
+      padding: 15px;
+      background: rgba(33, 150, 243, 0.15);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(100, 180, 246, 0.3);
     }
 
     .appliance-icon {
@@ -385,6 +372,65 @@
     .appliance-label {
       font-weight: 600;
       color: var(--accent);
+    }
+
+    .appliance-wiring {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .wiring-item {
+      padding: 8px;
+      background: rgba(25, 40, 65, 0.6);
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+    }
+
+    /* Power source */
+    .power-source {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+      background: rgba(255, 193, 7, 0.15);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 193, 7, 0.3);
+      grid-column: 2;
+      margin-top: 20px;
+    }
+
+    .power-icon {
+      font-size: 2.5rem;
+      color: #FFC107;
+    }
+
+    .power-label {
+      font-weight: 600;
+      color: #FFC107;
+    }
+
+    /* Connection lines */
+    .connection {
+      position: absolute;
+      background: rgba(129, 212, 250, 0.7);
+      z-index: 1;
+    }
+
+    .connection-label {
+      position: absolute;
+      background: rgba(25, 40, 65, 0.9);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      transform: translate(-50%, -50%);
+      z-index: 2;
     }
 
     /* Code snippet */
@@ -586,7 +632,10 @@
       }
       .circuit {
         grid-template-columns: 1fr;
-        grid-gap: 60px;
+        grid-gap: 40px;
+      }
+      .power-source {
+        grid-column: 1;
       }
     }
 
@@ -674,6 +723,7 @@
         <div class="diagram-container">
           <div class="diagram-title">Circuit Connection Diagram</div>
           <div class="circuit">
+            <!-- NodeMCU -->
             <div class="component">
               <div class="component-title">NodeMCU</div>
               <div class="component-pins">
@@ -696,6 +746,7 @@
               </div>
             </div>
             
+            <!-- Relay Module -->
             <div class="component">
               <div class="component-title">Relay Module</div>
               <div class="component-pins">
@@ -718,18 +769,15 @@
               </div>
             </div>
             
+            <!-- Appliances -->
             <div class="appliance">
               <div class="appliance-icon">
                 <i class="fas fa-lightbulb"></i>
               </div>
               <div class="appliance-label">Bulb</div>
-              <div class="component-pins">
-                <div class="pin">
-                  <span class="pin-label">Input 2: COM → Live</span>
-                </div>
-                <div class="pin">
-                  <span class="pin-label">Input 2: NO → Bulb</span>
-                </div>
+              <div class="appliance-wiring">
+                <div class="wiring-item">Input 2: COM → Live</div>
+                <div class="wiring-item">Input 2: NO → Bulb</div>
               </div>
             </div>
             
@@ -738,20 +786,29 @@
                 <i class="fas fa-fan"></i>
               </div>
               <div class="appliance-label">Fan</div>
-              <div class="component-pins">
-                <div class="pin">
-                  <span class="pin-label">Input 1: COM → Live</span>
-                </div>
-                <div class="pin">
-                  <span class="pin-label">Input 1: NO → Fan</span>
-                </div>
+              <div class="appliance-wiring">
+                <div class="wiring-item">Input 1: COM → Live</div>
+                <div class="wiring-item">Input 1: NO → Fan</div>
               </div>
             </div>
           </div>
           
-          <div class="connections">
-            <!-- Connection lines would be dynamically added with JavaScript -->
+          <!-- Power Source -->
+          <div class="power-source">
+            <div class="power-icon">
+              <i class="fas fa-plug"></i>
+            </div>
+            <div class="power-label">AC Power Source</div>
           </div>
+          
+          <!-- Connection lines -->
+          <div class="connection" style="top: 120px; left: 170px; width: 80px; height: 2px; transform: rotate(0deg);"></div>
+          <div class="connection" style="top: 165px; left: 170px; width: 80px; height: 2px; transform: rotate(0deg);"></div>
+          <div class="connection" style="top: 210px; left: 170px; width: 80px; height: 2px; transform: rotate(0deg);"></div>
+          <div class="connection" style="top: 255px; left: 170px; width: 80px; height: 2px; transform: rotate(0deg);"></div>
+          
+          <div class="connection" style="top: 300px; left: 450px; width: 2px; height: 150px; transform: rotate(0deg);"></div>
+          <div class="connection" style="top: 300px; left: 670px; width: 2px; height: 150px; transform: rotate(0deg);"></div>
         </div>
       </div>
       
@@ -764,6 +821,7 @@
         <li><strong>Bulb Control:</strong> NodeMCU GPIO5 (D1) pin → Relay Module Input 2</li>
         <li><strong>Fan Control:</strong> NodeMCU GPIO2 (D4) pin → Relay Module Input 1</li>
         <li><strong>Appliance Wiring:</strong> COM pin connected to live wire, NO pin connected to appliance</li>
+        <li><strong>Power Source:</strong> All appliances connected to AC power source through relay module</li>
       </ul>
       
       <div class="code-container">
