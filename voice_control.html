@@ -265,8 +265,8 @@
       text-shadow: 0 0 8px rgba(33, 150, 243, 0.7);
     }
 
-    /* System diagram */
-    .system-diagram {
+    /* Circuit diagram */
+    .circuit-diagram {
       display: flex;
       justify-content: center;
       margin: 50px 0;
@@ -288,50 +288,103 @@
       color: var(--accent);
     }
 
-    .diagram {
+    .circuit {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      align-items: center;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 40px;
+      position: relative;
     }
 
-    .diagram-item {
+    .component {
+      background: rgba(33, 150, 243, 0.15);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(100, 180, 246, 0.3);
+    }
+
+    .component-title {
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .component-pins {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pin {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: rgba(25, 40, 65, 0.6);
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .pin-label {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .pin-value {
+      color: #81D4FA;
+    }
+
+    .connections {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .connection {
+      position: absolute;
+      background: rgba(129, 212, 250, 0.7);
+      transform-origin: 0 0;
+    }
+
+    .connection-label {
+      position: absolute;
+      background: rgba(25, 40, 65, 0.9);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      transform: translate(-50%, -50%);
+    }
+
+    .appliance {
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
+      justify-content: center;
+      gap: 15px;
     }
 
-    .diagram-icon {
-      width: 80px;
-      height: 80px;
+    .appliance-icon {
+      width: 60px;
+      height: 60px;
       background: rgba(33, 150, 243, 0.2);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 15px;
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: var(--accent);
-      transition: transform 0.3s ease;
     }
 
-    .diagram-item:hover .diagram-icon {
-      transform: scale(1.1);
-      background: rgba(33, 150, 243, 0.3);
-    }
-
-    .diagram-label {
+    .appliance-label {
       font-weight: 600;
       color: var(--accent);
-    }
-
-    .diagram-arrow {
-      font-size: 2rem;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     /* Code snippet */
@@ -531,12 +584,9 @@
       h1 {
         font-size: 2.4rem;
       }
-      .diagram {
+      .circuit {
         grid-template-columns: 1fr;
-      }
-      .diagram-arrow {
-        transform: rotate(90deg);
-        margin: 10px 0;
+        grid-gap: 60px;
       }
     }
 
@@ -620,40 +670,101 @@
         <li><strong>Safety Protocols:</strong> Implemented fail-safes and overload protection to ensure user safety.</li>
       </ul>
 
-      <div class="system-diagram">
+      <div class="circuit-diagram">
         <div class="diagram-container">
-          <div class="diagram-title">System Architecture</div>
-          <div class="diagram">
-            <div class="diagram-item">
-              <div class="diagram-icon">
-                <i class="fas fa-microphone"></i>
+          <div class="diagram-title">Circuit Connection Diagram</div>
+          <div class="circuit">
+            <div class="component">
+              <div class="component-title">NodeMCU</div>
+              <div class="component-pins">
+                <div class="pin">
+                  <span class="pin-label">VIN (5V)</span>
+                  <span class="pin-value">→</span>
+                </div>
+                <div class="pin">
+                  <span class="pin-label">GND</span>
+                  <span class="pin-value">→</span>
+                </div>
+                <div class="pin">
+                  <span class="pin-label">GPIO5 (D1)</span>
+                  <span class="pin-value">→</span>
+                </div>
+                <div class="pin">
+                  <span class="pin-label">GPIO2 (D4)</span>
+                  <span class="pin-value">→</span>
+                </div>
               </div>
-              <div class="diagram-label">Voice Input</div>
             </div>
-            <div class="diagram-arrow">
-              <i class="fas fa-arrow-right"></i>
-            </div>
-            <div class="diagram-item">
-              <div class="diagram-icon">
-                <i class="fas fa-microchip"></i>
+            
+            <div class="component">
+              <div class="component-title">Relay Module</div>
+              <div class="component-pins">
+                <div class="pin">
+                  <span class="pin-label">VCC</span>
+                  <span class="pin-value">←</span>
+                </div>
+                <div class="pin">
+                  <span class="pin-label">GND</span>
+                  <span class="pin-value">←</span>
+                </div>
+                <div class="pin">
+                  <span class="pin-label">Input 2</span>
+                  <span class="pin-value">←</span>
+                </div>
+                <div class="pin">
+                  <span class="pin-label">Input 1</span>
+                  <span class="pin-value">←</span>
+                </div>
               </div>
-              <div class="diagram-label">Processing Unit</div>
             </div>
-            <div class="diagram-arrow">
-              <i class="fas fa-arrow-right"></i>
-            </div>
-            <div class="diagram-item">
-              <div class="diagram-icon">
-                <i class="fas fa-plug"></i>
+            
+            <div class="appliance">
+              <div class="appliance-icon">
+                <i class="fas fa-lightbulb"></i>
               </div>
-              <div class="diagram-label">Appliance Control</div>
+              <div class="appliance-label">Bulb</div>
+              <div class="component-pins">
+                <div class="pin">
+                  <span class="pin-label">Input 2: COM → Live</span>
+                </div>
+                <div class="pin">
+                  <span class="pin-label">Input 2: NO → Bulb</span>
+                </div>
+              </div>
             </div>
+            
+            <div class="appliance">
+              <div class="appliance-icon">
+                <i class="fas fa-fan"></i>
+              </div>
+              <div class="appliance-label">Fan</div>
+              <div class="component-pins">
+                <div class="pin">
+                  <span class="pin-label">Input 1: COM → Live</span>
+                </div>
+                <div class="pin">
+                  <span class="pin-label">Input 1: NO → Fan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="connections">
+            <!-- Connection lines would be dynamically added with JavaScript -->
           </div>
         </div>
       </div>
       
-      <h3>Technical Implementation:</h3>
-      <p>The system uses an ARM Cortex-M microcontroller running Embedded C to process voice commands. Voice input is captured through a MEMS microphone and processed using custom audio filtering algorithms. Command recognition is achieved through pattern matching of frequency signatures.</p>
+      <h3>Hardware Implementation:</h3>
+      <p>The system uses a NodeMCU microcontroller connected to a relay module to control appliances. The wiring configuration is as follows:</p>
+      
+      <ul>
+        <li><strong>Power Connection:</strong> NodeMCU VIN (5V) pin → Relay Module VCC</li>
+        <li><strong>Ground Connection:</strong> NodeMCU GND pin → Relay Module GND</li>
+        <li><strong>Bulb Control:</strong> NodeMCU GPIO5 (D1) pin → Relay Module Input 2</li>
+        <li><strong>Fan Control:</strong> NodeMCU GPIO2 (D4) pin → Relay Module Input 1</li>
+        <li><strong>Appliance Wiring:</strong> COM pin connected to live wire, NO pin connected to appliance</li>
+      </ul>
       
       <div class="code-container">
         <div class="code-header">
