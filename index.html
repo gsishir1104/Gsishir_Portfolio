@@ -4,19 +4,17 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Sishir Gottumukkala — Sci‑Fi Lab Portfolio</title>
+  <!-- Load Phaser FIRST, and block until it's available (no defer) to guarantee order -->
   <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
   <style>
-    :root{
-      --bg:#0a0f1a; --panel:#0f1626; --accent:#56ccf2; --accent2:#bb86fc; --text:#e6f1ff;
-    }
+    :root{ --bg:#0a0f1a; --panel:#0f1626; --accent:#56ccf2; --accent2:#bb86fc; --text:#e6f1ff; }
     html,body{height:100%; margin:0; background:radial-gradient(80% 60% at 50% 40%, #0c1630, #050812 70%);}    
     body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif; color:var(--text);} 
     #game-root{position:fixed; inset:0;}
 
     /* Floating HUD */
     .hud {position:fixed; top:16px; left:16px; display:flex; gap:12px; align-items:center; z-index:5}
-    .tag{padding:6px 10px; border:1px solid #1f2a44; border-radius:999px; background:linear-gradient(180deg,#0f1b33,#0a1224); box-shadow:0 0 12px rgba(86,204,242,.15) inset, 0 0 12px rgba(187,134,252,.08);
-      font-size:12px; letter-spacing:.4px}
+    .tag{padding:6px 10px; border:1px solid #1f2a44; border-radius:999px; background:linear-gradient(180deg,#0f1b33,#0a1224); box-shadow:0 0 12px rgba(86,204,242,.15) inset, 0 0 12px rgba(187,134,252,.08); font-size:12px; letter-spacing:.4px}
     .pulse{box-shadow:0 0 18px rgba(86,204,242,.35), 0 0 42px rgba(187,134,252,.25)}
 
     /* Interact tooltip */
@@ -37,11 +35,17 @@
     .pill{display:inline-block; padding:4px 8px; border:1px solid #2e477a; border-radius:999px; font-size:12px; margin-right:6px; margin-top:6px}
     .cta{margin-top:10px; display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; background:linear-gradient(90deg, #2a3f66, #23365a); border:1px solid #335189; text-decoration:none; color:var(--text)}
 
-    /* Mobile safe area spacing */
+    /* Diagnostics banner */
+    #diag{position:fixed; right:12px; bottom:12px; background:#071126e6; border:1px solid #28427a; border-radius:10px; padding:10px 12px; font-size:12px; z-index:50; display:none}
+    #diag.ok{display:block; border-color:#2d8a4e}
+    #diag.err{display:block; border-color:#b24343}
+
     @media (max-width: 640px){ .panel{inset:5% 4%} }
   </style>
 </head>
 <body>
+  <noscript><div style="padding:12px;margin:12px;border:1px solid #933;border-radius:8px;background:#220">This page needs JavaScript enabled.</div></noscript>
+
   <!-- Soft HUD tags -->
   <div class="hud">
     <div class="tag pulse">Sishir Gottumukkala</div>
@@ -51,6 +55,7 @@
 
   <div id="game-root"></div>
   <div class="tooltip" id="tooltip" style="display:none;">Press <b>E</b> to interact</div>
+  <div id="diag"></div>
 
   <!-- Panels -->
   <section id="panel-projects" class="panel">
@@ -88,7 +93,27 @@
   </section>
 
 <script>
-// ------- Simple data you can edit quickly ---------
+// ========= Safe boot: wait for Phaser & DOM =========
+(function boot(){
+  function ready(){
+    if(!window.Phaser){
+      const d=document.getElementById('diag');
+      d.className='err';
+      d.textContent='Phaser failed to load. Check network / CDN.';
+      console.error('Phaser not found on window.');
+      return;
+    }
+    startGame();
+  }
+  if(document.readyState==='complete' || document.readyState==='interactive'){
+    // Give the CDN a tick if it was slow
+    setTimeout(ready, 0);
+  } else {
+    window.addEventListener('DOMContentLoaded', ready);
+  }
+})();
+
+// ------- Data you can edit quickly ---------
 const PROJECTS = [
   {title:"Phantom Escape", blurb:"Unity stealth/puzzle prototype with patrol AI using NavMesh + FSM.", tech:["Unity","C#","NavMesh","FSM"], url:"#"},
   {title:"Animation Sandbox", blurb:"Character locomotion with Blend Trees and custom transitions.", tech:["Animator","Blend Trees","C#"], url:"#"},
@@ -134,149 +159,165 @@ function bindPanelControls(){
   });
 }
 
-// ------- Phaser Game ---------
-const WORLD = { w: 2000, h: 1200 };
+// ------- Diagnostics helpers ("test cases") ---------
+function diagOk(msg){ const d=document.getElementById('diag'); d.className='ok'; d.textContent=msg; }
+function diagErr(msg){ const d=document.getElementById('diag'); d.className='err'; d.textContent=msg; console.error(msg); }
 
-const neon = { base: 0x0b1224, grid: 0x132542, glow1: 0x56ccf2, glow2: 0xbb86fc, particle: 0x8be9fd };
+function runSelfTests(scene){
+  try{
+    console.assert(typeof Phaser!=='undefined', 'Phaser global missing');
+    console.assert(!!Phaser.VERSION, 'Phaser version missing');
+    console.assert(!!scene.textures.exists('spark'), 'spark texture missing');
+    console.assert(!!scene.textures.exists('orb'), 'orb texture missing');
+    console.assert(!!scene.player && scene.player.body, 'player not created');
+    console.assert(scene.cameras.main.worldView.width>0, 'camera not initialized');
+    diagOk('Diagnostics: OK — scene, player, textures ready.');
+  }catch(e){ diagErr('Diagnostics failed: '+e.message); }
+}
 
-class LabScene extends Phaser.Scene{
-  constructor(){ super('lab'); }
-  preload(){ }
-  create(){
-    // World bounds
-    this.cameras.main.setBackgroundColor('#050a16');
-    this.physics.world.setBounds(0,0,WORLD.w,WORLD.h);
+// ========= Game bootstrap =========
+function startGame(){
+  // ------- Phaser Game ---------
+  const WORLD = { w: 2000, h: 1200 };
+  const neon = { base: 0x0b1224, grid: 0x132542, glow1: 0x56ccf2, glow2: 0xbb86fc, particle: 0x8be9fd };
 
-    // Procedural floor grid
-    const g = this.add.graphics();
-    g.lineStyle(1, neon.grid, .6);
-    for(let x=0; x<=WORLD.w; x+=64){ g.lineBetween(x,0,x,WORLD.h); }
-    for(let y=0; y<=WORLD.h; y+=64){ g.lineBetween(0,y,WORLD.w,y); }
-    g.fillStyle(neon.base,1); g.fillRect(0,0,WORLD.w,WORLD.h);
-    g.setAlpha(.45);
-
-    // Glow strips
-    const strips = this.add.graphics();
-    strips.fillStyle(0x0f1b33, .5);
-    for(let i=0;i<8;i++) strips.fillRect(160 + i*220, 180, 8, WORLD.h-360);
-    strips.generateTexture('strips', WORLD.w, WORLD.h);
-    const stripImg = this.add.image(WORLD.w/2, WORLD.h/2, 'strips').setAlpha(.35);
-
-    // Particle ambience
-    const particles = this.add.particles(0,0,'spark', { });
-    // Create a tiny texture for particles
-    const pg = this.add.graphics(); pg.fillStyle(neon.particle,1); pg.fillCircle(4,4,2); pg.generateTexture('spark',8,8); pg.destroy();
-    const emitter = particles.createEmitter({
-      x: {min:0, max:WORLD.w}, y: {min:0, max:WORLD.h},
-      speed: {min:-10, max:10}, lifespan: 4000, quantity: 2, scale: {start:1, end:0},
-      alpha: {start:.6, end:0}, blendMode:'ADD'
-    });
-
-    // Player avatar (robot orb)
-    this.player = this.physics.add.image(400, 600, null).setCircle(14);
-    const pG = this.add.graphics(); pG.fillStyle(0xffffff,1); pG.fillCircle(16,16,14); pG.generateTexture('orb',32,32); pG.destroy();
-    this.player.setTexture('orb').setTint(0xa8c7ff).setDepth(5);
-    this.player.setCollideWorldBounds(true);
-
-    // Soft glow aura via particle follower
-    const aura = this.add.particles('spark').createEmitter({
-      speed: 18, lifespan: 700, frequency: 60, quantity: 1, scale:{start:.8,end:0},
-      follow: this.player, alpha:{start:.6,end:0}, tint:[neon.glow1, neon.glow2], blendMode:'ADD'
-    });
-
-    // Rooms / interactive terminals
-    this.terminals = this.physics.add.staticGroup();
-    const room = (x,y,w,h,label,key)=>{
-      const r = this.add.rectangle(x,y,w,h,0x0f1626,.7).setStrokeStyle(2,0x223355,1);
-      const title = this.add.text(x, y-h/2-22, label, {fontSize:'16px', fontFamily:'monospace', color:'#8be9fd'}).setOrigin(.5,1);
-      const t = this.terminals.create(x, y, null);
-      t.setSize(60,60); t.setOffset(-30,-30); t.key = key; // for overlap detection
-      // draw a glowing terminal icon
-      const gg = this.add.graphics(); gg.fillStyle(0x0a1224,1); gg.fillRoundedRect(x-22,y-16,44,32,6);
-      gg.lineStyle(2, 0x56ccf2,1).strokeRoundedRect(x-22,y-16,44,32,6);
-      gg.generateTexture('term_'+x+'_'+y, 80, 60); gg.destroy();
-      this.add.image(x,y,'term_'+x+'_'+y).setAlpha(.95);
-      return r;
+  class LabScene extends Phaser.Scene{
+    constructor(){ super('lab'); }
+    preload(){
+      // Generate tiny textures here to ensure they exist before use
+      // Spark particle
+      const pg = this.add.graphics();
+      pg.fillStyle(neon.particle,1); pg.fillCircle(4,4,2); pg.generateTexture('spark',8,8); pg.destroy();
+      // Orb texture for player
+      const og = this.add.graphics();
+      og.fillStyle(0xffffff,1); og.fillCircle(16,16,14); og.generateTexture('orb',32,32); og.destroy();
     }
+    create(){
+      // World bounds
+      this.cameras.main.setBackgroundColor('#050a16');
+      this.physics.world.setBounds(0,0,WORLD.w,WORLD.h);
 
-    room(420,360,360,240,'ABOUT','about');
-    room(980,360,420,260,'PROJECTS','projects');
-    room(1540,360,360,240,'SKILLS','skills');
-    room(980,880,420,240,'CONTACT','contact');
+      // Procedural floor grid (fill first, then grid lines so they show)
+      const g = this.add.graphics();
+      g.fillStyle(neon.base,1); g.fillRect(0,0,WORLD.w,WORLD.h);
+      g.lineStyle(1, neon.grid, 0.45);
+      for(let x=0; x<=WORLD.w; x+=64){ g.lineBetween(x,0,x,WORLD.h); }
+      for(let y=0; y<=WORLD.h; y+=64){ g.lineBetween(0,y,WORLD.w,y); }
+      g.setAlpha(0.9);
 
-    // Camera
-    this.cameras.main.startFollow(this.player, true, .08, .08);
-    this.cameras.main.setBounds(0,0,WORLD.w,WORLD.h);
+      // Glow strips (draw directly, avoid giant textures)
+      const strips = this.add.graphics();
+      strips.fillStyle(0x0f1b33, 0.5);
+      for(let i=0;i<8;i++) strips.fillRect(160 + i*220, 180, 8, WORLD.h-360);
 
-    // Input
-    this.cursors = this.input.keyboard.addKeys({
-      up:Phaser.Input.Keyboard.KeyCodes.W,
-      down:Phaser.Input.Keyboard.KeyCodes.S,
-      left:Phaser.Input.Keyboard.KeyCodes.A,
-      right:Phaser.Input.Keyboard.KeyCodes.D,
-      interact:Phaser.Input.Keyboard.KeyCodes.E
-    });
+      // Particle ambience (spark texture was generated in preload)
+      const particles = this.add.particles('spark');
+      particles.createEmitter({
+        x: {min:0, max:WORLD.w}, y: {min:0, max:WORLD.h},
+        speed: {min:-10, max:10}, lifespan: 4000, quantity: 2, scale: {start:1, end:0},
+        alpha: {start:0.6, end:0}, blendMode:'ADD'
+      });
 
-    // Overlap detection
-    this.interactKey = null;
-    this.physics.add.overlap(this.player, this.terminals, (player, term)=>{
-      this.interactKey = term.key;
-      document.getElementById('tooltip').style.display = 'block';
-    }, null, this);
+      // Player avatar (robot orb, texture created in preload)
+      this.player = this.physics.add.image(400, 600, 'orb').setCircle(14);
+      this.player.setTint(0xa8c7ff).setDepth(5);
+      this.player.setCollideWorldBounds(true);
 
-    this.physics.add.collider(this.player, this.terminals);
+      // Soft glow aura
+      this.add.particles('spark').createEmitter({
+        speed: 18, lifespan: 700, frequency: 60, quantity: 1, scale:{start:0.8,end:0},
+        follow: this.player, alpha:{start:0.6,end:0}, tint:[neon.glow1, neon.glow2], blendMode:'ADD'
+      });
 
-    // Hide tooltip when away
-    this.events.on('postupdate', ()=>{
-      if(!this.interactKey){ document.getElementById('tooltip').style.display = 'none'; }
+      // Rooms / interactive terminals
+      this.terminals = this.physics.add.staticGroup();
+      const room = (x,y,w,h,label,key)=>{
+        this.add.rectangle(x,y,w,h,0x0f1626,0.7).setStrokeStyle(2,0x223355,1);
+        this.add.text(x, y-h/2-22, label, {fontSize:'16px', fontFamily:'monospace', color:'#8be9fd'}).setOrigin(0.5,1);
+        const t = this.terminals.create(x, y, null);
+        t.setSize(60,60); t.setOffset(-30,-30); t.key = key;
+        const gg = this.add.graphics(); gg.fillStyle(0x0a1224,1); gg.fillRoundedRect(x-22,y-16,44,32,6);
+        gg.lineStyle(2, 0x56ccf2,1).strokeRoundedRect(x-22,y-16,44,32,6);
+        gg.generateTexture('term_'+x+'_'+y, 80, 60); gg.destroy();
+        this.add.image(x,y,'term_'+x+'_'+y).setAlpha(0.95);
+      }
+      room(420,360,360,240,'ABOUT','about');
+      room(980,360,420,260,'PROJECTS','projects');
+      room(1540,360,360,240,'SKILLS','skills');
+      room(980,880,420,240,'CONTACT','contact');
+
+      // Camera
+      this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+      this.cameras.main.setBounds(0,0,WORLD.w,WORLD.h);
+
+      // Input
+      this.cursors = this.input.keyboard.addKeys({
+        up:Phaser.Input.Keyboard.KeyCodes.W,
+        down:Phaser.Input.Keyboard.KeyCodes.S,
+        left:Phaser.Input.Keyboard.KeyCodes.A,
+        right:Phaser.Input.Keyboard.KeyCodes.D,
+        interact:Phaser.Input.Keyboard.KeyCodes.E
+      });
+
+      // Overlap detection
       this.interactKey = null;
-    });
-  }
-  update(){
-    const s = 180;
-    this.player.setVelocity(0);
-    if(this.cursors.left.isDown) this.player.setVelocityX(-s);
-    else if(this.cursors.right.isDown) this.player.setVelocityX(s);
-    if(this.cursors.up.isDown) this.player.setVelocityY(-s);
-    else if(this.cursors.down.isDown) this.player.setVelocityY(s);
+      this.physics.add.overlap(this.player, this.terminals, (player, term)=>{
+        this.interactKey = term.key;
+        document.getElementById('tooltip').style.display = 'block';
+      }, null, this);
 
-    if(Phaser.Input.Keyboard.JustDown(this.cursors.interact)){
-      const cam = this.cameras.main; // small camera flash
-      cam.flash(150, 86,204,242, false);
-      // Use player position to infer nearest terminal region
-      const {x,y} = this.player;
-      let key = null;
-      if(x<700 && y<500) key='about';
-      else if(x>760 && x<1200 && y<500) key='projects';
-      else if(x>1350 && y<500) key='skills';
-      else if(y>680 && x>760 && x<1200) key='contact';
-      if(key) openPanel(key);
+      this.physics.add.collider(this.player, this.terminals);
+
+      // Hide tooltip when away
+      this.events.on('postupdate', ()=>{
+        if(!this.interactKey){ document.getElementById('tooltip').style.display = 'none'; }
+        this.interactKey = null;
+      });
+
+      // Run self-tests at the end of create
+      runSelfTests(this);
     }
+    update(){
+      const s = 180;
+      this.player.setVelocity(0);
+      if(this.cursors.left.isDown) this.player.setVelocityX(-s);
+      else if(this.cursors.right.isDown) this.player.setVelocityX(s);
+      if(this.cursors.up.isDown) this.player.setVelocityY(-s);
+      else if(this.cursors.down.isDown) this.player.setVelocityY(s);
+
+      if(Phaser.Input.Keyboard.JustDown(this.cursors.interact)){
+        const cam = this.cameras.main; cam.flash(150, 86,204,242, false);
+        const {x,y} = this.player; let key = null;
+        if(x<700 && y<500) key='about';
+        else if(x>760 && x<1200 && y<500) key='projects';
+        else if(x>1350 && y<500) key='skills';
+        else if(y>680 && x>760 && x<1200) key='contact';
+        if(key) openPanel(key);
+      }
+    }
+  }
+
+  const config = {
+    type: Phaser.AUTO,
+    parent: 'game-root',
+    backgroundColor: '#050a16',
+    scale: { mode: Phaser.Scale.RESIZE, autoCenter: Phaser.Scale.CENTER_BOTH, width: 1024, height: 640 },
+    physics: { default: 'arcade', arcade: { gravity:{y:0}, debug:false } },
+    scene: [LabScene]
+  };
+
+  try{
+    new Phaser.Game(config);
+  }catch(err){
+    diagErr('Failed to start Phaser: '+err.message);
+    throw err;
   }
 }
 
-const config = {
-  type: Phaser.AUTO,
-  parent: 'game-root',
-  backgroundColor: '#050a16',
-  scale: { mode: Phaser.Scale.RESIZE, autoCenter: Phaser.Scale.CENTER_BOTH, width: 1024, height: 640 },
-  physics: { default: 'arcade', arcade: { gravity:{y:0}, debug:false } },
-  scene: [LabScene]
-};
-
-let game = new Phaser.Game(config);
-
 // ------- UI bindings from game interactions ---------
 function openPanel(which){
-  const id = {
-    projects:'panel-projects',
-    about:'panel-about',
-    skills:'panel-skills',
-    contact:'panel-contact'
-  }[which];
-  if(!id) return;
-  if(which==='projects') mountProjects();
-  if(which==='skills') mountSkills();
+  const id = { projects:'panel-projects', about:'panel-about', skills:'panel-skills', contact:'panel-contact' }[which];
+  if(!id) return; if(which==='projects') mountProjects(); if(which==='skills') mountSkills();
   document.getElementById(id).classList.add('show');
 }
 
