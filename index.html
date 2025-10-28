@@ -1,753 +1,286 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sishir Gottumukkala | Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Sishir Gottumukkala — Sci‑Fi Lab Portfolio</title>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
   <style>
-    :root {
-      --primary: #6ba8e5;
-      --secondary: #8e2de2;
-      --dark: #121826;
-      --darker: #0a0e16;
-      --light: #e0f0ff;
-      --accent: #aad8ff;
-      --card-bg: rgba(30, 35, 50, 0.75);
-      --header-bg: rgba(18, 22, 40, 0.95);
-      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, var(--darker), var(--dark));
-      color: var(--light);
-      line-height: 1.6;
-      overflow-x: hidden;
-      background-attachment: fixed;
-      background-size: cover;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 20% 30%, rgba(74, 143, 231, 0.15) 0%, transparent 40%), 
-                  radial-gradient(circle at 80% 70%, rgba(142, 45, 226, 0.15) 0%, transparent 40%);
-      z-index: -2;
-      pointer-events: none;
-    }
-
-    .custom-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: var(--header-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-      border-bottom: 1px solid rgba(80, 120, 200, 0.2);
-      transition: var(--transition);
-    }
-
-    .header-left {
-      line-height: 1.3;
-    }
-
-    .header-left div:first-child {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--accent), var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 20px rgba(106, 168, 229, 0.4);
-      letter-spacing: -0.5px;
-    }
-
-    .header-left div:last-child {
-      font-size: 1rem;
-      margin-top: 8px;
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .header-right {
-      display: flex;
-      gap: 25px;
-    }
-
-    .header-right a {
-      color: #b4d5ff;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 8px 15px;
-      border-radius: 6px;
-      transition: var(--transition);
-      position: relative;
-      font-size: 1rem;
-    }
-
-    .header-right a:hover {
-      color: white;
-      background: rgba(90, 130, 220, 0.2);
-    }
-
-    .header-right a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 15px;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: var(--transition);
-    }
-
-    .header-right a:hover::after {
-      width: calc(100% - 30px);
-    }
-
-    main {
-      padding-top: 140px;
-      padding-bottom: 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 90%;
-    }
-
-    .content-section {
-      margin-bottom: 80px;
-      padding: 40px;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(80, 120, 200, 0.15);
-      position: relative;
-      overflow: hidden;
-      transition: var(--transition);
-    }
-
-    .content-section:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .content-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      opacity: 0.7;
-    }
-
-    h2 {
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-      color: var(--accent);
-      text-shadow: 0 0 15px rgba(106, 168, 229, 0.3);
-      position: relative;
-      display: inline-block;
-      padding-bottom: 15px;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), transparent);
-      border-radius: 2px;
-    }
-
-    p {
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-    }
-
-    strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    a:hover {
-      color: white;
-      text-decoration: underline;
-    }
-
-    .projects-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      padding: 20px 0;
-    }
-
-    .project-card-link {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .project-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      overflow: hidden;
-      width: 350px;
-      transition: var(--transition);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      position: relative;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .project-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-
-    .project-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .project-content {
-      padding: 25px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-content h3 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      color: var(--accent);
-    }
-
-    .project-content p {
-      font-size: 1rem;
-      margin-bottom: 20px;
-      flex-grow: 1;
-    }
-
-    .project-links {
-      margin-top: auto;
-    }
-
-    .project-links a {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 20px;
-      background: rgba(90, 130, 220, 0.2);
-      border-radius: 6px;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-
-    .project-links a:hover {
-      background: rgba(90, 130, 220, 0.3);
-      transform: translateY(-3px);
-      text-decoration: none;
-    }
-
-    .project-links a i {
-      margin-right: 8px;
-    }
-
-    .certifications-container {
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-    }
-
-    .cert-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      overflow: hidden;
-      width: 350px;
-      transition: var(--transition);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .cert-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .cert-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-
-    .cert-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .cert-card-content {
-      padding: 25px;
-    }
-
-    .cert-card-content p {
-      font-size: 1.1rem;
-      margin-bottom: 15px;
-    }
-
-    .cert-card-content ul {
-      padding-left: 20px;
-      margin-bottom: 20px;
-    }
-
-    .cert-card-content li {
-      margin-bottom: 10px;
-      position: relative;
-    }
-
-    .cert-card-content li::before {
-      content: '▹';
-      color: var(--primary);
-      position: absolute;
-      left: -20px;
-    }
-
-    .contact-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 40px;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-      transition: var(--transition);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .contact-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .contact-card h3 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: var(--accent);
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      margin-top: 30px;
-      flex-wrap: wrap;
-    }
-
-    .social-icons a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(90, 130, 220, 0.2);
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .social-icons a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .social-icons a:hover::before {
-      opacity: 1;
-    }
-
-    .social-icons a img {
-      width: 30px;
-      height: 30px;
-      z-index: 1;
-      transition: var(--transition);
-    }
-
-    .social-icons a:hover img {
-      transform: scale(1.2);
-      filter: brightness(0) invert(1);
-    }
-
-    footer {
-      background: var(--header-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      text-align: center;
-      padding: 20px;
-      font-size: 1rem;
-      color: var(--accent);
-      border-top: 1px solid rgba(80, 120, 200, 0.2);
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .content-section {
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-
-    .content-section:nth-child(1) { animation-delay: 0.1s; }
-    .content-section:nth-child(2) { animation-delay: 0.2s; }
-    .content-section:nth-child(3) { animation-delay: 0.3s; }
-    .content-section:nth-child(4) { animation-delay: 0.4s; }
-
-    /* Floating particles */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(106, 168, 229, 0.15);
-      box-shadow: 0 0 20px rgba(106, 168, 229, 0.3);
-      animation: float 15s infinite linear;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-1000px) translateX(1000px) rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    /* Responsive design */
-    @media (max-width: 1100px) {
-      .custom-header {
-        padding: 15px 30px;
-      }
-      .header-left div:first-child {
-        font-size: 1.6rem;
-      }
-      .header-left div:last-child {
-        font-size: 0.95rem;
-      }
-      .header-right a {
-        font-size: 0.95rem;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .custom-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 15px;
-      }
-      .header-left {
-        margin-bottom: 15px;
-      }
-      .header-right {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .content-section {
-        padding: 30px;
-      }
-      h2 {
-        font-size: 2.2rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      main {
-        padding-top: 160px;
-      }
-      .content-section {
-        padding: 25px;
-      }
-      h2 {
-        font-size: 2rem;
-      }
-      .project-card, .cert-card {
-        width: 100%;
-        max-width: 500px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      main {
-        padding-top: 180px;
-      }
-      .header-right a {
-        padding: 6px 12px;
-        font-size: 0.9rem;
-      }
-      .content-section {
-        padding: 20px;
-      }
-      h2 {
-        font-size: 1.8rem;
-      }
-      .contact-card {
-        padding: 25px;
-      }
-      .social-icons a {
-        width: 50px;
-        height: 50px;
-      }
-      .social-icons a img {
-        width: 24px;
-        height: 24px;
-      }
-    }
+    :root{
+      --bg:#0a0f1a; --panel:#0f1626; --accent:#56ccf2; --accent2:#bb86fc; --text:#e6f1ff;
+    }
+    html,body{height:100%; margin:0; background:radial-gradient(80% 60% at 50% 40%, #0c1630, #050812 70%);}    
+    body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif; color:var(--text);} 
+    #game-root{position:fixed; inset:0;}
+
+    /* Floating HUD */
+    .hud {position:fixed; top:16px; left:16px; display:flex; gap:12px; align-items:center; z-index:5}
+    .tag{padding:6px 10px; border:1px solid #1f2a44; border-radius:999px; background:linear-gradient(180deg,#0f1b33,#0a1224); box-shadow:0 0 12px rgba(86,204,242,.15) inset, 0 0 12px rgba(187,134,252,.08);
+      font-size:12px; letter-spacing:.4px}
+    .pulse{box-shadow:0 0 18px rgba(86,204,242,.35), 0 0 42px rgba(187,134,252,.25)}
+
+    /* Interact tooltip */
+    .tooltip{position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#0b1324cc; border:1px solid #203254; padding:10px 14px; border-radius:10px; font-size:13px; letter-spacing:.3px; backdrop-filter: blur(6px); z-index:6}
+
+    /* Panels */
+    .panel{position:fixed; inset:8% 10%; background:linear-gradient(180deg, #0f1626cc, #0a0f1acc); border:1px solid #21304e; border-radius:16px; box-shadow:0 40px 120px rgba(0,0,0,.6), inset 0 0 0 1px #2a3b5f; display:none; z-index:10}
+    .panel.show{display:block;}
+    .panel header{display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid #1e2a46}
+    .panel h2{margin:0; font-weight:700; letter-spacing:.6px}
+    .close{background:transparent; color:var(--text); border:1px solid #2a3b5f; border-radius:10px; padding:8px 12px; cursor:pointer}
+    .content{padding:18px 22px; overflow:auto; height: calc(100% - 70px)}
+
+    /* Cards */
+    .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:16px}
+    .card{background:linear-gradient(180deg,#111a30,#0a1324); border:1px solid #24375f; border-radius:14px; padding:14px; box-shadow:0 12px 40px rgba(5,12,24,.5)}
+    .card h4{margin:8px 0 6px 0}
+    .pill{display:inline-block; padding:4px 8px; border:1px solid #2e477a; border-radius:999px; font-size:12px; margin-right:6px; margin-top:6px}
+    .cta{margin-top:10px; display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; background:linear-gradient(90deg, #2a3f66, #23365a); border:1px solid #335189; text-decoration:none; color:var(--text)}
+
+    /* Mobile safe area spacing */
+    @media (max-width: 640px){ .panel{inset:5% 4%} }
   </style>
 </head>
 <body>
-  <!-- Floating particles for background effect -->
-  <div class="particles" id="particles"></div>
+  <!-- Soft HUD tags -->
+  <div class="hud">
+    <div class="tag pulse">Sishir Gottumukkala</div>
+    <div class="tag">Unity · Game AI · Animation</div>
+    <div class="tag">Move: WASD · Interact: E</div>
+  </div>
 
-  <header class="custom-header">
-    <div class="header-left">
-      <div>Sishir Gottumukkala</div>
-      <div>Unity Developer | Game AI | Animation | Gameplay Programming</div>
+  <div id="game-root"></div>
+  <div class="tooltip" id="tooltip" style="display:none;">Press <b>E</b> to interact</div>
+
+  <!-- Panels -->
+  <section id="panel-projects" class="panel">
+    <header><h2>Projects</h2><button class="close" data-close>Close</button></header>
+    <div class="content">
+      <div class="grid" id="projects-grid"></div>
     </div>
-    <nav class="header-right">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  </section>
 
-  <main>
-    <!-- About Section -->
-    <section id="about" class="content-section">
-      <h2>About Me</h2>
+  <section id="panel-about" class="panel">
+    <header><h2>About</h2><button class="close" data-close>Close</button></header>
+    <div class="content">
+      <p>Hi! I’m <b>Sishir</b>, a Unity developer focused on <b>Game AI</b> and <b>Character Animation</b>. I love turning systems into playful experiences. This portfolio is a tiny sci‑fi lab — walk around and interact with terminals to explore my work.</p>
+      <p>Current interests: Behaviour Trees, NavMesh/Pathfinding, Animator Controllers, Blend Trees, small shaders with Shader Graph, and gameplay feel.</p>
+    </div>
+  </section>
+
+  <section id="panel-skills" class="panel">
+    <header><h2>Skills</h2><button class="close" data-close>Close</button></header>
+    <div class="content">
+      <div class="grid" id="skills-grid"></div>
+    </div>
+  </section>
+
+  <section id="panel-contact" class="panel">
+    <header><h2>Contact</h2><button class="close" data-close>Close</button></header>
+    <div class="content">
+      <p>Let’s talk! I’m open to internships and collaboration.</p>
       <p>
-        Hello! I'm <strong>Sishir Gottumukkala</strong>, a passionate Unity developer and computer science student currently pursuing my bachelor's degree at Central Michigan University. Alongside my major in Computer Science, I'm also minoring in Game Design to align my technical skills with my creative interests in gameplay and immersive design.
+        <a class="cta" href="mailto:sishir@example.com">Email</a>
+        <a class="cta" target="_blank" rel="noreferrer" href="https://www.linkedin.com/">LinkedIn</a>
+        <a class="cta" target="_blank" rel="noreferrer" href="https://github.com/">GitHub</a>
       </p>
-      <p>
-        My strengths lie in <strong>gameplay programming</strong>, <strong>game artificial intelligence</strong>, and <strong>animation</strong>, and I feel most comfortable working with <strong>Unity</strong> and <strong>C#</strong>. I've also developed projects using <strong>Java</strong> and <strong>Python</strong>, and I enjoy exploring new frameworks and tools that bring my interactive ideas to life.
-      </p>
-      <p>
-        My work focuses on crafting engaging user experiences, refining game mechanics, and building systems like enemy patrol AI and animation transitions. I believe in learning by doing and love transforming complex challenges into polished, playable experiences.
-      </p>
-      <p>
-        Outside of coding, I'm currently <strong>writing a novel</strong>, which helps sharpen my storytelling skills. I strongly believe that <strong>storyboarding and narrative design</strong> are essential to great game development, adding emotional depth and meaning to gameplay.
-      </p>
-      <p>
-        I'm on track to graduate in <strong>May 2026</strong>, and I'm currently seeking internship opportunities to grow my real-world development experience. I also enjoy watching gameplay breakdowns, experimenting with new game ideas, and diving into virtual reality.
-      </p>
-      <p>
-        <a href="docs/Resume.pdf" target="_blank" style="display: inline-flex; align-items: center; background: rgba(90, 130, 220, 0.2); padding: 10px 20px; border-radius: 6px; font-weight: 600; margin-top: 15px;">
-          <i class="fas fa-file-pdf" style="margin-right: 10px;"></i> View My Resume (PDF)
-        </a>
-      </p>
-    </section>
+    </div>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="content-section">
-    <h2>Projects</h2>
-    <div class="projects-container">
-      <!-- Phantom Escape -->
-      <a href="phantom_escape.html" class="project-card-link">
-        <div class="project-card">
-          <img src="images/EnchantedMaze.gif" alt="Phantom Escape">
-          <div class="project-content">
-            <h3>Phantom Escape: Enchanted Maze</h3>
-            <p>A third-person puzzle-maze game built in Unity. Features AI enemy patrols, animation transitions, and atmospheric visuals.</p>
-            <div class="project-links">
-              <span>View Project <i class="fas fa-arrow-right"></i></span>
-            </div>
-          </div>
-        </div>
-      </a>
+<script>
+// ------- Simple data you can edit quickly ---------
+const PROJECTS = [
+  {title:"Phantom Escape", blurb:"Unity stealth/puzzle prototype with patrol AI using NavMesh + FSM.", tech:["Unity","C#","NavMesh","FSM"], url:"#"},
+  {title:"Animation Sandbox", blurb:"Character locomotion with Blend Trees and custom transitions.", tech:["Animator","Blend Trees","C#"], url:"#"},
+  {title:"Shooter AI", blurb:"Cover seeking + line‑of‑sight detection + state machines.", tech:["AI","Physics","Linecast"], url:"#"},
+  {title:"VR Interaction Lab", blurb:"Grab/Throw and simple haptics experiments.", tech:["VR","XR Interaction"], url:"#"}
+];
 
-      <!-- Flappy Bird -->
-      <a href="flappy_bird.html" class="project-card-link">
-        <div class="project-card">
-          <img src="images/flappybird.gif" alt="Flappy Bird JavaFX Demo">
-          <div class="project-content">
-            <h3>Flappy Bird Clone (JavaFX)</h3>
-            <p>A simple Flappy Bird clone built using JavaFX. Includes gravity, collision, score tracking, and game-over logic.</p>
-            <div class="project-links">
-              <span>View Project <i class="fas fa-arrow-right"></i></span>
-            </div>
-          </div>
-        </div>
-      </a>
+const SKILLS = [
+  {name:"Unity", notes:"Daily driver: scenes, prefabs, timelines, lighting."},
+  {name:"C#", notes:"Gameplay systems, events, ScriptableObjects."},
+  {name:"Game AI", notes:"FSM, Behaviour Trees (BT), NavMesh, steering."},
+  {name:"Animation", notes:"Animator controllers, Blend Trees, rig imports."},
+  {name:"Tools", notes:"Git, GitHub, VS Code, Blender basics."}
+];
 
-        <!-- Voice Controlled Home Appliances -->
-        <a href="voice_control.html" class="project-card-link">
-          <div class="project-card">
-            <img src="images/voice-control.png" alt="Voice Controlled Home Appliances Project">
-            <div class="project-content">
-              <h3>Voice Controlled Home Appliances</h3>
-              <p>A smart home project built using <strong>Embedded C</strong> to control appliances with voice commands. Demonstrates practical embedded systems knowledge.</p>
-              <div class="project-links">
-                <span>View Project <i class="fas fa-arrow-right"></i></span>
-              </div>
-            </div>
-          </div>
-</a>
-      </div>
-    </section>
-  
-    <!-- Certifications Section -->
-    <section id="certifications" class="content-section">
-      <h2>Certifications</h2>
-      <div class="certifications-container">
-        <div class="cert-card">
-          <img src="images/vr_certificate.png" alt="VR Certificate Thumbnail">
-          <div class="cert-card-content">
-            <p><strong>VR Course - SP Robotic Works</strong><br>Master Certificate | October 2019</p>
-            <ul>
-              <li>Successfully completed a VR Course focused on virtual reality development.</li>
-              <li>Built interactive VR scenes; learned VR foundations and Unity basics.</li>
-            </ul>
-            <a href="docs/vr_certificate.pdf" target="_blank" style="display: inline-flex; align-items: center; background: rgba(90, 130, 220, 0.2); padding: 10px 20px; border-radius: 6px; font-weight: 600; margin-top: 15px;">
-              <i class="fas fa-file-pdf" style="margin-right: 10px;"></i> View Full Certificate
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+// ------- Panel helpers ---------
+function mountProjects(){
+  const wrap = document.getElementById('projects-grid');
+  wrap.innerHTML = '';
+  PROJECTS.forEach(p=>{
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `<h4>${p.title}</h4><p>${p.blurb}</p><div>${p.tech.map(t=>`<span class='pill'>${t}</span>`).join('')}</div>` +
+      (p.url && p.url!=='#' ? `<p><a class='cta' target='_blank' rel='noreferrer' href='${p.url}'>Open</a></p>` : '');
+    wrap.appendChild(el);
+  });
+}
 
-    <!-- Contact Section -->
-    <section id="contact" class="content-section">
-      <h2>Contact</h2>
-      <div class="contact-card">
-        <h3>Sishir Gottumukkala</h3>
-        <p>Unity Developer | Game AI | Animation | Gameplay Programming</p>
-        <p><i class="fas fa-envelope"></i> Sishirgottumukkala@gmail.com</p>
+function mountSkills(){
+  const wrap = document.getElementById('skills-grid');
+  wrap.innerHTML = '';
+  SKILLS.forEach(s=>{
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `<h4>${s.name}</h4><p>${s.notes}</p>`;
+    wrap.appendChild(el);
+  });
+}
 
-        <div class="social-icons">
-          <a href="index.html" title="Home">
-            <img src="images/home-icon.png" alt="Home">
-          </a>
-          <a href="https://www.linkedin.com/in/sishir-gottumukkala-9a7a43235/" target="_blank" title="LinkedIn">
-            <img src="images/linkedin-icon.png" alt="LinkedIn">
-          </a>
-          <a href="https://github.com/gsishir1104" target="_blank" title="GitHub">
-            <img src="images/github-icon.png" alt="GitHub">
-          </a>
-          <a href="https://www.youtube.com/@sishirgottumukkala3985" target="_blank" title="YouTube">
-            <img src="images/youtube-icon.png" alt="YouTube">
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+function bindPanelControls(){
+  document.querySelectorAll('[data-close]').forEach(btn=>{
+    btn.addEventListener('click', ()=> btn.closest('.panel').classList.remove('show'))
+  });
+}
 
-  <footer>
-    <p>&copy; 2025 Sishir Gottumukkala. All rights reserved.</p>
-  </footer>
+// ------- Phaser Game ---------
+const WORLD = { w: 2000, h: 1200 };
 
-  <script>
-    // Create floating particles for background effect
-    document.addEventListener('DOMContentLoaded', function() {
-      const particlesContainer = document.getElementById('particles');
-      const particleCount = 40;
-      
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        // Random properties
-        const size = Math.random() * 20 + 5;
-        const posX = Math.random() * 100;
-        const posY = Math.random() * 100;
-        const animationDuration = Math.random() * 20 + 15;
-        const animationDelay = Math.random() * 10;
-        const hue = Math.floor(Math.random() * 40) + 190;
-        
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${posX}%`;
-        particle.style.top = `${posY}%`;
-        particle.style.animationDuration = `${animationDuration}s`;
-        particle.style.animationDelay = `${animationDelay}s`;
-        particle.style.background = `rgba(${hue}, ${hue}, 255, 0.15)`;
-        particle.style.boxShadow = `0 0 ${size/2}px rgba(${hue}, ${hue}, 255, 0.3)`;
-        
-        particlesContainer.appendChild(particle);
-      }
+const neon = { base: 0x0b1224, grid: 0x132542, glow1: 0x56ccf2, glow2: 0xbb86fc, particle: 0x8be9fd };
 
-      // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            window.scrollTo({
-              top: target.offsetTop - 100,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
+class LabScene extends Phaser.Scene{
+  constructor(){ super('lab'); }
+  preload(){ }
+  create(){
+    // World bounds
+    this.cameras.main.setBackgroundColor('#050a16');
+    this.physics.world.setBounds(0,0,WORLD.w,WORLD.h);
+
+    // Procedural floor grid
+    const g = this.add.graphics();
+    g.lineStyle(1, neon.grid, .6);
+    for(let x=0; x<=WORLD.w; x+=64){ g.lineBetween(x,0,x,WORLD.h); }
+    for(let y=0; y<=WORLD.h; y+=64){ g.lineBetween(0,y,WORLD.w,y); }
+    g.fillStyle(neon.base,1); g.fillRect(0,0,WORLD.w,WORLD.h);
+    g.setAlpha(.45);
+
+    // Glow strips
+    const strips = this.add.graphics();
+    strips.fillStyle(0x0f1b33, .5);
+    for(let i=0;i<8;i++) strips.fillRect(160 + i*220, 180, 8, WORLD.h-360);
+    strips.generateTexture('strips', WORLD.w, WORLD.h);
+    const stripImg = this.add.image(WORLD.w/2, WORLD.h/2, 'strips').setAlpha(.35);
+
+    // Particle ambience
+    const particles = this.add.particles(0,0,'spark', { });
+    // Create a tiny texture for particles
+    const pg = this.add.graphics(); pg.fillStyle(neon.particle,1); pg.fillCircle(4,4,2); pg.generateTexture('spark',8,8); pg.destroy();
+    const emitter = particles.createEmitter({
+      x: {min:0, max:WORLD.w}, y: {min:0, max:WORLD.h},
+      speed: {min:-10, max:10}, lifespan: 4000, quantity: 2, scale: {start:1, end:0},
+      alpha: {start:.6, end:0}, blendMode:'ADD'
     });
-  </script>
+
+    // Player avatar (robot orb)
+    this.player = this.physics.add.image(400, 600, null).setCircle(14);
+    const pG = this.add.graphics(); pG.fillStyle(0xffffff,1); pG.fillCircle(16,16,14); pG.generateTexture('orb',32,32); pG.destroy();
+    this.player.setTexture('orb').setTint(0xa8c7ff).setDepth(5);
+    this.player.setCollideWorldBounds(true);
+
+    // Soft glow aura via particle follower
+    const aura = this.add.particles('spark').createEmitter({
+      speed: 18, lifespan: 700, frequency: 60, quantity: 1, scale:{start:.8,end:0},
+      follow: this.player, alpha:{start:.6,end:0}, tint:[neon.glow1, neon.glow2], blendMode:'ADD'
+    });
+
+    // Rooms / interactive terminals
+    this.terminals = this.physics.add.staticGroup();
+    const room = (x,y,w,h,label,key)=>{
+      const r = this.add.rectangle(x,y,w,h,0x0f1626,.7).setStrokeStyle(2,0x223355,1);
+      const title = this.add.text(x, y-h/2-22, label, {fontSize:'16px', fontFamily:'monospace', color:'#8be9fd'}).setOrigin(.5,1);
+      const t = this.terminals.create(x, y, null);
+      t.setSize(60,60); t.setOffset(-30,-30); t.key = key; // for overlap detection
+      // draw a glowing terminal icon
+      const gg = this.add.graphics(); gg.fillStyle(0x0a1224,1); gg.fillRoundedRect(x-22,y-16,44,32,6);
+      gg.lineStyle(2, 0x56ccf2,1).strokeRoundedRect(x-22,y-16,44,32,6);
+      gg.generateTexture('term_'+x+'_'+y, 80, 60); gg.destroy();
+      this.add.image(x,y,'term_'+x+'_'+y).setAlpha(.95);
+      return r;
+    }
+
+    room(420,360,360,240,'ABOUT','about');
+    room(980,360,420,260,'PROJECTS','projects');
+    room(1540,360,360,240,'SKILLS','skills');
+    room(980,880,420,240,'CONTACT','contact');
+
+    // Camera
+    this.cameras.main.startFollow(this.player, true, .08, .08);
+    this.cameras.main.setBounds(0,0,WORLD.w,WORLD.h);
+
+    // Input
+    this.cursors = this.input.keyboard.addKeys({
+      up:Phaser.Input.Keyboard.KeyCodes.W,
+      down:Phaser.Input.Keyboard.KeyCodes.S,
+      left:Phaser.Input.Keyboard.KeyCodes.A,
+      right:Phaser.Input.Keyboard.KeyCodes.D,
+      interact:Phaser.Input.Keyboard.KeyCodes.E
+    });
+
+    // Overlap detection
+    this.interactKey = null;
+    this.physics.add.overlap(this.player, this.terminals, (player, term)=>{
+      this.interactKey = term.key;
+      document.getElementById('tooltip').style.display = 'block';
+    }, null, this);
+
+    this.physics.add.collider(this.player, this.terminals);
+
+    // Hide tooltip when away
+    this.events.on('postupdate', ()=>{
+      if(!this.interactKey){ document.getElementById('tooltip').style.display = 'none'; }
+      this.interactKey = null;
+    });
+  }
+  update(){
+    const s = 180;
+    this.player.setVelocity(0);
+    if(this.cursors.left.isDown) this.player.setVelocityX(-s);
+    else if(this.cursors.right.isDown) this.player.setVelocityX(s);
+    if(this.cursors.up.isDown) this.player.setVelocityY(-s);
+    else if(this.cursors.down.isDown) this.player.setVelocityY(s);
+
+    if(Phaser.Input.Keyboard.JustDown(this.cursors.interact)){
+      const cam = this.cameras.main; // small camera flash
+      cam.flash(150, 86,204,242, false);
+      // Use player position to infer nearest terminal region
+      const {x,y} = this.player;
+      let key = null;
+      if(x<700 && y<500) key='about';
+      else if(x>760 && x<1200 && y<500) key='projects';
+      else if(x>1350 && y<500) key='skills';
+      else if(y>680 && x>760 && x<1200) key='contact';
+      if(key) openPanel(key);
+    }
+  }
+}
+
+const config = {
+  type: Phaser.AUTO,
+  parent: 'game-root',
+  backgroundColor: '#050a16',
+  scale: { mode: Phaser.Scale.RESIZE, autoCenter: Phaser.Scale.CENTER_BOTH, width: 1024, height: 640 },
+  physics: { default: 'arcade', arcade: { gravity:{y:0}, debug:false } },
+  scene: [LabScene]
+};
+
+let game = new Phaser.Game(config);
+
+// ------- UI bindings from game interactions ---------
+function openPanel(which){
+  const id = {
+    projects:'panel-projects',
+    about:'panel-about',
+    skills:'panel-skills',
+    contact:'panel-contact'
+  }[which];
+  if(!id) return;
+  if(which==='projects') mountProjects();
+  if(which==='skills') mountSkills();
+  document.getElementById(id).classList.add('show');
+}
+
+bindPanelControls();
+</script>
 </body>
 </html>
