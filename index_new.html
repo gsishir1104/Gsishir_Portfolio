@@ -4,137 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sishir Gottumukkala | Game Dev & AI</title>
-    <link rel="stylesheet" href="style_new.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-
     <style>
-/* Reset and Base Styles */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-color: #050505;
+            --accent: #00d4ff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --card-bg: #111111;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
 
-:root {
-    --bg-color: #050505;
-    --card-bg: #111111;
-    --accent: #00d4ff;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-}
+        /* Typing Effect Container */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+            background: radial-gradient(circle at 80% 20%, #111 0%, #050505 100%);
+        }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-}
+        #typing-name {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin: 0;
+            min-height: 1.2em; /* Prevents layout jump */
+        }
 
-/* Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem 5%;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    background: rgba(5, 5, 5, 0.8);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-}
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            background-color: var(--accent);
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+        }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
 
-.nav-links a {
-    color: var(--text-primary);
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-}
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            opacity: 0; /* Hidden until name finishes typing */
+            transition: opacity 1s ease;
+        }
 
-/* Hero Section */
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 10%;
-    background: radial-gradient(circle at 80% 20%, #111 0%, #050505 100%);
-}
-
-.hero h1 {
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 900;
-}
-
-.accent { color: var(--accent); }
-
-/* Project Cards */
-.projects-section { padding: 100px 10%; }
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.project-card {
-    background: var(--card-bg);
-    border: 1px solid #222;
-    padding: 2rem;
-    transition: 0.3s;
-}
-
-.project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-
-.tag { color: var(--accent); font-size: 0.7rem; margin-right: 10px; font-weight: bold;}
-</style>
+        /* Projects */
+        .projects-section { padding: 100px 10%; }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            padding: 2rem;
+            transition: 0.3s;
+        }
+        .project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .accent-text { color: var(--accent); }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">SG</div>
-        <ul class="nav-links">
-            <li><a href="#work">Work</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
     <header class="hero">
-        <div class="hero-content">
-            <h1>SISHIR <span class="accent">GOTTUMUKKALA</span></h1>
-            <p class="subtitle">CS @ CMU | Game Designer | AI Developer</p>
-            <div class="hero-btns">
-                <a href="#work" class="btn-primary">View My Work</a>
-                <a href="resume.pdf" class="btn-secondary">Download CV</a>
-            </div>
-        </div>
+        <h1 id="typing-name"></h1>
+        <p class="subtitle" id="hero-subtitle">CS @ CMU | Game Designer | AI Developer</p>
     </header>
 
-    <section id="work" class="projects-section">
-        <h2 class="section-title">Featured Projects</h2>
+    <section class="projects-section" id="work">
+        <h2 style="border-left: 4px solid var(--accent); padding-left: 1rem;">Featured Projects</h2>
         <div class="project-grid">
             <div class="project-card">
-                <div class="card-image" style="background-image: url('images/phantom_escape_thumb.jpg');"></div>
-                <div class="card-content">
-                    <h3>Phantom Escape: Enchanted Maze</h3>
-                    <p>A Unity-based atmospheric puzzle game with dynamic sprite handling.</p>
-                    <span class="tag">Unity</span> <span class="tag">C#</span>
-                </div>
+                <h3>Phantom Escape</h3>
+                <p>Unity-based atmospheric puzzle game.</p>
+                <p class="accent-text">Unity / C#</p>
             </div>
-            
             <div class="project-card">
-                <div class="card-image" style="background-image: url('images/ai_project_thumb.jpg');"></div>
-                <div class="card-content">
-                    <h3>AI Generalist Systems</h3>
-                    <p>Implementation of search algorithms and SQL database optimizations.</p>
-                    <span class="tag">Python</span> <span class="tag">SQL</span>
-                </div>
+                <h3>AI Systems</h3>
+                <p>Search algorithms and SQL optimization.</p>
+                <p class="accent-text">Python / SQL</p>
             </div>
         </div>
     </section>
 
+    <script>
+        const name = "SISHIR GOTTUMUKKALA";
+        const typingContainer = document.getElementById('typing-name');
+        const subtitle = document.getElementById('hero-subtitle');
+        let i = 0;
+
+        function typeWriter() {
+            if (i < name.length) {
+                typingContainer.innerHTML = name.substring(0, i + 1) + '<span class="cursor">&nbsp;</span>';
+                i++;
+                setTimeout(typeWriter, 100); // Speed of typing
+            } else {
+                // Remove cursor and show subtitle when finished
+                typingContainer.innerHTML = name;
+                subtitle.style.opacity = "1";
+            }
+        }
+
+        // Start effect on load
+        window.onload = typeWriter;
+    </script>
 </body>
 </html>
