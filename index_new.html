@@ -137,6 +137,102 @@
         </div>
     </section>
 
+    <section class="experience-section" id="experience">
+    <span class="about-header" style="text-align: center; display: block;">Career Path</span>
+    <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">MY BACKSTORY</h2>
+    
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-meta">
+                <span class="timeline-date">AUG 2025 - PRESENT</span>
+                <span class="timeline-location">CMU | MT. PLEASANT</span>
+            </div>
+            <div class="timeline-content">
+                <h3>CS Department Grader</h3>
+                <p class="company-name">Central Michigan University</p>
+                <p>Evaluating Java and C-based code for logic, style, and efficiency. By reviewing core programming concepts and providing feedback, I maintain a high standard for code architecture.</p>
+                <div class="skills-tags">
+                    <span class="tag">Java</span> <span class="tag">C</span> <span class="tag">Code Review</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-meta">
+                <span class="timeline-date">JUL 2024 - AUG 2024</span>
+                <span class="timeline-location">LANSING, MI</span>
+            </div>
+            <div class="timeline-content">
+                <h3>AppDev Internship</h3>
+                <p class="company-name">Delta Dental of Michigan</p>
+                <p>Gained hands-on experience in full-stack development. I worked with HTML, CSS, and SQL to build and optimize backend database queries, a skill essential for managing complex game save states.</p>
+                <div class="skills-tags">
+                    <span class="tag">SQL</span> <span class="tag">Backend</span> <span class="tag">Web Dev</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-meta">
+                <span class="timeline-date">MAY 2024 - JUN 2024</span>
+                <span class="timeline-location">LANSING, MI</span>
+            </div>
+            <div class="timeline-content">
+                <h3>Data Analyst Internship</h3>
+                <p class="company-name">Dewpoint</p>
+                <p>Utilized Power BI to analyze heatmaps and product utilization. This experience in data visualization helps me interpret complex AI behavior patterns and player movement heatmaps in Unity.</p>
+                <div class="skills-tags">
+                    <span class="tag">Power BI</span> <span class="tag">Data Analysis</span> <span class="tag">Heatmaps</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-meta">
+                <span class="timeline-date">JAN 2024 - PRESENT</span>
+                <span class="timeline-location">CMU | MT. PLEASANT</span>
+            </div>
+            <div class="timeline-content">
+                <h3>Vice President, Chess Club</h3>
+                <p class="company-name">Central Michigan University</p>
+                <p>Organizing inter-university tournaments and leading strategic planning. My background in competitive chess logic directly informs my design of decision-making algorithms for game AI.</p>
+                <div class="skills-tags">
+                    <span class="tag">Leadership</span> <span class="tag">Strategy</span> <span class="tag">Logic</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .experience-section { padding: 100px 10%; background: #080808; border-top: 1px solid #111; }
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; border-left: 1px solid #222; padding-left: 40px; }
+    
+    .timeline-item { margin-bottom: 50px; position: relative; }
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -46px;
+        top: 8px;
+        width: 12px;
+        height: 12px;
+        background: var(--accent);
+        border-radius: 50%;
+        box-shadow: 0 0 15px var(--accent);
+    }
+
+    .timeline-meta { margin-bottom: 8px; }
+    .timeline-date { color: var(--accent); font-weight: 900; font-size: 0.75rem; margin-right: 15px; letter-spacing: 1px; }
+    .timeline-location { color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
+
+    .timeline-content h3 { font-size: 1.6rem; font-weight: 900; color: var(--text-primary); margin-bottom: 4px; }
+    .company-name { color: var(--text-secondary); font-weight: 700; margin-bottom: 12px; font-size: 0.9rem; }
+    .timeline-content p { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; margin-bottom: 15px; max-width: 600px; }
+
+    .skills-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { font-size: 10px; background: #161616; padding: 4px 10px; border-radius: 2px; border: 1px solid #333; color: var(--text-primary); font-weight: 700; text-transform: uppercase; }
+</style>
+
     <section class="projects-section" id="work">
         <h2 style="border-left: 4px solid var(--accent); padding-left: 1rem;">Featured Projects</h2>
         <div class="project-grid">
