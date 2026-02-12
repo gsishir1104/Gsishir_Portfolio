@@ -14,20 +14,24 @@
             --card-bg: #111111;
         }
         body {
-            background-color: var(--bg-color);
+            background: linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.85)), 
+                        url('images/EnchantedMaze.gif'); /* Your Phantom Escape GIF */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             line-height: 1.8;
             margin: 0;
-            padding: 0;
         }
 
-        /* Header Navigation */
         .project-nav {
             padding: 40px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(5, 5, 5, 0.5); /* Semi-transparent nav */
+            backdrop-filter: blur(5px);
         }
         .back-link {
             color: var(--text-secondary);
