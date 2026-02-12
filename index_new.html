@@ -6,6 +6,90 @@
     <title>Sishir Gottumukkala | Game Dev & AI</title>
     <link rel="stylesheet" href="style_new.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+/* Reset and Base Styles */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --bg-color: #050505;
+    --card-bg: #111111;
+    --accent: #00d4ff;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 5%;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10%;
+    background: radial-gradient(circle at 80% 20%, #111 0%, #050505 100%);
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+}
+
+.accent { color: var(--accent); }
+
+/* Project Cards */
+.projects-section { padding: 100px 10%; }
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border: 1px solid #222;
+    padding: 2rem;
+    transition: 0.3s;
+}
+
+.project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+.tag { color: var(--accent); font-size: 0.7rem; margin-right: 10px; font-weight: bold;}
+</style>
 </head>
 <body>
 
