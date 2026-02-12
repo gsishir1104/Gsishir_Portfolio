@@ -19,10 +19,10 @@
             background-color: var(--bg-color);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Typing Effect Container */
+        /* Hero / Typing Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -31,53 +31,64 @@
             padding: 0 10%;
             background: radial-gradient(circle at 80% 20%, #111 0%, #050505 100%);
         }
+        #typing-name { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; text-transform: uppercase; letter-spacing: -2px; }
+        .cursor { display: inline-block; width: 10px; background-color: var(--accent); margin-left: 5px; animation: blink 0.7s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .subtitle { color: var(--text-secondary); font-size: 1.2rem; margin-top: 1rem; opacity: 0; transition: opacity 1s ease; }
 
-        #typing-name {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            margin: 0;
-            min-height: 1.2em; /* Prevents layout jump */
+        /* ABOUT ME SECTION - Split Layout */
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 100px 5%;
+            gap: 40px;
         }
 
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            background-color: var(--accent);
-            margin-left: 5px;
-            animation: blink 0.7s infinite;
+        /* Left Side: Stats and Photo (Sticky) */
+        .about-left {
+            flex: 1;
+            min-width: 300px;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
+        .stat-item { margin-bottom: 2rem; border-bottom: 1px solid #222; padding-bottom: 1rem; }
+        .stat-number { font-size: 2.5rem; font-weight: 900; color: var(--text-primary); display: block; }
+        .stat-label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 2px; }
 
-        .subtitle {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            margin-top: 1rem;
-            opacity: 0; /* Hidden until name finishes typing */
-            transition: opacity 1s ease;
+        .profile-frame {
+            width: 100%;
+            aspect-ratio: 1/1.2;
+            background: #111; /* Placeholder for your photo */
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 2rem;
+            border: 1px solid #333;
         }
+        .profile-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
+        .profile-frame:hover img { filter: grayscale(0%); }
+
+        /* Right Side: Content (Scrolling) */
+        .about-right {
+            flex: 1.5;
+            min-width: 350px;
+        }
+        .about-header { font-size: 0.9rem; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+        .about-title { font-size: 3rem; font-weight: 900; line-height: 1.1; margin-bottom: 2rem; }
+        .about-text { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .highlight { color: var(--text-primary); font-weight: 700; }
 
         /* Projects */
-        .projects-section { padding: 100px 10%; }
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid #222;
-            padding: 2rem;
-            transition: 0.3s;
-        }
+        .projects-section { padding: 100px 10%; border-top: 1px solid #111; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .project-card { background: var(--card-bg); border: 1px solid #222; padding: 2rem; transition: 0.3s; }
         .project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .accent-text { color: var(--accent); }
+
+        @media (max-width: 768px) {
+            .about-left { position: relative; top: 0; }
+            .about-title { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
@@ -87,18 +98,57 @@
         <p class="subtitle" id="hero-subtitle">CS @ CMU | Unity Developer | Game AI | Gameplay Programming</p>
     </header>
 
+    <section class="about-container" id="about">
+        <div class="about-left">
+            <div class="stat-item">
+                <span class="stat-number">+10</span>
+                <span class="stat-label">Game Projects</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2026</span>
+                <span class="stat-label">Graduation Year</span>
+            </div>
+            <div class="profile-frame">
+                <img src="images/your-photo.jpg" alt="Sishir Gottumukkala">
+            </div>
+        </div>
+
+        <div class="about-right">
+            <span class="about-header">About Me</span>
+            <h2 class="about-title">GAME DEVELOPER SPECIALIZED IN <span style="color:var(--accent)">GAMEPLAY & AI</span></h2>
+            
+            <p class="about-text">
+                Hello! I'm <span class="highlight">Sishir Gottumukkala</span>, a passionate Unity developer and computer science student at Central Michigan University. I'm minoring in Game Design to blend technical complexity with creative, immersive design.
+            </p>
+            
+            <p class="about-text">
+                My strengths lie in <span class="highlight">gameplay programming, game AI, and animation</span>. I feel most comfortable within the Unity ecosystem using C#, but I've also built systems in Java and Python to bring interactive ideas to life.
+            </p>
+
+            <p class="about-text">
+                I focus on crafting polished experiences, from refining mechanics to building <span class="highlight">enemy patrol AI and animation transitions</span>. Beyond the code, I'm a writer—currently working on a science fiction novel named "Chronos." I believe storytelling and narrative design are the heart of any great game.
+            </p>
+
+            <p class="about-text">
+                I'm currently seeking internship opportunities to grow my real-world development experience before graduating in <span class="highlight">May 2026</span>.
+            </p>
+            
+            <a href="mailto:your-email@gmail.com" style="color: var(--accent); text-decoration: none; font-weight: 700;">Contact Me &rarr;</a>
+        </div>
+    </section>
+
     <section class="projects-section" id="work">
         <h2 style="border-left: 4px solid var(--accent); padding-left: 1rem;">Featured Projects</h2>
         <div class="project-grid">
             <div class="project-card">
                 <h3>Phantom Escape</h3>
                 <p>Unity-based atmospheric puzzle game.</p>
-                <p class="accent-text">Unity / C#</p>
+                <p style="color: var(--accent); margin-top: 10px;">Unity / C#</p>
             </div>
             <div class="project-card">
                 <h3>AI Systems</h3>
                 <p>Search algorithms and SQL optimization.</p>
-                <p class="accent-text">Python / SQL</p>
+                <p style="color: var(--accent); margin-top: 10px;">Python / SQL</p>
             </div>
         </div>
     </section>
@@ -113,15 +163,12 @@
             if (i < name.length) {
                 typingContainer.innerHTML = name.substring(0, i + 1) + '<span class="cursor">&nbsp;</span>';
                 i++;
-                setTimeout(typeWriter, 100); // Speed of typing
+                setTimeout(typeWriter, 100);
             } else {
-                // Remove cursor and show subtitle when finished
                 typingContainer.innerHTML = name;
                 subtitle.style.opacity = "1";
             }
         }
-
-        // Start effect on load
         window.onload = typeWriter;
     </script>
 </body>
