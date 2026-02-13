@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rise of India | Sishir Gottumukkala</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --accent: #00d4ff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --card-bg: #111111;
+        }
+        body {
+            background: linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.9)), 
+                        url('images/rise-of-india.gif'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .project-nav { padding: 40px 10%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); backdrop-filter: blur(5px); }
+        .back-link { color: var(--text-secondary); text-decoration: none; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; transition: 0.3s; }
+        .back-link:hover { color: var(--accent); }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 10%; }
+        .project-header { margin: 50px 0; }
+        .project-title { font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; text-transform: uppercase; line-height: 1.1; }
+        .project-tagline { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; display: block; margin-top: 10px; }
+        
+        .section-label { color: var(--accent); text-transform: uppercase; font-size: 0.8rem; font-weight: 900; margin-bottom: 20px; display: block; border-left: 3px solid var(--accent); padding-left: 15px; }
+        .content-block { margin-bottom: 60px; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .feature-item { background: rgba(255,255,255,0.03); padding: 20px; border: 1px solid #222; border-radius: 4px; }
+        .feature-item strong { color: var(--text-primary); display: block; margin-bottom: 5px; }
+        .feature-item span { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .tech-list { list-style: none; padding: 0; display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px; }
+        .tech-tag { background: #1a1a1a; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; border: 1px solid #333; }
+
+        .button-group { display: flex; gap: 20px; margin-top: 60px; padding-bottom: 100px; }
+        .btn { padding: 15px 35px; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; border-radius: 4px; transition: 0.3s; }
+        .btn-primary { background: var(--accent); color: #000; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4); }
+        .btn-outline { border: 1px solid #333; color: var(--text-primary); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <nav class="project-nav">
+        <a href="index_new.html" class="back-link">← Back to Portfolio</a>
+        <div style="color:var(--accent); font-weight:700; font-size:0.8rem; text-transform:uppercase;">Unity Strategy Game</div>
+    </nav>
+
+    <main class="container">
+        <header class="project-header">
+            <h1 class="project-title">Rise of India</h1>
+            <span class="project-tagline">Blending historical education with turn-based strategy logic</span>
+        </header>
+
+        <section class="content-block">
+            <span class="section-label">Project Overview</span>
+            <p>The primary mission of this project is to allow players to explore and understand the vast <strong>History of India</strong> through interactive gameplay. By combining historical milestones with structured mechanics like turn-based decision-making and hero card strategies, the game transforms traditional learning into an engaging, playable experience.</p>
+        </section>
+
+        <section class="content-block">
+            <span class="section-label">Key Features</span>
+            <div class="feature-grid">
+                <div class="feature-item"><strong>Narrative Integration</strong><span>Designed to guide players through significant historical eras and milestones.</span></div>
+                <div class="feature-item"><strong>Hero Card Strategy</strong><span>Dynamic system where Hero cards provide tactical advantages based on historical figures.</span></div>
+                <div class="feature-item"><strong>Turn-Based Structure</strong><span>Robust turn-management handling player transitions and real-time scoring.</span></div>
+                <div class="feature-item"><strong>Educational UI</strong><span>Thematic interface that visually communicates data while maintaining a game-like aesthetic.</span></div>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <span class="section-label">Development Insights</span>
+            <p>I addressed the challenge of balancing data and fun by utilizing a <strong>modular C# architecture</strong>, allowing for the addition of events without disrupting the core loop. I built the turn structure using a <strong>State Machine</strong> in Unity to ensure animations and educational prompts remain perfectly synchronized.</p>
+            
+        </section>
+
+        <section class="content-block">
+            <span class="section-label">Technical Breakdown</span>
+            <div class="tech-list">
+                <span class="tech-tag">Unity</span> <span class="tech-tag">C#</span> <span class="tech-tag">State-based Logic</span> <span class="tech-tag">SQL Integration</span>
+            </div>
+        </section>
+
+        <footer class="button-group">
+            <a href="https://gsishir1104.itch.io/rise-of-india" class="btn btn-primary">Play Game Demo</a>
+            <a href="https://github.com/gsishir1104/Rise-of-India" class="btn btn-outline">View Source Code</a>
+        </footer>
+    </main>
+
+</body>
+</html>
