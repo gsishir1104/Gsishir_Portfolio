@@ -348,6 +348,112 @@
     </div>
 </section>
 
+<section class="certifications-section" id="certs">
+    <span class="about-header" style="text-align: center; display: block;">Validation</span>
+    <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">CERTIFICATIONS</h2>
+
+    <div class="certs-grid">
+        <div class="cert-card">
+            <div class="cert-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 15l-2 5L12 18l2 2-2-5zM12 2a10 10 0 100 20 10 10 0 000-20z"/>
+                    <path d="M8 12l3 3 5-5"/>
+                </svg>
+            </div>
+            <div class="cert-info">
+                <h3>Postman Student Expert</h3>
+                <p>Postman API Platform</p>
+                <span class="cert-date">Issued 2025</span>
+            </div>
+        </div>
+
+        <div class="cert-card">
+            <div class="cert-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <div class="cert-info">
+                <h3>Foundations of Game Design</h3>
+                <p>Unity Technologies</p>
+                <span class="cert-date">Academic Achievement</span>
+            </div>
+        </div>
+
+        <div class="cert-card">
+            <div class="cert-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <path d="M8 21h8M12 17v4"/>
+                </svg>
+            </div>
+            <div class="cert-info">
+                <h3>SQL for Data Science</h3>
+                <p>Professional Development</p>
+                <span class="cert-date">Technical Certification</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .certifications-section { padding: 100px 10%; background: #080808; border-top: 1px solid #111; }
+    
+    .certs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .cert-card {
+        background: #111;
+        padding: 30px;
+        border: 1px solid #222;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: 0.3s ease;
+    }
+
+    .cert-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-5px);
+        background: #161616;
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+    }
+
+    .cert-icon {
+        width: 50px;
+        height: 50px;
+        color: var(--accent);
+        flex-shrink: 0;
+    }
+
+    .cert-info h3 {
+        font-size: 1.1rem;
+        font-weight: 900;
+        margin-bottom: 5px;
+        color: var(--text-primary);
+    }
+
+    .cert-info p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin: 0;
+    }
+
+    .cert-date {
+        font-size: 0.75rem;
+        color: var(--accent);
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 5px;
+        display: block;
+    }
+</style>
+
 <style>
     .skills-section { padding: 100px 10%; background: #050505; border-top: 1px solid #111; }
     
