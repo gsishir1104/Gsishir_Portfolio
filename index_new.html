@@ -20,6 +20,7 @@
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         /* Hero / Typing Section */
@@ -36,59 +37,67 @@
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         .subtitle { color: var(--text-secondary); font-size: 1.2rem; margin-top: 1rem; opacity: 0; transition: opacity 1s ease; }
 
-        /* ABOUT ME SECTION - Split Layout */
-        .about-container {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 100px 5%;
-            gap: 40px;
-        }
-
-        /* Left Side: Stats and Photo (Sticky) */
-        .about-left {
-            flex: 1;
-            min-width: 300px;
-            position: sticky;
-            top: 100px;
-            height: fit-content;
-        }
-
+        /* ABOUT ME SECTION */
+        .about-container { display: flex; flex-wrap: wrap; padding: 100px 5%; gap: 40px; }
+        .about-left { flex: 1; min-width: 300px; position: sticky; top: 100px; height: fit-content; }
         .stat-item { margin-bottom: 2rem; border-bottom: 1px solid #222; padding-bottom: 1rem; }
         .stat-number { font-size: 2.5rem; font-weight: 900; color: var(--text-primary); display: block; }
         .stat-label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 2px; }
-
-        .profile-frame {
-            width: 100%;
-            aspect-ratio: 1/1.2;
-            background: #111; /* Placeholder for your photo */
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 2rem;
-            border: 1px solid #333;
-        }
+        .profile-frame { width: 100%; aspect-ratio: 1/1.2; background: #111; border-radius: 8px; overflow: hidden; margin-top: 2rem; border: 1px solid #333; }
         .profile-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
         .profile-frame:hover img { filter: grayscale(0%); }
-
-        /* Right Side: Content (Scrolling) */
-        .about-right {
-            flex: 1.5;
-            min-width: 350px;
-        }
+        .about-right { flex: 1.5; min-width: 350px; }
         .about-header { font-size: 0.9rem; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; display: block; }
         .about-title { font-size: 3rem; font-weight: 900; line-height: 1.1; margin-bottom: 2rem; }
         .about-text { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1.5rem; }
         .highlight { color: var(--text-primary); font-weight: 700; }
 
-        /* Projects */
-        .projects-section { padding: 100px 10%; border-top: 1px solid #111; }
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
-        .project-card { background: var(--card-bg); border: 1px solid #222; padding: 2rem; transition: 0.3s; }
-        .project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        /* EXPERIENCE SECTION */
+        .experience-section { padding: 100px 10%; background: #080808; border-top: 1px solid #111; }
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; border-left: 1px solid #222; padding-left: 40px; }
+        .timeline-item { margin-bottom: 50px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -46px; top: 8px; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 15px var(--accent); }
+        .timeline-date { color: var(--accent); font-weight: 900; font-size: 0.75rem; margin-right: 15px; letter-spacing: 1px; }
+        .timeline-location { color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
+        .timeline-content h3 { font-size: 1.6rem; font-weight: 900; color: var(--text-primary); margin-bottom: 4px; }
+        .company-name { color: var(--text-secondary); font-weight: 700; margin-bottom: 12px; font-size: 0.9rem; }
+        .skills-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag { font-size: 10px; background: #161616; padding: 4px 10px; border-radius: 2px; border: 1px solid #333; color: var(--text-primary); font-weight: 700; text-transform: uppercase; }
 
-        @media (max-width: 768px) {
-            .about-left { position: relative; top: 0; }
-            .about-title { font-size: 2rem; }
-        }
+        /* PROJECTS SECTION */
+        .projects-section { padding: 100px 5%; background: var(--bg-color); border-top: 1px solid #111; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
+        .project-card { background: var(--card-bg); border: 1px solid #1a1a1a; transition: 0.4s ease; overflow: hidden; }
+        .project-image { height: 250px; background-size: cover; background-position: center; position: relative; transition: transform 0.5s ease; }
+        .project-card:hover .project-image { transform: scale(1.05); }
+        .project-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s ease; }
+        .project-card:hover .project-overlay { opacity: 1; }
+        .view-btn { padding: 12px 25px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; }
+        .project-info { padding: 25px; }
+        .project-category { color: var(--accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        .project-info h3 { font-size: 1.5rem; margin-bottom: 10px; font-weight: 900; }
+
+        /* SKILLS SECTION */
+        .skills-section { padding: 100px 10%; background: #050505; border-top: 1px solid #111; }
+        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .skill-category { background: #0a0a0a; padding: 30px; border: 1px solid #1a1a1a; transition: 0.3s ease; }
+        .skill-category:hover { border-color: var(--accent); background: #111; }
+        .skill-category h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 12px; }
+        .skill-tag { font-size: 0.85rem; color: var(--text-secondary); background: #161616; padding: 6px 15px; border-radius: 4px; border: 1px solid #222; transition: 0.3s; }
+        .skill-tag:hover { color: var(--text-primary); border-color: #444; }
+        .highlight-tag { border-color: var(--accent); color: var(--text-primary); }
+
+        /* CERTIFICATIONS SECTION */
+        .certifications-section { padding: 100px 10%; background: #080808; border-top: 1px solid #111; }
+        .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .cert-card { background: #111; padding: 30px; border: 1px solid #222; display: flex; align-items: center; gap: 20px; transition: 0.3s ease; cursor: pointer; }
+        .cert-card:hover { border-color: var(--accent); transform: translateY(-5px); background: #161616; box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1); }
+        .cert-icon { width: 50px; height: 50px; color: var(--accent); flex-shrink: 0; }
+        .cert-info h3 { font-size: 1.1rem; font-weight: 900; margin-bottom: 5px; color: var(--text-primary); }
+        .cert-date { font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-top: 5px; display: block; }
+
+        @media (max-width: 768px) { .about-left { position: relative; top: 0; } .about-title { font-size: 2rem; } .project-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -100,504 +109,107 @@
 
     <section class="about-container" id="about">
         <div class="about-left">
-            <div class="stat-item">
-                <span class="stat-number">+10</span>
-                <span class="stat-label">Game Projects</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">2026</span>
-                <span class="stat-label">Graduation Year</span>
-            </div>
-            <div class="profile-frame">
-                <img src="images/your-photo.jpg" alt="Sishir Gottumukkala">
-            </div>
+            <div class="stat-item"><span class="stat-number">+10</span><span class="stat-label">Game Projects</span></div>
+            <div class="stat-item"><span class="stat-number">2026</span><span class="stat-label">Graduation Year</span></div>
+            <div class="profile-frame"><img src="images/your-photo.jpg" alt="Sishir Gottumukkala"></div>
         </div>
-
         <div class="about-right">
             <span class="about-header">About Me</span>
             <h2 class="about-title">GAME DEVELOPER SPECIALIZED IN <span style="color:var(--accent)">GAMEPLAY & AI</span></h2>
-            
-            <p class="about-text">
-                Hello! I'm <span class="highlight">Sishir Gottumukkala</span>, a passionate Unity developer and computer science student at Central Michigan University. I'm minoring in Game Design to blend technical complexity with creative, immersive design.
-            </p>
-            
-            <p class="about-text">
-                My strengths lie in <span class="highlight">gameplay programming, game AI, and animation</span>. I feel most comfortable within the Unity ecosystem using C#, but I've also built systems in Java and Python to bring interactive ideas to life.
-            </p>
-
-            <p class="about-text">
-                I focus on crafting polished experiences, from refining mechanics to building <span class="highlight">enemy patrol AI and animation transitions</span>. Beyond the code, I'm a writer—currently working on a science fiction novel named "Chronos." I believe storytelling and narrative design are the heart of any great game.
-            </p>
-
-            <p class="about-text">
-                I'm currently seeking internship opportunities to grow my real-world development experience before graduating in <span class="highlight">May 2026</span>.
-            </p>
-            
-            <a href="mailto:your-email@gmail.com" style="color: var(--accent); text-decoration: none; font-weight: 700;">Contact Me &rarr;</a>
+            <p class="about-text">Hello! I'm <span class="highlight">Sishir Gottumukkala</span>, a passionate Unity developer and CS student at Central Michigan University. I'm minoring in Game Design to blend technical complexity with creative design.</p>
+            <p class="about-text">My strengths lie in <span class="highlight">gameplay programming, game AI, and animation</span>. I feel most comfortable in the Unity ecosystem using C#, but I've also built systems in Java and Python.</p>
+            <p class="about-text">I focus on crafting polished experiences, from mechanics to <span class="highlight">enemy patrol AI and animation transitions</span>. Beyond the code, I'm writing a science fiction novel named "Chronos".</p>
+            <a href="mailto:gsishir1104@gmail.com" style="color: var(--accent); text-decoration: none; font-weight: 700;">Contact Me &rarr;</a>
         </div>
     </section>
 
     <section class="experience-section" id="experience">
-    <span class="about-header" style="text-align: center; display: block;">Career Path</span>
-    <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">MY BACKSTORY</h2>
-    
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="timeline-meta">
-                <span class="timeline-date">AUG 2025 - PRESENT</span>
-                <span class="timeline-location">CMU | MT. PLEASANT</span>
+        <span class="about-header" style="text-align: center; display: block;">Career Path</span>
+        <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">MY BACKSTORY</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-meta"><span class="timeline-date">AUG 2025 - PRESENT</span><span class="timeline-location">CMU | MT. PLEASANT</span></div>
+                <div class="timeline-content"><h3>CS Department Grader</h3><p class="company-name">Central Michigan University</p><p>Evaluating Java and C-based code for logic and efficiency.</p>
+                <div class="skills-tags"><span class="tag">Java</span><span class="tag">C</span><span class="tag">Code Review</span></div></div>
             </div>
-            <div class="timeline-content">
-                <h3>CS Department Grader</h3>
-                <p class="company-name">Central Michigan University</p>
-                <p>Evaluating Java and C-based code for logic, style, and efficiency. By reviewing core programming concepts and providing feedback, I maintain a high standard for code architecture.</p>
-                <div class="skills-tags">
-                    <span class="tag">Java</span> <span class="tag">C</span> <span class="tag">Code Review</span>
-                </div>
+            <div class="timeline-item">
+                <div class="timeline-meta"><span class="timeline-date">JUL 2024 - AUG 2024</span><span class="timeline-location">LANSING, MI</span></div>
+                <div class="timeline-content"><h3>AppDev Internship</h3><p class="company-name">Delta Dental of Michigan</p><p>Gained hands-on experience in full-stack development and optimized SQL backend queries.</p>
+                <div class="skills-tags"><span class="tag">SQL</span><span class="tag">Backend</span><span class="tag">Web Dev</span></div></div>
             </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="timeline-meta">
-                <span class="timeline-date">JUL 2024 - AUG 2024</span>
-                <span class="timeline-location">LANSING, MI</span>
-            </div>
-            <div class="timeline-content">
-                <h3>AppDev Internship</h3>
-                <p class="company-name">Delta Dental of Michigan</p>
-                <p>Gained hands-on experience in full-stack development. I worked with HTML, CSS, and SQL to build and optimize backend database queries, a skill essential for managing complex game save states.</p>
-                <div class="skills-tags">
-                    <span class="tag">SQL</span> <span class="tag">Backend</span> <span class="tag">Web Dev</span>
-                </div>
+            <div class="timeline-item">
+                <div class="timeline-meta"><span class="timeline-date">JAN 2024 - PRESENT</span><span class="timeline-location">CMU | MT. PLEASANT</span></div>
+                <div class="timeline-content"><h3>Vice President, Chess Club</h3><p class="company-name">Central Michigan University</p><p>Organizing tournaments and leading strategy. Competitive chess logic informs my design of game AI algorithms.</p>
+                <div class="skills-tags"><span class="tag">Leadership</span><span class="tag">Strategy</span><span class="tag">Logic</span></div></div>
             </div>
         </div>
-
-        <div class="timeline-item">
-            <div class="timeline-meta">
-                <span class="timeline-date">MAY 2024 - JUN 2024</span>
-                <span class="timeline-location">LANSING, MI</span>
-            </div>
-            <div class="timeline-content">
-                <h3>Data Analyst Internship</h3>
-                <p class="company-name">Dewpoint</p>
-                <p>Utilized Power BI to analyze heatmaps and product utilization. This experience in data visualization helps me interpret complex AI behavior patterns and player movement heatmaps in Unity.</p>
-                <div class="skills-tags">
-                    <span class="tag">Power BI</span> <span class="tag">Data Analysis</span> <span class="tag">Heatmaps</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="timeline-meta">
-                <span class="timeline-date">JAN 2024 - PRESENT</span>
-                <span class="timeline-location">CMU | MT. PLEASANT</span>
-            </div>
-            <div class="timeline-content">
-                <h3>Vice President, Chess Club</h3>
-                <p class="company-name">Central Michigan University</p>
-                <p>Organizing inter-university tournaments and leading strategic planning. My background in competitive chess logic directly informs my design of decision-making algorithms for game AI.</p>
-                <div class="skills-tags">
-                    <span class="tag">Leadership</span> <span class="tag">Strategy</span> <span class="tag">Logic</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-    .experience-section { padding: 100px 10%; background: #080808; border-top: 1px solid #111; }
-    .timeline { position: relative; max-width: 800px; margin: 0 auto; border-left: 1px solid #222; padding-left: 40px; }
-    
-    .timeline-item { margin-bottom: 50px; position: relative; }
-    .timeline-item::before {
-        content: '';
-        position: absolute;
-        left: -46px;
-        top: 8px;
-        width: 12px;
-        height: 12px;
-        background: var(--accent);
-        border-radius: 50%;
-        box-shadow: 0 0 15px var(--accent);
-    }
-
-    .timeline-meta { margin-bottom: 8px; }
-    .timeline-date { color: var(--accent); font-weight: 900; font-size: 0.75rem; margin-right: 15px; letter-spacing: 1px; }
-    .timeline-location { color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
-
-    .timeline-content h3 { font-size: 1.6rem; font-weight: 900; color: var(--text-primary); margin-bottom: 4px; }
-    .company-name { color: var(--text-secondary); font-weight: 700; margin-bottom: 12px; font-size: 0.9rem; }
-    .timeline-content p { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; margin-bottom: 15px; max-width: 600px; }
-
-    .skills-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-    .tag { font-size: 10px; background: #161616; padding: 4px 10px; border-radius: 2px; border: 1px solid #333; color: var(--text-primary); font-weight: 700; text-transform: uppercase; }
-</style>
+    </section>
 
     <section class="projects-section" id="work">
-    <span class="about-header" style="text-align: center; display: block;">Portfolio</span>
-    <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">FEATURED PROJECTS</h2>
-
-    <div class="project-grid">
-        <div class="project-card">
-            <div class="project-image" style="background-image: url('images/EnchantedMaze.gif'); background-color: #1a1a1a;">
-                <div class="project-overlay">
-                    <a href="phantom_escape.html" class="view-btn">View Details</a>
-                </div>
+        <span class="about-header" style="text-align: center; display: block;">Portfolio</span>
+        <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">FEATURED PROJECTS</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('images/EnchantedMaze.gif'); background-color: #1a1a1a;"><div class="project-overlay"><a href="phantom_escape.html" class="view-btn">View Details</a></div></div>
+                <div class="project-info"><span class="project-category">Unity • C# • AI</span><h3>Phantom Escape: Enchanted Maze</h3><p>Third-person puzzle-maze with advanced AI patrols and HDRP visuals.</p></div>
             </div>
-            <div class="project-info">
-                <span class="project-category">Unity • C# • AI</span>
-                <h3>Phantom Escape: Enchanted Maze</h3>
-                <p>Third-person puzzle-maze with advanced AI enemy patrols and HDRP atmospheric visuals.</p>
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('images/flappybird.gif'); background-color: #1a1a1a;"><div class="project-overlay"><a href="flappy_bird.html" class="view-btn">View Details</a></div></div>
+                <div class="project-info"><span class="project-category">Java • JavaFX • Physics</span><h3>Flappy Bird Clone</h3><p>Physics-based gameplay with custom collision logic and object pooling.</p></div>
             </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-image" style="background-image: url('images/flappybird.gif'); background-color: #1a1a1a;">
-                <div class="project-overlay">
-                    <a href="flappy_bird" class="view-btn">View Details</a>
-                </div>
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('images/ROI.gif');"><div class="project-overlay"><a href="rise_of_india.html" class="view-btn">View Project</a></div></div>
+                <div class="project-info"><span class="project-category">Unity • Educational</span><h3>Rise of India</h3><p>Turn-based strategy game exploring the historical milestones of India.</p></div>
             </div>
-            <div class="project-info">
-                <span class="project-category">Java • JavaFX • Physics</span>
-                <h3>Flappy Bird Clone</h3>
-                <p>Recreated physics-based gameplay using kinematic equations and custom collision logic.</p>
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('images/voice-control.png');"><div class="project-overlay"><a href="smart_home.html" class="view-btn">View Details</a></div></div>
+                <div class="project-info"><span class="project-category">Embedded C • IoT</span><h3>Voice Controlled Appliances</h3><p>IoT system using NodeMCU for real-time hardware voice command execution.</p></div>
             </div>
         </div>
+    </section>
 
-        <div class="project-card">
-            <div class="project-image" style="background-image: url('images/ROI.gif');">
-                <div class="project-overlay">
-                    <a href="rise_of_india.html" class="view-btn">View Project</a>
-                </div>
+    <section class="skills-section" id="skills">
+        <span class="about-header" style="text-align: center; display: block;">Expertise</span>
+        <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">TECHNICAL ARSENAL</h2>
+        <div class="skills-container">
+            <div class="skill-category"><h3>Programming</h3><div class="skill-list"><span class="skill-tag">Python</span><span class="skill-tag">Java</span><span class="skill-tag">C#</span><span class="skill-tag">C++</span><span class="skill-tag">SQL</span></div></div>
+            <div class="skill-category"><h3>Engines & Tools</h3><div class="skill-list"><span class="skill-tag highlight-tag">Unity</span><span class="skill-tag">Unreal Engine</span><span class="skill-tag">VS Code</span><span class="skill-tag">Eclipse</span></div></div>
+            <div class="skill-category"><h3>Game Design</h3><div class="skill-list"><span class="skill-tag">Storyboarding</span><span class="skill-tag">Level Design</span><span class="skill-tag">Gameplay Mechanics</span><span class="skill-tag">VR Interaction</span></div></div>
+            <div class="skill-category"><h3>Multimedia</h3><div class="skill-list"><span class="skill-tag">Animation</span><span class="skill-tag">Real-time Rendering</span><span class="skill-tag">Audio Integration</span></div></div>
+        </div>
+    </section>
+
+    <section class="certifications-section" id="certs">
+        <span class="about-header" style="text-align: center; display: block;">Validation</span>
+        <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">CERTIFICATIONS</h2>
+        <div class="certs-grid">
+            <div class="cert-card" onclick="window.open('assets/VR_Certificate.pdf', '_blank')">
+                <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7.5l-9-4.5-9 4.5v9l9 4.5 9-4.5v-9zM3 7.5l9 4.5 9-4.5M12 22.5v-10.5"/></svg></div>
+                <div class="cert-info"><h3>VR Course - SP Robotic Works</h3><p>Master Certificate | VR Foundations</p><span class="cert-date">Oct 2019</span></div>
             </div>
-            <div class="project-info">
-                <span class="project-category">Unity • Educational</span>
-                <h3>Rise of India</h3>
-                <p>Educational strategy board game focusing on turn-based structure and decision-making logic.</p>
+            <div class="cert-card">
+                <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l-2 5L12 18l2 2-2-5zM12 2a10 10 0 100 20 10 10 0 000-20zM8 12l3 3 5-5"/></svg></div>
+                <div class="cert-info"><h3>Postman Student Expert</h3><p>Postman API Platform</p><span class="cert-date">Issued 2025</span></div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                <div class="cert-info"><h3>Foundations of Game Design</h3><p>Unity Technologies</p><span class="cert-date">Academic Achievement</span></div>
             </div>
         </div>
-
-        <div class="project-card">
-            <div class="project-image" style="background-image: url('images/voice-control.png');">
-                <div class="project-overlay">
-                    <a href="smart_home.html" class="view-btn">View Details</a>
-                </div>
-            </div>
-            <div class="project-info">
-                <span class="project-category">Embedded C • IoT</span>
-                <h3>Voice Controlled Appliances</h3>
-                <p>IoT system using NodeMCU and voice recognition to control high-voltage hardware.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="skills-section" id="skills">
-    <span class="about-header" style="text-align: center; display: block;">Expertise</span>
-    <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">TECHNICAL ARSENAL</h2>
-
-    <div class="skills-container">
-        <div class="skill-category">
-            <h3>Programming</h3>
-            <div class="skill-list">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">C#</span>
-                <span class="skill-tag">C++</span>
-                <span class="skill-tag">SQL</span>
-            </div>
-        </div>
-
-        <div class="skill-category">
-            <h3>Engines & Tools</h3>
-            <div class="skill-list">
-                <span class="skill-tag highlight-tag">Unity</span>
-                <span class="skill-tag">Unreal Engine</span>
-                <span class="skill-tag">VS Code</span>
-                <span class="skill-tag">Eclipse</span>
-            </div>
-        </div>
-
-        <div class="skill-category">
-            <h3>Game Design</h3>
-            <div class="skill-list">
-                <span class="skill-tag">Storyboarding</span>
-                <span class="skill-tag">Level Design</span>
-                <span class="skill-tag">Gameplay Mechanics</span>
-                <span class="skill-tag">VR Interaction</span>
-            </div>
-        </div>
-
-        <div class="skill-category">
-            <h3>Multimedia</h3>
-            <div class="skill-list">
-                <span class="skill-tag">Animation</span>
-                <span class="skill-tag">Real-time Rendering</span>
-                <span class="skill-tag">Audio Integration</span>
-            </div>
-        </div>
-        
-        <div class="skill-category">
-            <h3>Core Competencies</h3>
-            <div class="skill-list">
-                <span class="skill-tag">Communication</span>
-                <span class="skill-tag">Leadership</span>
-                <span class="skill-tag">Strategic Planning</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="certifications-section" id="certs">
-    <span class="about-header" style="text-align: center; display: block;">Validation</span>
-    <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">CERTIFICATIONS</h2>
-
-    <div class="certs-grid">
-        <div class="cert-card">
-            <div class="cert-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 15l-2 5L12 18l2 2-2-5zM12 2a10 10 0 100 20 10 10 0 000-20z"/>
-                    <path d="M8 12l3 3 5-5"/>
-                </svg>
-            </div>
-            <div class="cert-info">
-                <h3>Postman Student Expert</h3>
-                <p>Postman API Platform</p>
-                <span class="cert-date">Issued 2025</span>
-            </div>
-        </div>
-
-        <div class="cert-card">
-            <div class="cert-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-            </div>
-            <div class="cert-info">
-                <h3>Foundations of Game Design</h3>
-                <p>Unity Technologies</p>
-                <span class="cert-date">Academic Achievement</span>
-            </div>
-        </div>
-
-        <div class="cert-card">
-            <div class="cert-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                    <path d="M8 21h8M12 17v4"/>
-                </svg>
-            </div>
-            <div class="cert-info">
-                <h3>SQL for Data Science</h3>
-                <p>Professional Development</p>
-                <span class="cert-date">Technical Certification</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-    .certifications-section { padding: 100px 10%; background: #080808; border-top: 1px solid #111; }
-    
-    .certs-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .cert-card {
-        background: #111;
-        padding: 30px;
-        border: 1px solid #222;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        transition: 0.3s ease;
-    }
-
-    .cert-card:hover {
-        border-color: var(--accent);
-        transform: translateY(-5px);
-        background: #161616;
-        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
-    }
-
-    .cert-icon {
-        width: 50px;
-        height: 50px;
-        color: var(--accent);
-        flex-shrink: 0;
-    }
-
-    .cert-info h3 {
-        font-size: 1.1rem;
-        font-weight: 900;
-        margin-bottom: 5px;
-        color: var(--text-primary);
-    }
-
-    .cert-info p {
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-        margin: 0;
-    }
-
-    .cert-date {
-        font-size: 0.75rem;
-        color: var(--accent);
-        font-weight: 700;
-        text-transform: uppercase;
-        margin-top: 5px;
-        display: block;
-    }
-</style>
-
-<style>
-    .skills-section { padding: 100px 10%; background: #050505; border-top: 1px solid #111; }
-    
-    .skills-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-    }
-
-    .skill-category {
-        background: #0a0a0a;
-        padding: 30px;
-        border: 1px solid #1a1a1a;
-        transition: 0.3s ease;
-    }
-
-    .skill-category:hover {
-        border-color: var(--accent);
-        background: #111;
-    }
-
-    .skill-category h3 {
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        color: var(--accent);
-        margin-bottom: 25px;
-        border-bottom: 1px solid #222;
-        padding-bottom: 10px;
-    }
-
-    .skill-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    .skill-tag {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        background: #161616;
-        padding: 6px 15px;
-        border-radius: 4px;
-        border: 1px solid #222;
-        transition: 0.3s;
-    }
-
-    .skill-tag:hover {
-        color: var(--text-primary);
-        border-color: #444;
-    }
-
-    .highlight-tag {
-        border-color: var(--accent);
-        color: var(--text-primary);
-    }
-</style>
-
-<style>
-    .projects-section { padding: 100px 5%; background: var(--bg-color); }
-    
-    .project-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 30px;
-    }
-
-    .project-card {
-        background: var(--card-bg);
-        border: 1px solid #1a1a1a;
-        transition: 0.4s ease;
-        overflow: hidden;
-    }
-
-    .project-image {
-        height: 250px;
-        background-size: cover;
-        background-position: center;
-        position: relative;
-        transition: transform 0.5s ease;
-    }
-
-    .project-card:hover .project-image {
-        transform: scale(1.05);
-    }
-
-    /* Hover Overlay */
-    .project-overlay {
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: 0.3s ease;
-    }
-
-    .project-card:hover .project-overlay {
-        opacity: 1;
-    }
-
-    .view-btn {
-        padding: 12px 25px;
-        border: 1px solid var(--accent);
-        color: var(--accent);
-        text-decoration: none;
-        text-transform: uppercase;
-        font-size: 0.8rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-    }
-
-    .project-info { padding: 25px; }
-    .project-category {
-        color: var(--accent);
-        font-size: 0.7rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-        display: block;
-    }
-    .project-info h3 { font-size: 1.5rem; margin-bottom: 10px; font-weight: 900; }
-    .project-info p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; }
-
-    @media (max-width: 600px) {
-        .project-grid { grid-template-columns: 1fr; }
-    }
-</style>
+    </section>
 
     <script>
-        const name = "SISHIR GOTTUMUKKALA";
+        const nameText = "SISHIR GOTTUMUKKALA";
         const typingContainer = document.getElementById('typing-name');
         const subtitle = document.getElementById('hero-subtitle');
         let i = 0;
-
         function typeWriter() {
-            if (i < name.length) {
-                typingContainer.innerHTML = name.substring(0, i + 1) + '<span class="cursor">&nbsp;</span>';
+            if (i < nameText.length) {
+                typingContainer.innerHTML = nameText.substring(0, i + 1) + '<span class="cursor">&nbsp;</span>';
                 i++;
                 setTimeout(typeWriter, 100);
             } else {
-                typingContainer.innerHTML = name;
+                typingContainer.innerHTML = nameText;
                 subtitle.style.opacity = "1";
             }
         }
