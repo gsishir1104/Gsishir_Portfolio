@@ -97,6 +97,13 @@
         .cert-info h3 { font-size: 1.1rem; font-weight: 900; margin-bottom: 5px; color: var(--text-primary); }
         .cert-date { font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-top: 5px; display: block; }
 
+        /* BUTTONS */
+        .btn { padding: 15px 35px; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; border-radius: 4px; transition: 0.3s; }
+        .btn-primary { background: var(--accent); color: #000; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4); }
+        .btn-outline { border: 1px solid #333; color: var(--text-primary); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
         @media (max-width: 768px) { .about-left { position: relative; top: 0; } .about-title { font-size: 2rem; } .project-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -109,7 +116,7 @@
 
     <section class="about-container" id="about">
         <div class="about-left">
-            <div class="stat-item"><span class="stat-number">+10</span><span class="stat-label">Game Projects</span></div>
+            <div class="stat-item"><span class="stat-number">5</span><span class="stat-label">Game Projects</span></div>
             <div class="stat-item"><span class="stat-number">2026</span><span class="stat-label">Graduation Year</span></div>
             <div class="profile-frame"><img src="images/your-photo.jpg" alt="Sishir Gottumukkala"></div>
         </div>
@@ -136,6 +143,11 @@
                 <div class="timeline-meta"><span class="timeline-date">JUL 2024 - AUG 2024</span><span class="timeline-location">LANSING, MI</span></div>
                 <div class="timeline-content"><h3>AppDev Internship</h3><p class="company-name">Delta Dental of Michigan</p><p>Gained hands-on experience in full-stack development and optimized SQL backend queries.</p>
                 <div class="skills-tags"><span class="tag">SQL</span><span class="tag">Backend</span><span class="tag">Web Dev</span></div></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-meta"><span class="timeline-date">MAY 2024 - JUN 2024</span><span class="timeline-location">LANSING, MI</span></div>
+                <div class="timeline-content"><h3>Data Analyst Internship</h3><p class="company-name">Dewpoint</p><p>Utilized Power BI to analyze heatmaps and product utilization, translating data into actionable insights.</p>
+                <div class="skills-tags"><span class="tag">Power BI</span><span class="tag">Data Analysis</span><span class="tag">Heatmaps</span></div></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-meta"><span class="timeline-date">JAN 2024 - PRESENT</span><span class="timeline-location">CMU | MT. PLEASANT</span></div>
@@ -189,6 +201,17 @@
             </div>
         </div>
     </section>
+
+    <footer style="padding: 100px 10% 50px; background: #050505; border-top: 1px solid #111; text-align: center;">
+        <span class="about-header">Let's Connect</span>
+        <h2 class="about-title" style="margin-bottom: 2rem;">WANT TO COLLABORATE?</h2>
+        <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 50px;">
+            <a href="https://github.com/gsishir1104" target="_blank" class="btn btn-outline">GitHub</a>
+            <a href="https://linkedin.com/in/gsishir1104" target="_blank" class="btn btn-outline">LinkedIn</a>
+            <a href="mailto:gsishir1104@gmail.com" class="btn btn-primary">Email Me</a>
+        </div>
+        <p style="color: var(--text-secondary); font-size: 0.8rem; letter-spacing: 1px;">&copy; 2026 SISHIR GOTTUMUKKALA | DESIGN INSPIRED BY GERLOGU</p>
+    </footer>
 
     <script>
         const nameText = "SISHIR GOTTUMUKKALA";
