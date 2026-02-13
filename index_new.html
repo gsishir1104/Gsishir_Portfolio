@@ -292,6 +292,120 @@
     </div>
 </section>
 
+<section class="skills-section" id="skills">
+    <span class="about-header" style="text-align: center; display: block;">Expertise</span>
+    <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">TECHNICAL ARSENAL</h2>
+
+    <div class="skills-container">
+        <div class="skill-category">
+            <h3>Programming</h3>
+            <div class="skill-list">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">C#</span>
+                <span class="skill-tag">C++</span>
+                <span class="skill-tag">SQL</span>
+            </div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Engines & Tools</h3>
+            <div class="skill-list">
+                <span class="skill-tag highlight-tag">Unity</span>
+                <span class="skill-tag">Unreal Engine</span>
+                <span class="skill-tag">VS Code</span>
+                <span class="skill-tag">Eclipse</span>
+            </div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Game Design</h3>
+            <div class="skill-list">
+                <span class="skill-tag">Storyboarding</span>
+                <span class="skill-tag">Level Design</span>
+                <span class="skill-tag">Gameplay Mechanics</span>
+                <span class="skill-tag">VR Interaction</span>
+            </div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Multimedia</h3>
+            <div class="skill-list">
+                <span class="skill-tag">Animation</span>
+                <span class="skill-tag">Real-time Rendering</span>
+                <span class="skill-tag">Audio Integration</span>
+            </div>
+        </div>
+        
+        <div class="skill-category">
+            <h3>Core Competencies</h3>
+            <div class="skill-list">
+                <span class="skill-tag">Communication</span>
+                <span class="skill-tag">Leadership</span>
+                <span class="skill-tag">Strategic Planning</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .skills-section { padding: 100px 10%; background: #050505; border-top: 1px solid #111; }
+    
+    .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .skill-category {
+        background: #0a0a0a;
+        padding: 30px;
+        border: 1px solid #1a1a1a;
+        transition: 0.3s ease;
+    }
+
+    .skill-category:hover {
+        border-color: var(--accent);
+        background: #111;
+    }
+
+    .skill-category h3 {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--accent);
+        margin-bottom: 25px;
+        border-bottom: 1px solid #222;
+        padding-bottom: 10px;
+    }
+
+    .skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .skill-tag {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        background: #161616;
+        padding: 6px 15px;
+        border-radius: 4px;
+        border: 1px solid #222;
+        transition: 0.3s;
+    }
+
+    .skill-tag:hover {
+        color: var(--text-primary);
+        border-color: #444;
+    }
+
+    .highlight-tag {
+        border-color: var(--accent);
+        color: var(--text-primary);
+    }
+</style>
+
 <style>
     .projects-section { padding: 100px 5%; background: var(--bg-color); }
     
