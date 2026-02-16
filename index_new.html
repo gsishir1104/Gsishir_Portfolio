@@ -23,28 +23,29 @@
             scroll-behavior: smooth;
         }
 
-        /* Update your .hero class to handle the transitions */
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 10%;
-    background-size: cover;
-    background-position: center;
-    transition: background-image 1.5s ease-in-out; /* Smooth fade between GIFs */
-    position: relative;
-    z-index: 1;
-}
+        /* Hero / Dynamic Background Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1.5s ease-in-out; /* Smooth fade between GIFs */
+            position: relative;
+            z-index: 1;
+        }
 
-/* Add a dark overlay so your name stays readable over the moving GIFs */
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: -1;
-}
+        /* Dark overlay for readability over moving GIFs */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
+
         #typing-name { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; text-transform: uppercase; letter-spacing: -2px; }
         .cursor { display: inline-block; width: 10px; background-color: var(--accent); margin-left: 5px; animation: blink 0.7s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
@@ -111,7 +112,7 @@
         .cert-date { font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-top: 5px; display: block; }
 
         /* BUTTONS */
-        .btn { padding: 15px 35px; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; border-radius: 4px; transition: 0.3s; }
+        .btn { padding: 15px 35px; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; border-radius: 4px; transition: 0.3s; display: inline-block; }
         .btn-primary { background: var(--accent); color: #000; }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4); }
         .btn-outline { border: 1px solid #333; color: var(--text-primary); }
@@ -195,7 +196,7 @@
                 <div class="project-info">
                     <span class="project-category">Unity • C# • Networking</span>
                     <h3>Interactive Game-Style Portfolio</h3>
-                    <p>A virtual 3D environment where players explore terminals to learn about my projects and certifications.</p>
+                    <p>A virtual 2D environment where players explore terminals to learn about my background.</p>
                 </div>
             </div>
             <div class="project-card">
@@ -242,6 +243,23 @@
         const nameText = "SISHIR GOTTUMUKKALA";
         const typingContainer = document.getElementById('typing-name');
         const subtitle = document.getElementById('hero-subtitle');
+        const heroSection = document.querySelector('.hero');
+        
+        // --- BACKGROUND CYCLE LOGIC ---
+        const backgrounds = [
+            'images/EnchantedMaze.gif',
+            'images/flappybird.gif',
+            'images/ROI.gif',
+            'images/interactive-portfolio.gif'
+        ];
+        let currentBgIndex = 0;
+
+        function changeBackground() {
+            heroSection.style.backgroundImage = `url('${backgrounds[currentBgIndex]}')`;
+            currentBgIndex = (currentBgIndex + 1) % backgrounds.length;
+        }
+
+        // --- TYPING EFFECT LOGIC ---
         let i = 0;
         function typeWriter() {
             if (i < nameText.length) {
@@ -253,7 +271,13 @@
                 subtitle.style.opacity = "1";
             }
         }
-        window.onload = typeWriter;
+
+        // Initialization on Load
+        window.onload = () => {
+            typeWriter();
+            changeBackground(); // Initialize first GIF immediately
+            setInterval(changeBackground, 5000); // Rotate every 5 seconds
+        };
     </script>
 </body>
 </html>
