@@ -23,7 +23,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Hero / Dynamic Background Section */
+        /* Hero Section with Smooth Fade */
         .hero {
             height: 100vh;
             display: flex;
@@ -32,12 +32,11 @@
             padding: 0 10%;
             background-size: cover;
             background-position: center;
-            transition: background-image 1.5s ease-in-out; /* Smooth fade between GIFs */
+            transition: background-image 1.5s ease-in-out;
             position: relative;
             z-index: 1;
         }
 
-        /* Dark overlay for readability over moving GIFs */
         .hero::before {
             content: '';
             position: absolute;
@@ -50,6 +49,27 @@
         .cursor { display: inline-block; width: 10px; background-color: var(--accent); margin-left: 5px; animation: blink 0.7s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         .subtitle { color: var(--text-secondary); font-size: 1.2rem; margin-top: 1rem; opacity: 0; transition: opacity 1s ease; }
+
+        /* PARALLAX EFFECT STYLES */
+        .parallax-section {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Creates the cinematic scroll effect */
+            background-repeat: no-repeat;
+            padding: 120px 10%;
+            z-index: 1;
+            overflow: hidden;
+            border-top: 1px solid #111;
+        }
+
+        .parallax-section::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); 
+            z-index: -1;
+        }
 
         /* ABOUT ME SECTION */
         .about-container { display: flex; flex-wrap: wrap; padding: 100px 5%; gap: 40px; }
@@ -66,19 +86,16 @@
         .about-text { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1.5rem; }
         .highlight { color: var(--text-primary); font-weight: 700; }
 
-        /* EXPERIENCE SECTION */
-        .experience-section { padding: 100px 10%; background: #080808; border-top: 1px solid #111; }
+        /* TIMELINE */
         .timeline { position: relative; max-width: 800px; margin: 0 auto; border-left: 1px solid #222; padding-left: 40px; }
         .timeline-item { margin-bottom: 50px; position: relative; }
         .timeline-item::before { content: ''; position: absolute; left: -46px; top: 8px; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 15px var(--accent); }
         .timeline-date { color: var(--accent); font-weight: 900; font-size: 0.75rem; margin-right: 15px; letter-spacing: 1px; }
-        .timeline-location { color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
         .timeline-content h3 { font-size: 1.6rem; font-weight: 900; color: var(--text-primary); margin-bottom: 4px; }
-        .company-name { color: var(--text-secondary); font-weight: 700; margin-bottom: 12px; font-size: 0.9rem; }
-        .skills-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .skills-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
         .tag { font-size: 10px; background: #161616; padding: 4px 10px; border-radius: 2px; border: 1px solid #333; color: var(--text-primary); font-weight: 700; text-transform: uppercase; }
 
-        /* PROJECTS SECTION */
+        /* PROJECTS GRID */
         .projects-section { padding: 100px 5%; background: var(--bg-color); border-top: 1px solid #111; }
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
         .project-card { background: var(--card-bg); border: 1px solid #1a1a1a; transition: 0.4s ease; overflow: hidden; }
@@ -88,28 +105,18 @@
         .project-card:hover .project-overlay { opacity: 1; }
         .view-btn { padding: 12px 25px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; }
         .project-info { padding: 25px; }
-        .project-category { color: var(--accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
-        .project-info h3 { font-size: 1.5rem; margin-bottom: 10px; font-weight: 900; }
 
-        /* SKILLS SECTION */
-        .skills-section { padding: 100px 10%; background: #050505; border-top: 1px solid #111; }
+        /* SKILLS GRID */
         .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .skill-category { background: #0a0a0a; padding: 30px; border: 1px solid #1a1a1a; transition: 0.3s ease; }
-        .skill-category:hover { border-color: var(--accent); background: #111; }
+        .skill-category { background: rgba(10, 10, 10, 0.9); padding: 30px; border: 1px solid #1a1a1a; transition: 0.3s ease; }
         .skill-category h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 10px; }
         .skill-list { display: flex; flex-wrap: wrap; gap: 12px; }
-        .skill-tag { font-size: 0.85rem; color: var(--text-secondary); background: #161616; padding: 6px 15px; border-radius: 4px; border: 1px solid #222; transition: 0.3s; }
-        .skill-tag:hover { color: var(--text-primary); border-color: #444; }
-        .highlight-tag { border-color: var(--accent); color: var(--text-primary); }
+        .skill-tag { font-size: 0.85rem; color: var(--text-secondary); background: #161616; padding: 6px 15px; border-radius: 4px; border: 1px solid #222; }
 
-        /* CERTIFICATIONS SECTION */
-        .certifications-section { padding: 100px 10%; background: #080808; border-top: 1px solid #111; }
+        /* CERTS GRID */
         .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .cert-card { background: #111; padding: 30px; border: 1px solid #222; display: flex; align-items: center; gap: 20px; transition: 0.3s ease; cursor: pointer; }
-        .cert-card:hover { border-color: var(--accent); transform: translateY(-5px); background: #161616; box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1); }
-        .cert-icon { width: 50px; height: 50px; color: var(--accent); flex-shrink: 0; }
-        .cert-info h3 { font-size: 1.1rem; font-weight: 900; margin-bottom: 5px; color: var(--text-primary); }
-        .cert-date { font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-top: 5px; display: block; }
+        .cert-card { background: rgba(17, 17, 17, 0.9); padding: 30px; border: 1px solid #222; display: flex; align-items: center; gap: 20px; transition: 0.3s ease; cursor: pointer; }
+        .cert-card:hover { border-color: var(--accent); transform: translateY(-5px); }
 
         /* BUTTONS */
         .btn { padding: 15px 35px; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; border-radius: 4px; transition: 0.3s; display: inline-block; }
@@ -118,27 +125,7 @@
         .btn-outline { border: 1px solid #333; color: var(--text-primary); }
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-        @media (max-width: 768px) { .about-left { position: relative; top: 0; } .about-title { font-size: 2rem; } .project-grid { grid-template-columns: 1fr; } }
-
-        /* General style for sections with background GIFs */
-        .parallax-section {
-            position: relative;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* This creates the parallax effect */
-            background-repeat: no-repeat;
-            padding: 100px 10%;
-            z-index: 1;
-        }
-
-        /* Dark overlay to make sure text is readable over the GIFs */
-        .parallax-section::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8); /* Adjust darkness here */
-            z-index: -1;
-        }
+        @media (max-width: 768px) { .parallax-section { background-attachment: scroll; } .about-left { position: relative; top: 0; } }
     </style>
 </head>
 <body>
@@ -150,43 +137,42 @@
 
     <section class="about-container" id="about">
         <div class="about-left">
-            <div class="stat-item"><span class="stat-number">5</span><span class="stat-label">Game Projects</span></div>
+            <div class="stat-item"><span class="stat-number">5</span><span class="stat-label">Featured Projects</span></div>
             <div class="stat-item"><span class="stat-number">2026</span><span class="stat-label">Graduation Year</span></div>
             <div class="profile-frame"><img src="images/your-photo.jpg" alt="Sishir Gottumukkala"></div>
         </div>
         <div class="about-right">
             <span class="about-header">About Me</span>
             <h2 class="about-title">GAME DEVELOPER SPECIALIZED IN <span style="color:var(--accent)">GAMEPLAY & AI</span></h2>
-            <p class="about-text">Hello! I'm <span class="highlight">Sishir Gottumukkala</span>, a passionate Unity developer and CS student at Central Michigan University. I'm minoring in Game Design to blend technical complexity with creative design.</p>
-            <p class="about-text">My strengths lie in <span class="highlight">gameplay programming, game AI, and animation</span>. I feel most comfortable in the Unity ecosystem using C#, but I've also built systems in Java and Python.</p>
-            <p class="about-text">I focus on crafting polished experiences, from mechanics to <span class="highlight">enemy patrol AI and animation transitions</span>. Beyond the code, I'm writing a science fiction novel named "Chronos".</p>
+            <p class="about-text">Hello! I'm <span class="highlight">Sishir Gottumukkala</span>, a passionate Unity developer and CS student at Central Michigan University.</p>
+            <p class="about-text">My strengths lie in <span class="highlight">gameplay programming and game AI</span>. I'm currently seeking internship opportunities before graduating in May 2026.</p>
             <a href="docs/Resume.pdf" target="_blank" class="btn btn-primary">View Resume &rarr;</a>
         </div>
     </section>
 
-    <section class="experience-section" id="experience">
+    <section class="parallax-section" id="experience" style="background-image: url('images/EnchantedMaze.gif');">
         <span class="about-header" style="text-align: center; display: block;">Career Path</span>
         <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">MY BACKSTORY</h2>
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-meta"><span class="timeline-date">AUG 2025 - PRESENT</span><span class="timeline-location">CMU | MT. PLEASANT</span></div>
-                <div class="timeline-content"><h3>CS Department Grader</h3><p class="company-name">Central Michigan University</p><p>Evaluating Java and C-based code for logic and efficiency.</p>
-                <div class="skills-tags"><span class="tag">Java</span><span class="tag">C</span><span class="tag">Code Review</span></div></div>
+                <div class="timeline-meta"><span class="timeline-date">AUG 2025 - PRESENT</span></div>
+                <div class="timeline-content"><h3>CS Department Grader</h3><p class="company-name">Central Michigan University</p>
+                <div class="skills-tags"><span class="tag">Java</span><span class="tag">C</span></div></div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-meta"><span class="timeline-date">JUL 2024 - AUG 2024</span><span class="timeline-location">LANSING, MI</span></div>
-                <div class="timeline-content"><h3>AppDev Internship</h3><p class="company-name">Delta Dental of Michigan</p><p>Gained hands-on experience in full-stack development and optimized SQL backend queries.</p>
-                <div class="skills-tags"><span class="tag">SQL</span><span class="tag">Backend</span><span class="tag">Web Dev</span></div></div>
+                <div class="timeline-meta"><span class="timeline-date">JUL 2024 - AUG 2024</span></div>
+                <div class="timeline-content"><h3>AppDev Internship</h3><p class="company-name">Delta Dental of Michigan</p>
+                <div class="skills-tags"><span class="tag">SQL</span><span class="tag">Backend</span></div></div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-meta"><span class="timeline-date">MAY 2024 - JUN 2024</span><span class="timeline-location">LANSING, MI</span></div>
-                <div class="timeline-content"><h3>Data Analyst Internship</h3><p class="company-name">Dewpoint</p><p>Utilized Power BI to analyze heatmaps and product utilization, translating data into actionable insights.</p>
-                <div class="skills-tags"><span class="tag">Power BI</span><span class="tag">Data Analysis</span><span class="tag">Heatmaps</span></div></div>
+                <div class="timeline-meta"><span class="timeline-date">MAY 2024 - JUN 2024</span></div>
+                <div class="timeline-content"><h3>Data Analyst Internship</h3><p class="company-name">Dewpoint</p>
+                <div class="skills-tags"><span class="tag">Power BI</span><span class="tag">Data Analysis</span></div></div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-meta"><span class="timeline-date">JAN 2024 - PRESENT</span><span class="timeline-location">CMU | MT. PLEASANT</span></div>
-                <div class="timeline-content"><h3>Vice President, Chess Club</h3><p class="company-name">Central Michigan University</p><p>Organizing tournaments and leading strategy. Competitive chess logic informs my design of game AI algorithms.</p>
-                <div class="skills-tags"><span class="tag">Leadership</span><span class="tag">Strategy</span><span class="tag">Logic</span></div></div>
+                <div class="timeline-meta"><span class="timeline-date">JAN 2024 - PRESENT</span></div>
+                <div class="timeline-content"><h3>Vice President, Chess Club</h3><p class="company-name">Central Michigan University</p>
+                <div class="skills-tags"><span class="tag">Leadership</span><span class="tag">Logic</span></div></div>
             </div>
         </div>
     </section>
@@ -196,67 +182,52 @@
         <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">FEATURED PROJECTS</h2>
         <div class="project-grid">
             <div class="project-card">
-                <div class="project-image" style="background-image: url('images/EnchantedMaze.gif'); background-color: #1a1a1a;"><div class="project-overlay"><a href="phantom_escape.html" class="view-btn">View Details</a></div></div>
-                <div class="project-info"><span class="project-category">Unity • C# • AI</span><h3>Phantom Escape: Enchanted Maze</h3><p>Third-person puzzle-maze with advanced AI patrols and HDRP visuals.</p></div>
+                <div class="project-image" style="background-image: url('images/EnchantedMaze.gif');"><div class="project-overlay"><a href="phantom_escape.html" class="view-btn">View Details</a></div></div>
+                <div class="project-info"><h3>Phantom Escape: Enchanted Maze</h3><p>Unity puzzle-maze with advanced AI.</p></div>
             </div>
             <div class="project-card">
-                <div class="project-image" style="background-image: url('images/flappybird.gif'); background-color: #1a1a1a;"><div class="project-overlay"><a href="flappy_bird.html" class="view-btn">View Details</a></div></div>
-                <div class="project-info"><span class="project-category">Java • JavaFX • Physics</span><h3>Flappy Bird Clone</h3><p>Physics-based gameplay with custom collision logic and object pooling.</p></div>
+                <div class="project-image" style="background-image: url('images/flappybird.gif');"><div class="project-overlay"><a href="flappy_bird.html" class="view-btn">View Details</a></div></div>
+                <div class="project-info"><h3>Flappy Bird Clone</h3><p>Physics-based gameplay in JavaFX.</p></div>
             </div>
             <div class="project-card">
                 <div class="project-image" style="background-image: url('images/ROI.gif');"><div class="project-overlay"><a href="rise_of_india.html" class="view-btn">View Project</a></div></div>
-                <div class="project-info"><span class="project-category">Unity • Educational</span><h3>Rise of India</h3><p>Turn-based strategy game exploring the historical milestones of India.</p></div>
+                <div class="project-info"><h3>Rise of India</h3><p>Educational strategy board game.</p></div>
             </div>
             <div class="project-card">
-                <div class="project-image" style="background-image: url('images/interactive-portfolio.gif'); background-color: #1a1a1a;">
-                    <div class="project-overlay">
-                        <a href="interactive_portfolio.html" class="view-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <span class="project-category">Unity • C# • Networking</span>
-                    <h3>Interactive Game-Style Portfolio</h3>
-                    <p>A virtual 2D environment where players explore terminals to learn about my background.</p>
-                </div>
+                <div class="project-image" style="background-image: url('images/interactive-portfolio.gif');"><div class="project-overlay"><a href="interactive_portfolio.html" class="view-btn">View Details</a></div></div>
+                <div class="project-info"><h3>Interactive Portfolio</h3><p>Virtual 3D exploration experience.</p></div>
             </div>
             <div class="project-card">
                 <div class="project-image" style="background-image: url('images/voice-control.png');"><div class="project-overlay"><a href="smart_home.html" class="view-btn">View Details</a></div></div>
-                <div class="project-info"><span class="project-category">Embedded C • IoT</span><h3>Voice Controlled Appliances</h3><p>IoT system using NodeMCU for real-time hardware voice command execution.</p></div>
+                <div class="project-info"><h3>Voice Controlled Appliances</h3><p>IoT NodeMCU smart home system.</p></div>
             </div>
         </div>
     </section>
 
-    <section class="skills-section" id="skills">
-        <span class="about-header" style="text-align: center; display: block;">Expertise</span>
+    <section class="parallax-section" id="skills" style="background-image: url('images/ROI.gif');">
         <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">TECHNICAL ARSENAL</h2>
         <div class="skills-container">
-            <div class="skill-category"><h3>Programming</h3><div class="skill-list"><span class="skill-tag">Python</span><span class="skill-tag">Java</span><span class="skill-tag">C#</span><span class="skill-tag">C++</span><span class="skill-tag">SQL</span></div></div>
-            <div class="skill-category"><h3>Engines & Tools</h3><div class="skill-list"><span class="skill-tag highlight-tag">Unity</span><span class="skill-tag">Unreal Engine</span><span class="skill-tag">VS Code</span><span class="skill-tag">Eclipse</span></div></div>
-            <div class="skill-category"><h3>Game Design</h3><div class="skill-list"><span class="skill-tag">Storyboarding</span><span class="skill-tag">Level Design</span><span class="skill-tag">Gameplay Mechanics</span><span class="skill-tag">VR Interaction</span></div></div>
-            <div class="skill-category"><h3>Multimedia</h3><div class="skill-list"><span class="skill-tag">Animation</span><span class="skill-tag">Real-time Rendering</span><span class="skill-tag">Audio Integration</span></div></div>
+            <div class="skill-category"><h3>Programming</h3><div class="skill-list"><span class="skill-tag">Python</span><span class="skill-tag">Java</span><span class="skill-tag">C#</span><span class="skill-tag">C++</span></div></div>
+            <div class="skill-category"><h3>Engines</h3><div class="skill-list"><span class="skill-tag">Unity</span><span class="skill-tag">Unreal Engine</span></div></div>
+            <div class="skill-category"><h3>Design</h3><div class="skill-list"><span class="skill-tag">Storyboarding</span><span class="skill-tag">Level Design</span><span class="skill-tag">VR Interaction</span></div></div>
         </div>
     </section>
 
-    <section class="certifications-section" id="certs">
-        <span class="about-header" style="text-align: center; display: block;">Validation</span>
+    <section class="parallax-section" id="certs" style="background-image: url('images/interactive-portfolio.gif');">
         <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">CERTIFICATIONS</h2>
         <div class="certs-grid">
             <div class="cert-card" onclick="window.open('docs/vr_certificate.pdf', '_blank')">
-                <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7.5l-9-4.5-9 4.5v9l9 4.5 9-4.5v-9zM3 7.5l9 4.5 9-4.5M12 22.5v-10.5"/></svg></div>
-                <div class="cert-info"><h3>VR Course - SP Robotic Works</h3><p>Master Certificate | VR Foundations</p><span class="cert-date">Oct 2019</span></div>
+                <div class="cert-info"><h3>VR Course - SP Robotic Works</h3><p>Master Certificate | Oct 2019</p></div>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 100px 10% 50px; background: #050505; border-top: 1px solid #111; text-align: center;">
-        <span class="about-header">Let's Connect</span>
-        <h2 class="about-title" style="margin-bottom: 2rem;">WANT TO COLLABORATE?</h2>
-        <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 50px;">
+    <footer style="padding: 50px 10%; background: #050505; border-top: 1px solid #111; text-align: center;">
+        <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 30px;">
             <a href="https://github.com/gsishir1104" target="_blank" class="btn btn-outline">GitHub</a>
             <a href="https://www.linkedin.com/in/sishir-gottumukkala-9a7a43235/" target="_blank" class="btn btn-outline">LinkedIn</a>
-            <a href="mailto:sishirgottumukkala@gmail.com" class="btn btn-primary">Email Me</a>
         </div>
-        <p style="color: var(--text-secondary); font-size: 0.8rem; letter-spacing: 1px;">&copy; 2026 SISHIR GOTTUMUKKALA | DESIGN INSPIRED BY GERLOGU</p>
+        <p style="color: var(--text-secondary);">&copy; 2026 SISHIR GOTTUMUKKALA</p>
     </footer>
 
     <script>
@@ -264,39 +235,29 @@
         const typingContainer = document.getElementById('typing-name');
         const subtitle = document.getElementById('hero-subtitle');
         const heroSection = document.querySelector('.hero');
-        
-        // --- BACKGROUND CYCLE LOGIC ---
-        const backgrounds = [
-            'images/EnchantedMaze.gif',
-            'images/flappybird.gif',
-            'images/ROI.gif',
-            'images/interactive-portfolio.gif'
-        ];
+        const backgrounds = ['images/EnchantedMaze.gif', 'images/flappybird.gif', 'images/ROI.gif', 'images/interactive-portfolio.gif'];
         let currentBgIndex = 0;
-
-        function changeBackground() {
-            heroSection.style.backgroundImage = `url('${backgrounds[currentBgIndex]}')`;
-            currentBgIndex = (currentBgIndex + 1) % backgrounds.length;
-        }
-
-        // --- TYPING EFFECT LOGIC ---
         let i = 0;
+
         function typeWriter() {
             if (i < nameText.length) {
                 typingContainer.innerHTML = nameText.substring(0, i + 1) + '<span class="cursor">&nbsp;</span>';
-                i++;
-                setTimeout(typeWriter, 100);
+                i++; setTimeout(typeWriter, 100);
             } else {
                 typingContainer.innerHTML = nameText;
                 subtitle.style.opacity = "1";
             }
         }
 
-        // Initialization on Load
+        function changeBackground() {
+            heroSection.style.backgroundImage = `url('${backgrounds[currentBgIndex]}')`;
+            currentBgIndex = (currentBgIndex + 1) % backgrounds.length;
+        }
+
         window.onload = () => {
             typeWriter();
-            changeBackground(); // Initialize first GIF immediately
-            setInterval(changeBackground, 5000); // Rotate every 5 seconds
+            changeBackground();
+            setInterval(changeBackground, 5000);
         };
     </script>
 </body>
