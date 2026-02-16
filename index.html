@@ -1,755 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sishir Gottumukkala | Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  
-  <style>
-    :root {
-      --primary: #6ba8e5;
-      --secondary: #8e2de2;
-      --dark: #121826;
-      --darker: #0a0e16;
-      --light: #e0f0ff;
-      --accent: #aad8ff;
-      --card-bg: rgba(30, 35, 50, 0.75);
-      --header-bg: rgba(18, 22, 40, 0.95);
-      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, var(--darker), var(--dark));
-      color: var(--light);
-      line-height: 1.6;
-      overflow-x: hidden;
-      background-attachment: fixed;
-      background-size: cover;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 20% 30%, rgba(74, 143, 231, 0.15) 0%, transparent 40%), 
-                  radial-gradient(circle at 80% 70%, rgba(142, 45, 226, 0.15) 0%, transparent 40%);
-      z-index: -2;
-      pointer-events: none;
-    }
-
-    .custom-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: var(--header-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-      border-bottom: 1px solid rgba(80, 120, 200, 0.2);
-      transition: var(--transition);
-    }
-
-    .header-left {
-      line-height: 1.3;
-    }
-
-    .header-left div:first-child {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--accent), var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 20px rgba(106, 168, 229, 0.4);
-      letter-spacing: -0.5px;
-    }
-
-    .header-left div:last-child {
-      font-size: 1rem;
-      margin-top: 8px;
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .header-right {
-      display: flex;
-      gap: 25px;
-    }
-
-    .header-right a {
-      color: #b4d5ff;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 8px 15px;
-      border-radius: 6px;
-      transition: var(--transition);
-      position: relative;
-      font-size: 1rem;
-    }
-
-    .header-right a:hover {
-      color: white;
-      background: rgba(90, 130, 220, 0.2);
-    }
-
-    .header-right a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 15px;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: var(--transition);
-    }
-
-    .header-right a:hover::after {
-      width: calc(100% - 30px);
-    }
-
-    main {
-      padding-top: 140px;
-      padding-bottom: 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 90%;
-    }
-
-    .content-section {
-      margin-bottom: 80px;
-      padding: 40px;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(80, 120, 200, 0.15);
-      position: relative;
-      overflow: hidden;
-      transition: var(--transition);
-    }
-
-    .content-section:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .content-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      opacity: 0.7;
-    }
-
-    h2 {
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-      color: var(--accent);
-      text-shadow: 0 0 15px rgba(106, 168, 229, 0.3);
-      position: relative;
-      display: inline-block;
-      padding-bottom: 15px;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), transparent);
-      border-radius: 2px;
-    }
-
-    p {
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-    }
-
-    strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    a:hover {
-      color: white;
-      text-decoration: underline;
-    }
-
-    .projects-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      padding: 20px 0;
-    }
-
-    .project-card-link {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .project-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      overflow: hidden;
-      width: 350px;
-      transition: var(--transition);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      position: relative;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .project-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-
-    .project-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .project-content {
-      padding: 25px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-content h3 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      color: var(--accent);
-    }
-
-    .project-content p {
-      font-size: 1rem;
-      margin-bottom: 20px;
-      flex-grow: 1;
-    }
-
-    .project-links {
-      margin-top: auto;
-    }
-
-    .project-links a {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 20px;
-      background: rgba(90, 130, 220, 0.2);
-      border-radius: 6px;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-
-    .project-links a:hover {
-      background: rgba(90, 130, 220, 0.3);
-      transform: translateY(-3px);
-      text-decoration: none;
-    }
-
-    .project-links a i {
-      margin-right: 8px;
-    }
-
-    .certifications-container {
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-    }
-
-    .cert-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      overflow: hidden;
-      width: 350px;
-      transition: var(--transition);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .cert-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .cert-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-
-    .cert-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .cert-card-content {
-      padding: 25px;
-    }
-
-    .cert-card-content p {
-      font-size: 1.1rem;
-      margin-bottom: 15px;
-    }
-
-    .cert-card-content ul {
-      padding-left: 20px;
-      margin-bottom: 20px;
-    }
-
-    .cert-card-content li {
-      margin-bottom: 10px;
-      position: relative;
-    }
-
-    .cert-card-content li::before {
-      content: '▹';
-      color: var(--primary);
-      position: absolute;
-      left: -20px;
-    }
-
-    .contact-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 40px;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-      transition: var(--transition);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .contact-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .contact-card h3 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: var(--accent);
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      margin-top: 30px;
-      flex-wrap: wrap;
-    }
-
-    .social-icons a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(90, 130, 220, 0.2);
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .social-icons a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .social-icons a:hover::before {
-      opacity: 1;
-    }
-
-    .social-icons a img {
-      width: 30px;
-      height: 30px;
-      z-index: 1;
-      transition: var(--transition);
-    }
-
-    .social-icons a:hover img {
-      transform: scale(1.2);
-      filter: brightness(0) invert(1);
-    }
-
-    footer {
-      background: var(--header-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      text-align: center;
-      padding: 20px;
-      font-size: 1rem;
-      color: var(--accent);
-      border-top: 1px solid rgba(80, 120, 200, 0.2);
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .content-section {
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-
-    .content-section:nth-child(1) { animation-delay: 0.1s; }
-    .content-section:nth-child(2) { animation-delay: 0.2s; }
-    .content-section:nth-child(3) { animation-delay: 0.3s; }
-    .content-section:nth-child(4) { animation-delay: 0.4s; }
-
-    /* Floating particles */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(106, 168, 229, 0.15);
-      box-shadow: 0 0 20px rgba(106, 168, 229, 0.3);
-      animation: float 15s infinite linear;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-1000px) translateX(1000px) rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    /* Responsive design */
-    @media (max-width: 1100px) {
-      .custom-header {
-        padding: 15px 30px;
-      }
-      .header-left div:first-child {
-        font-size: 1.6rem;
-      }
-      .header-left div:last-child {
-        font-size: 0.95rem;
-      }
-      .header-right a {
-        font-size: 0.95rem;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .custom-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 15px;
-      }
-      .header-left {
-        margin-bottom: 15px;
-      }
-      .header-right {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .content-section {
-        padding: 30px;
-      }
-      h2 {
-        font-size: 2.2rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      main {
-        padding-top: 160px;
-      }
-      .content-section {
-        padding: 25px;
-      }
-      h2 {
-        font-size: 2rem;
-      }
-      .project-card, .cert-card {
-        width: 100%;
-        max-width: 500px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      main {
-        padding-top: 180px;
-      }
-      .header-right a {
-        padding: 6px 12px;
-        font-size: 0.9rem;
-      }
-      .content-section {
-        padding: 20px;
-      }
-      h2 {
-        font-size: 1.8rem;
-      }
-      .contact-card {
-        padding: 25px;
-      }
-      .social-icons a {
-        width: 50px;
-        height: 50px;
-      }
-      .social-icons a img {
-        width: 24px;
-        height: 24px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sishir Gottumukkala | Game Dev & AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-color: #050505;
+            --accent: #00d4ff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --card-bg: #111111;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section with Smooth Fade */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1.5s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
+
+        #typing-name { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; text-transform: uppercase; letter-spacing: -2px; }
+        .cursor { display: inline-block; width: 10px; background-color: var(--accent); margin-left: 5px; animation: blink 0.7s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .subtitle { color: var(--text-secondary); font-size: 1.2rem; margin-top: 1rem; opacity: 0; transition: opacity 1s ease; }
+
+        /* PARALLAX EFFECT STYLES */
+        .parallax-section {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Creates the cinematic scroll effect */
+            background-repeat: no-repeat;
+            padding: 120px 10%;
+            z-index: 1;
+            overflow: hidden;
+            border-top: 1px solid #111;
+        }
+
+        .parallax-section::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); 
+            z-index: -1;
+        }
+
+        /* ABOUT ME SECTION */
+        .about-container { display: flex; flex-wrap: wrap; padding: 100px 5%; gap: 40px; }
+        .about-left { flex: 1; min-width: 300px; position: sticky; top: 100px; height: fit-content; }
+        .stat-item { margin-bottom: 2rem; border-bottom: 1px solid #222; padding-bottom: 1rem; }
+        .stat-number { font-size: 2.5rem; font-weight: 900; color: var(--text-primary); display: block; }
+        .stat-label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 2px; }
+        .profile-frame { width: 100%; aspect-ratio: 1/1.2; background: #111; border-radius: 8px; overflow: hidden; margin-top: 2rem; border: 1px solid #333; }
+        .profile-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
+        .profile-frame:hover img { filter: grayscale(0%); }
+        .about-right { flex: 1.5; min-width: 350px; }
+        .about-header { font-size: 0.9rem; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+        .about-title { font-size: 3rem; font-weight: 900; line-height: 1.1; margin-bottom: 2rem; }
+        .about-text { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .highlight { color: var(--text-primary); font-weight: 700; }
+
+        /* TIMELINE */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; border-left: 1px solid #222; padding-left: 40px; }
+        .timeline-item { margin-bottom: 50px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -46px; top: 8px; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 15px var(--accent); }
+        .timeline-date { color: var(--accent); font-weight: 900; font-size: 0.75rem; margin-right: 15px; letter-spacing: 1px; }
+        .timeline-content h3 { font-size: 1.6rem; font-weight: 900; color: var(--text-primary); margin-bottom: 4px; }
+        .skills-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+        .tag { font-size: 10px; background: #161616; padding: 4px 10px; border-radius: 2px; border: 1px solid #333; color: var(--text-primary); font-weight: 700; text-transform: uppercase; }
+
+        /* PROJECTS GRID */
+        .projects-section { padding: 100px 5%; background: var(--bg-color); border-top: 1px solid #111; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
+        .project-card { background: var(--card-bg); border: 1px solid #1a1a1a; transition: 0.4s ease; overflow: hidden; }
+        .project-image { height: 250px; background-size: cover; background-position: center; position: relative; transition: transform 0.5s ease; }
+        .project-card:hover .project-image { transform: scale(1.05); }
+        .project-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s ease; }
+        .project-card:hover .project-overlay { opacity: 1; }
+        .view-btn { padding: 12px 25px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; }
+        .project-info { padding: 25px; }
+
+        /* SKILLS GRID */
+        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .skill-category { background: rgba(10, 10, 10, 0.9); padding: 30px; border: 1px solid #1a1a1a; transition: 0.3s ease; }
+        .skill-category h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 12px; }
+        .skill-tag { font-size: 0.85rem; color: var(--text-secondary); background: #161616; padding: 6px 15px; border-radius: 4px; border: 1px solid #222; }
+
+        /* CERTS GRID */
+        .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .cert-card { background: rgba(17, 17, 17, 0.9); padding: 30px; border: 1px solid #222; display: flex; align-items: center; gap: 20px; transition: 0.3s ease; cursor: pointer; }
+        .cert-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+        /* BUTTONS */
+        .btn { padding: 15px 35px; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; border-radius: 4px; transition: 0.3s; display: inline-block; }
+        .btn-primary { background: var(--accent); color: #000; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4); }
+        .btn-outline { border: 1px solid #333; color: var(--text-primary); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+        @media (max-width: 768px) { .parallax-section { background-attachment: scroll; } .about-left { position: relative; top: 0; } }
+    </style>
 </head>
 <body>
-  <!-- Floating particles for background effect -->
-  <div class="particles" id="particles"></div>
 
-  <header class="custom-header">
-    <div class="header-left">
-      <div>Sishir Gottumukkala</div>
-      <div>Unity Developer | Game AI | Animation | Gameplay Programming</div>
-    </div>
-    <nav class="header-right">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+    <header class="hero">
+        <h1 id="typing-name"></h1>
+        <p class="subtitle" id="hero-subtitle">CS @ CMU | Unity Developer | Game AI | Gameplay Programming</p>
+    </header>
 
-  <main>
-    <!-- About Section -->
-    <section id="about" class="content-section">
-      <h2>About Me</h2>
-      <p>
-        Hello! I'm <strong>Sishir Gottumukkala</strong>, a passionate Unity developer and computer science student currently pursuing my bachelor's degree at Central Michigan University. Alongside my major in Computer Science, I'm also minoring in Game Design to align my technical skills with my creative interests in gameplay and immersive design.
-      </p>
-      <p>
-        My strengths lie in <strong>gameplay programming</strong>, <strong>game artificial intelligence</strong>, and <strong>animation</strong>, and I feel most comfortable working with <strong>Unity</strong> and <strong>C#</strong>. I've also developed projects using <strong>Java</strong> and <strong>Python</strong>, and I enjoy exploring new frameworks and tools that bring my interactive ideas to life.
-      </p>
-      <p>
-        My work focuses on crafting engaging user experiences, refining game mechanics, and building systems like enemy patrol AI and animation transitions. I believe in learning by doing and love transforming complex challenges into polished, playable experiences.
-      </p>
-      <p>
-        Outside of coding, I'm currently <strong>writing a novel</strong>, which helps sharpen my storytelling skills. I strongly believe that <strong>storyboarding and narrative design</strong> are essential to great game development, adding emotional depth and meaning to gameplay.
-      </p>
-      <p>
-        I'm on track to graduate in <strong>May 2026</strong>, and I'm currently seeking internship opportunities to grow my real-world development experience. I also enjoy watching gameplay breakdowns, experimenting with new game ideas, and diving into virtual reality.
-      </p>
-      <p>
-        <a href="docs/Resume.pdf" target="_blank" style="display: inline-flex; align-items: center; background: rgba(90, 130, 220, 0.2); padding: 10px 20px; border-radius: 6px; font-weight: 600; margin-top: 15px;">
-          <i class="fas fa-file-pdf" style="margin-right: 10px;"></i> View My Resume (PDF)
-        </a>
-      </p>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="content-section">
-    <h2>Projects</h2>
-    <div class="projects-container">
-      <!-- Phantom Escape -->
-      <a href="phantom_escape.html" class="project-card-link">
-        <div class="project-card">
-          <img src="images/EnchantedMaze.gif" alt="Phantom Escape">
-          <div class="project-content">
-            <h3>Phantom Escape: Enchanted Maze</h3>
-            <p>A third-person puzzle-maze game built in Unity. Features AI enemy patrols, animation transitions, and atmospheric visuals.</p>
-            <div class="project-links">
-              <span>View Project <i class="fas fa-arrow-right"></i></span>
+    <section class="about-container" id="about">
+        <div class="about-left">
+            <div class="stat-item">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Featured Projects</span>
             </div>
-          </div>
-        </div>
-      </a>
-
-      <!-- Flappy Bird -->
-      <a href="flappy_bird.html" class="project-card-link">
-        <div class="project-card">
-          <img src="images/flappybird.gif" alt="Flappy Bird JavaFX Demo">
-          <div class="project-content">
-            <h3>Flappy Bird Clone (JavaFX)</h3>
-            <p>A simple Flappy Bird clone built using JavaFX. Includes gravity, collision, score tracking, and game-over logic.</p>
-            <div class="project-links">
-              <span>View Project <i class="fas fa-arrow-right"></i></span>
+            <div class="stat-item">
+                <span class="stat-number">2026</span>
+                <span class="stat-label">Graduation Year</span>
             </div>
-          </div>
-        </div>
-      </a>
-
-        <!-- Voice Controlled Home Appliances -->
-        <a href="voice_control.html" class="project-card-link">
-          <div class="project-card">
-            <img src="images/voice-control.png" alt="Voice Controlled Home Appliances Project">
-            <div class="project-content">
-              <h3>Voice Controlled Home Appliances</h3>
-              <p>A smart home project built using <strong>Embedded C</strong> to control appliances with voice commands. Demonstrates practical embedded systems knowledge.</p>
-              <div class="project-links">
-                <span>View Project <i class="fas fa-arrow-right"></i></span>
-              </div>
+            <div class="profile-frame">
+                <img src="images/your-photo.jpg" alt="Sishir Gottumukkala">
             </div>
-          </div>
-</a>
-      </div>
-    </section>
-  
-    <!-- Certifications Section -->
-    <section id="certifications" class="content-section">
-      <h2>Certifications</h2>
-      <div class="certifications-container">
-        <div class="cert-card">
-          <img src="images/vr_certificate.png" alt="VR Certificate Thumbnail">
-          <div class="cert-card-content">
-            <p><strong>VR Course - SP Robotic Works</strong><br>Master Certificate | October 2019</p>
-            <ul>
-              <li>Successfully completed a VR Course focused on virtual reality development.</li>
-              <li>Built interactive VR scenes; learned VR foundations and Unity basics.</li>
-            </ul>
-            <a href="docs/vr_certificate.pdf" target="_blank" style="display: inline-flex; align-items: center; background: rgba(90, 130, 220, 0.2); padding: 10px 20px; border-radius: 6px; font-weight: 600; margin-top: 15px;">
-              <i class="fas fa-file-pdf" style="margin-right: 10px;"></i> View Full Certificate
-            </a>
-          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="content-section">
-      <h2>Contact</h2>
-      <div class="contact-card">
-        <h3>Sishir Gottumukkala</h3>
-        <p>Unity Developer | Game AI | Animation | Gameplay Programming</p>
-        <p><i class="fas fa-envelope"></i> Sishirgottumukkala@gmail.com</p>
+        <div class="about-right">
+            <span class="about-header">About Me</span>
+            <h2 class="about-title">GAME DEVELOPER SPECIALIZED IN <span style="color:var(--accent)">GAMEPLAY & AI</span></h2>
+            
+            <p class="about-text">
+                Hello! I'm <span class="highlight">Sishir Gottumukkala</span>, a passionate Unity developer and computer science student currently pursuing my bachelor's degree at Central Michigan University. Alongside my major, I'm minoring in Game Design to align my technical skills with my creative interests in gameplay and immersive design.
+            </p>
+            
+            <p class="about-text">
+                My strengths lie in <span class="highlight">gameplay programming, game AI, and animation</span>. While I feel most comfortable working with <span class="highlight">Unity and C#</span>, I have also developed projects using Java and Python to bring interactive ideas to life.
+            </p>
 
-        <div class="social-icons">
-          <a href="index.html" title="Home">
-            <img src="images/home-icon.png" alt="Home">
-          </a>
-          <a href="https://www.linkedin.com/in/sishir-gottumukkala-9a7a43235/" target="_blank" title="LinkedIn">
-            <img src="images/linkedin-icon.png" alt="LinkedIn">
-          </a>
-          <a href="https://github.com/gsishir1104" target="_blank" title="GitHub">
-            <img src="images/github-icon.png" alt="GitHub">
-          </a>
-          <a href="https://www.youtube.com/@sishirgottumukkala3985" target="_blank" title="YouTube">
-            <img src="images/youtube-icon.png" alt="YouTube">
-          </a>
+            <p class="about-text">
+                My work focuses on crafting engaging user experiences, from refining mechanics to building systems like <span class="highlight">enemy patrol AI and animation transitions</span>. I believe in learning by doing—transforming complex challenges into polished, playable experiences.
+            </p>
+
+            <p class="about-text">
+                Outside of coding, I'm currently <span class="highlight">writing a science fiction novel</span>, which helps sharpen my narrative design skills. I strongly believe that storytelling adds the emotional depth and meaning essential to great game development.
+            </p>
+
+            <p class="about-text">
+                I'm on track to graduate in <span class="highlight">May 2026</span> and am currently seeking internship opportunities to grow my real-world development experience.
+            </p>
+            
+            <a href="docs/Resume.pdf" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">View Resume &rarr;</a>
         </div>
-      </div>
     </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2025 Sishir Gottumukkala. All rights reserved.</p>
-  </footer>
+    <section class="parallax-section" id="experience" style="background-image: url('images/EnchantedMaze.gif');">
+        <span class="about-header" style="text-align: center; display: block;">Career Path</span>
+        <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">MY BACKSTORY</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-meta"><span class="timeline-date">AUG 2025 - PRESENT</span></div>
+                <div class="timeline-content"><h3>CS Department Grader</h3><p class="company-name">Central Michigan University</p>
+                <div class="skills-tags"><span class="tag">Java</span><span class="tag">C</span></div></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-meta"><span class="timeline-date">JUL 2024 - AUG 2024</span></div>
+                <div class="timeline-content"><h3>AppDev Internship</h3><p class="company-name">Delta Dental of Michigan</p>
+                <div class="skills-tags"><span class="tag">SQL</span><span class="tag">Backend</span></div></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-meta"><span class="timeline-date">MAY 2024 - JUN 2024</span></div>
+                <div class="timeline-content"><h3>Data Analyst Internship</h3><p class="company-name">Dewpoint</p>
+                <div class="skills-tags"><span class="tag">Power BI</span><span class="tag">Data Analysis</span></div></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-meta"><span class="timeline-date">JAN 2024 - PRESENT</span></div>
+                <div class="timeline-content"><h3>Vice President, Chess Club</h3><p class="company-name">Central Michigan University</p>
+                <div class="skills-tags"><span class="tag">Leadership</span><span class="tag">Logic</span></div></div>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    // Create floating particles for background effect
-    document.addEventListener('DOMContentLoaded', function() {
-      const particlesContainer = document.getElementById('particles');
-      const particleCount = 40;
-      
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        // Random properties
-        const size = Math.random() * 20 + 5;
-        const posX = Math.random() * 100;
-        const posY = Math.random() * 100;
-        const animationDuration = Math.random() * 20 + 15;
-        const animationDelay = Math.random() * 10;
-        const hue = Math.floor(Math.random() * 40) + 190;
-        
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${posX}%`;
-        particle.style.top = `${posY}%`;
-        particle.style.animationDuration = `${animationDuration}s`;
-        particle.style.animationDelay = `${animationDelay}s`;
-        particle.style.background = `rgba(${hue}, ${hue}, 255, 0.15)`;
-        particle.style.boxShadow = `0 0 ${size/2}px rgba(${hue}, ${hue}, 255, 0.3)`;
-        
-        particlesContainer.appendChild(particle);
-      }
+    <section class="projects-section" id="work">
+        <span class="about-header" style="text-align: center; display: block;">Portfolio</span>
+        <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">FEATURED PROJECTS</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('images/EnchantedMaze.gif');"><div class="project-overlay"><a href="phantom_escape.html" class="view-btn">View Details</a></div></div>
+                <div class="project-info"><h3>Phantom Escape: Enchanted Maze</h3><p>Unity puzzle-maze with advanced AI.</p></div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('images/flappybird.gif');"><div class="project-overlay"><a href="flappy_bird.html" class="view-btn">View Details</a></div></div>
+                <div class="project-info"><h3>Flappy Bird Clone</h3><p>Physics-based gameplay in JavaFX.</p></div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('images/ROI.gif');"><div class="project-overlay"><a href="rise_of_india.html" class="view-btn">View Project</a></div></div>
+                <div class="project-info"><h3>Rise of India</h3><p>Educational strategy board game.</p></div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('images/interactive-portfolio.gif');"><div class="project-overlay"><a href="interactive_portfolio.html" class="view-btn">View Details</a></div></div>
+                <div class="project-info"><h3>Interactive Portfolio</h3><p>Virtual 3D exploration experience.</p></div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('images/voice-control.png');"><div class="project-overlay"><a href="smart_home.html" class="view-btn">View Details</a></div></div>
+                <div class="project-info"><h3>Voice Controlled Appliances</h3><p>IoT NodeMCU smart home system.</p></div>
+            </div>
+        </div>
+    </section>
 
-      // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            window.scrollTo({
-              top: target.offsetTop - 100,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
-    });
-  </script>
+    <section class="parallax-section" id="skills" style="background-image: url('images/ROI.gif');">
+        <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">TECHNICAL ARSENAL</h2>
+        <div class="skills-container">
+            <div class="skill-category"><h3>Programming</h3><div class="skill-list"><span class="skill-tag">Python</span><span class="skill-tag">Java</span><span class="skill-tag">C#</span><span class="skill-tag">C++</span></div></div>
+            <div class="skill-category"><h3>Engines</h3><div class="skill-list"><span class="skill-tag">Unity</span><span class="skill-tag">Unreal Engine</span></div></div>
+            <div class="skill-category"><h3>Design</h3><div class="skill-list"><span class="skill-tag">Storyboarding</span><span class="skill-tag">Level Design</span><span class="skill-tag">VR Interaction</span></div></div>
+        </div>
+    </section>
+
+    <section class="parallax-section" id="certs" style="background-image: url('images/interactive-portfolio.gif');">
+        <h2 class="about-title" style="text-align: center; margin-bottom: 4rem;">CERTIFICATIONS</h2>
+        <div class="certs-grid">
+            <div class="cert-card" onclick="window.open('docs/vr_certificate.pdf', '_blank')">
+                <div class="cert-info"><h3>VR Course - SP Robotic Works</h3><p>Master Certificate | Oct 2019</p></div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 50px 10%; background: #050505; border-top: 1px solid #111; text-align: center;">
+        <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 30px;">
+            <a href="https://github.com/gsishir1104" target="_blank" class="btn btn-outline">GitHub</a>
+            <a href="https://www.linkedin.com/in/sishir-gottumukkala-9a7a43235/" target="_blank" class="btn btn-outline">LinkedIn</a>
+        </div>
+        <p style="color: var(--text-secondary);">&copy; 2026 SISHIR GOTTUMUKKALA</p>
+    </footer>
+
+    <script>
+        const nameText = "SISHIR GOTTUMUKKALA";
+        const typingContainer = document.getElementById('typing-name');
+        const subtitle = document.getElementById('hero-subtitle');
+        const heroSection = document.querySelector('.hero');
+        const backgrounds = ['images/EnchantedMaze.gif', 'images/flappybird.gif', 'images/ROI.gif', 'images/interactive-portfolio.gif'];
+        let currentBgIndex = 0;
+        let i = 0;
+
+        function typeWriter() {
+            if (i < nameText.length) {
+                typingContainer.innerHTML = nameText.substring(0, i + 1) + '<span class="cursor">&nbsp;</span>';
+                i++; setTimeout(typeWriter, 100);
+            } else {
+                typingContainer.innerHTML = nameText;
+                subtitle.style.opacity = "1";
+            }
+        }
+
+        function changeBackground() {
+            heroSection.style.backgroundImage = `url('${backgrounds[currentBgIndex]}')`;
+            currentBgIndex = (currentBgIndex + 1) % backgrounds.length;
+        }
+
+        window.onload = () => {
+            typeWriter();
+            changeBackground();
+            setInterval(changeBackground, 5000);
+        };
+    </script>
 </body>
 </html>
