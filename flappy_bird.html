@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flappy Bird JavaFX | Sishir Gottumukkala</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Flappy Bird JavaFX | Sishir Gottumukkala</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&amp;display=swap" rel="stylesheet"><style>
         :root {
             --bg-color: #050505;
             --accent: #00d4ff;
@@ -15,9 +8,7 @@
             --code-bg: #1a1a1a;
         }
         body {
-            background: linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.9)), 
-                        url('images/flappybird.gif'); /* Replace with your Flappy Bird GIF path */
-            background-size: cover;
+            background: #080b10; background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: var(--text-primary);
@@ -67,66 +58,4 @@
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
         @media (max-width: 768px) { .feature-grid { grid-template-columns: 1fr; } }
-    </style>
-</head>
-<body>
-
-    <nav class="project-nav">
-        <a href="index_new.html" class="back-link">← Back to Portfolio</a>
-        <div class="project-tagline">Java Game Development</div>
-    </nav>
-
-    <main class="container">
-        <header class="project-header">
-            <h1 class="project-title">Flappy Bird JavaFX</h1>
-            <p style="color: var(--text-secondary); font-size: 1.2rem;">A faithful recreation demonstrating OOP principles and custom physics implementation.</p>
-        </header>
-
-        <section class="content-block">
-            <span class="section-label">Project Overview</span>
-            <p>This implementation utilizes Java's graphics libraries to demonstrate game physics and UI design. The game uses <strong>JavaFX AnimationTimer</strong> to provide smooth 60fps gameplay.</p>
-        </section>
-
-        <section class="content-block">
-            <span class="section-label">Key Features</span>
-            <div class="feature-grid">
-                <div class="feature-item"><strong>Physics-Based Gameplay</strong><span>Implemented realistic gravity, jump mechanics, and collision detection.</span></div>
-                <div class="feature-item"><strong>Procedural Generation</strong><span>Created an algorithm that generates pipes at varying heights dynamically.</span></div>
-                <div class="feature-item"><strong>Game State Management</strong><span>Designed a system for start, playing, and game-over phases.</span></div>
-                <div class="feature-item"><strong>Responsive Controls</strong><span>Precise keyboard timing for jump mechanics.</span></div>
-            </div>
-        </section>
-
-        <section class="content-block">
-            <span class="section-label">Core Game Loop & Physics</span>
-            <div class="code-container">
-<pre>
-// Apply gravity and update position
-velocityY += gravity;
-bird.y += velocityY;
-
-// Collision detection logic
-private boolean collision(Bird bird, Pipe pipe) {
-    return bird.x < pipe.x + pipe.width && 
-           bird.x + bird.width > pipe.x &&
-           bird.y < pipe.y + pipe.height && 
-           bird.y + bird.height > pipe.y;
-}
-</pre>
-            </div>
-        </section>
-
-        <section class="content-block">
-            <span class="section-label">Development Challenges</span>
-            <p><strong>Custom Physics:</strong> Since JavaFX lacks a built-in physics engine, I developed custom collision logic using bounding boxes and coordinate calculations.</p>
-            <p><strong>Optimization:</strong> I implemented object pooling for pipe generation to reuse objects as they move off-screen, significantly reducing garbage collection overhead.</p>
-        </section>
-
-        <footer class="button-group">
-            <a href="https://github.com/gsishir1104/FlappyBird-JavaFX" class="btn btn-primary">View Source Code</a>
-            <a href="index_new.html" class="btn btn-outline">Back to Home</a>
-        </footer>
-    </main>
-
-</body>
-</html>
+    a {color:#68ddff;} li {margin-bottom:16px;} code {overflow-wrap:anywhere;color:#d9efff;} .button-group,.project-nav {flex-wrap:wrap;gap:16px;} .section-label {font-size:1rem;} .project-header {margin-top:40px;} .content-block {max-width:800px;} .btn {display:inline-block;} @media(max-width:600px){.container {padding:0 6%;}.project-nav {padding:24px 6%;}} </style></head><body><nav class="project-nav"><a href="index.html#work" class="back-link">← Back to projects</a><span class="project-tagline">Java gameplay programming</span></nav><main class="container"><header class="project-header"><h1 class="project-title">Flappy Bird JavaFX</h1></header><section class="content-block"><h2 class="section-label">My implementation</h2><p>I built the game loop, input handling, pipe generation, collision detection, scoring, and restart flow in JavaFX. The implementation uses separate Bird and Pipe objects and draws them on a Canvas.</p></section><section class="content-block"><h2 class="section-label">Concrete implementation details</h2><ul><li><strong>Movement:</strong> <code>AnimationTimer.handle()</code> calls the update and draw methods while the game is active. Each update increases vertical velocity by gravity and adds that velocity to the bird’s position. Space sets upward velocity to <code>-9</code> during play.</li><li><strong>Obstacles:</strong> <code>placePipes()</code> creates top and bottom pipes at a randomized vertical offset with a gap of <code>HEIGHT / 4</code>. Pipes move left by four pixels per update. Off-screen pipes are removed from the active list.</li><li><strong>Collision:</strong> <code>collision()</code> compares the bird and pipe rectangles on both axes. An overlap sets <code>gameOver</code>; going above or below the play area also ends the run.</li><li><strong>Scoring and restart:</strong> A <code>passed</code> flag prevents repeated scoring for the same pipe. Each pipe contributes half a point. Reset clears pipes and score, resets position and velocity, and returns to the start state.</li></ul></section><section class="content-block"><h2 class="section-label">Tradeoffs</h2><p>The current implementation creates pipe objects rather than pooling them. Movement is measured per update rather than elapsed time, so consistent speed across different frame rates is a future improvement. No FPS or garbage-collection improvement is claimed.</p></section><section class="content-block"><h2 class="section-label">Inspect the code</h2><p><a href="https://github.com/gsishir1104/FlappyBird-JavaFx/blob/main/src/FlappyBirdGame.java">FlappyBirdGame.java: game loop, physics, pipes, collision, and reset</a></p></section><footer class="button-group"><a class="btn btn-outline" href="index.html#work">All projects</a></footer></main></body></html>

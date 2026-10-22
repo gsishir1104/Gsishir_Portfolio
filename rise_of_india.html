@@ -15,7 +15,7 @@
         }
         body {
             background: linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.9)), 
-                        url('images/rise-of-india.gif'); 
+                        url('images/ROI.gif'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -51,12 +51,12 @@
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4); }
         .btn-outline { border: 1px solid #333; color: var(--text-primary); }
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-    </style>
+    .button-group,.project-nav {flex-wrap:wrap;gap:16px;} .feature-grid {grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));} </style>
 </head>
 <body>
 
     <nav class="project-nav">
-        <a href="index_new.html" class="back-link">← Back to Portfolio</a>
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
         <div style="color:var(--accent); font-weight:700; font-size:0.8rem; text-transform:uppercase;">Unity Strategy Game</div>
     </nav>
 
@@ -83,20 +83,20 @@
 
         <section class="content-block">
             <span class="section-label">Development Insights</span>
-            <p>I addressed the challenge of balancing data and fun by utilizing a <strong>modular C# architecture</strong>, allowing for the addition of events without disrupting the core loop. I built the turn structure using a <strong>State Machine</strong> in Unity to ensure animations and educational prompts remain perfectly synchronized.</p>
+            <p>The project combines historical content with turn-based play and hero cards. The playable demo is linked below; implementation-specific architecture and performance claims are omitted until the relevant source can be documented.</p>
             
         </section>
 
         <section class="content-block">
             <span class="section-label">Technical Breakdown</span>
             <div class="tech-list">
-                <span class="tech-tag">Unity</span> <span class="tech-tag">C#</span> <span class="tech-tag">State-based Logic</span> <span class="tech-tag">SQL Integration</span>
+                <span class="tech-tag">Unity</span> <span class="tech-tag">C#</span> 
             </div>
         </section>
 
         <footer class="button-group">
             <a href="https://gsishir1104.itch.io/rise-of-india" class="btn btn-primary">Play Game Demo</a>
-            <a href="https://github.com/gsishir1104/Rise-of-India" class="btn btn-outline">View Source Code</a>
+            
         </footer>
 
     </main>
